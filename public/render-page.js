@@ -15,7 +15,10 @@
 exports.ssrComponents = {
   "component---cache-dev-404-page-js": preferDefault(__webpack_require__(/*! ./.cache/dev-404-page.js */ "./.cache/dev-404-page.js")),
   "component---src-pages-404-js": preferDefault(__webpack_require__(/*! ./src/pages/404.js */ "./src/pages/404.js")),
+  "component---src-pages-about-js": preferDefault(__webpack_require__(/*! ./src/pages/about.js */ "./src/pages/about.js")),
+  "component---src-pages-contact-js": preferDefault(__webpack_require__(/*! ./src/pages/contact.js */ "./src/pages/contact.js")),
   "component---src-pages-index-js": preferDefault(__webpack_require__(/*! ./src/pages/index.js */ "./src/pages/index.js")),
+  "component---src-pages-work-index-js": preferDefault(__webpack_require__(/*! ./src/pages/work/index.js */ "./src/pages/work/index.js")),
   "component---src-pages-work-work-detail-page-template-js": preferDefault(__webpack_require__(/*! ./src/pages/work/workDetailPageTemplate.js */ "./src/pages/work/workDetailPageTemplate.js"))
   }
 
@@ -8609,13 +8612,58 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @emotion/react */ "./node_modules/@emotion/react/dist/emotion-react.esm.js");
+/* harmony import */ var _images_BBS_Footer_Logo_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../images/BBS-Footer-Logo.svg */ "./src/images/BBS-Footer-Logo.svg");
+/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @emotion/react */ "./node_modules/@emotion/react/dist/emotion-react.esm.js");
+function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 
+
+
+
+const currentYear = new Date().getFullYear();
+
+var _ref =  false ? 0 : {
+  name: "1wq8w49-Footer",
+  styles: "margin-top:2rem;padding-top:2rem;padding-bottom:1rem;--tw-bg-opacity:1;background-color:rgba(230, 223, 217, var(--tw-bg-opacity));label:Footer;",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
+};
+
+var _ref2 =  false ? 0 : {
+  name: "130z3nt-Footer",
+  styles: "display:flex;flex-wrap:wrap;justify-content:center;align-items:center;label:Footer;",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
+};
+
+var _ref3 =  false ? 0 : {
+  name: "1p7d1rb-Footer",
+  styles: "margin-bottom:0.25rem;label:Footer;",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
+};
+
+var _ref4 =  false ? 0 : {
+  name: "1y5jhv0-Footer",
+  styles: "text-align:center;margin-top:0.5rem;label:Footer;",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
+};
 
 function Footer() {
-  return (0,_emotion_react__WEBPACK_IMPORTED_MODULE_1__.jsx)("footer", {
-    tw: "pl-8 pr-8 mx-auto"
-  }, "Footer will go here");
+  return (0,_emotion_react__WEBPACK_IMPORTED_MODULE_2__.jsx)("footer", {
+    css: _ref,
+    "data-tw": "mt-8 pt-8 pb-4 bg-beige"
+  }, (0,_emotion_react__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    css: _ref2,
+    "data-tw": "flex flex-wrap justify-center items-center"
+  }, (0,_emotion_react__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+    id: "footer-logo",
+    src: _images_BBS_Footer_Logo_svg__WEBPACK_IMPORTED_MODULE_1__.default,
+    alt: "BBS Footer Logo",
+    css: _ref3,
+    "data-tw": "mb-1"
+  }), (0,_emotion_react__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    className: "break"
+  }), (0,_emotion_react__WEBPACK_IMPORTED_MODULE_2__.jsx)("small", {
+    css: _ref4,
+    "data-tw": "text-center mt-2"
+  }, `© ${currentYear} Build Beautiful Spaces LLC. All Rights Reserved.`)));
 }
 
 /***/ }),
@@ -8674,7 +8722,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _images_Logo_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../images/Logo.svg */ "./src/images/Logo.svg");
+/* harmony import */ var _images_BBS_Logo_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../images/BBS-Logo.svg */ "./src/images/BBS-Logo.svg");
 /* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @emotion/react */ "./node_modules/@emotion/react/dist/emotion-react.esm.js");
 function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 
@@ -8700,8 +8748,8 @@ function Logo() {
     "data-tw": "flex justify-center m-6 sm:justify-start"
   }, (0,_emotion_react__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
     id: "logo",
-    src: _images_Logo_svg__WEBPACK_IMPORTED_MODULE_1__.default,
-    alt: "BBS Logo",
+    src: _images_BBS_Logo_svg__WEBPACK_IMPORTED_MODULE_1__.default,
+    alt: "BBS-Logo",
     css: _ref2,
     "data-tw": "w-44"
   }));
@@ -8738,13 +8786,13 @@ const navigation = [{
   slug: "/"
 }, {
   name: "About Us",
-  slug: "/about"
+  slug: "/about/"
 }, {
   name: "Work",
-  slug: "/work"
+  slug: "/work/"
 }, {
   name: "Contact Us",
-  slug: "/contact"
+  slug: "/contact/"
 }];
 
 const MobileNav = (0,_emotion_styled_base__WEBPACK_IMPORTED_MODULE_0__.default)("nav",  false ? 0 : {
@@ -8753,7 +8801,7 @@ const MobileNav = (0,_emotion_styled_base__WEBPACK_IMPORTED_MODULE_0__.default)(
 })( false ? 0 : {
   name: "10aosbg",
   styles: "position:fixed;z-index:20;width:100%;min-height:100vh;--tw-bg-opacity:1;background-color:rgba(255, 255, 255, var(--tw-bg-opacity));opacity:0.9;padding:1rem;",
-  map: "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9kbG9wZXovRG9jdW1lbnRzL+KAoldlYkRldvCfpJMvMl9Qcm9qZWN0cy9CQlMtV2Vic2l0ZS9zcmMvY29tcG9uZW50cy9OYXYuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBd0I0QiIsImZpbGUiOiIvVXNlcnMvZGxvcGV6L0RvY3VtZW50cy/igKJXZWJEZXbwn6STLzJfUHJvamVjdHMvQkJTLVdlYnNpdGUvc3JjL2NvbXBvbmVudHMvTmF2LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0LCB7IHVzZVN0YXRlIH0gZnJvbSBcInJlYWN0XCI7XG5pbXBvcnQgeyBMaW5rIH0gZnJvbSBcImdhdHNieVwiO1xuaW1wb3J0IHsgY3NzIH0gZnJvbSBcIkBlbW90aW9uL3JlYWN0XCI7XG5pbXBvcnQgdHcsIHsgc3R5bGVkIH0gZnJvbSBcInR3aW4ubWFjcm9cIjtcblxuY29uc3QgbmF2aWdhdGlvbiA9IFtcbiAge1xuICAgIG5hbWU6IFwiSG9tZVwiLFxuICAgIHNsdWc6IFwiL1wiLFxuICB9LFxuICB7XG4gICAgbmFtZTogXCJBYm91dCBVc1wiLFxuICAgIHNsdWc6IFwiL2Fib3V0XCIsXG4gIH0sXG4gIHtcbiAgICBuYW1lOiBcIldvcmtcIixcbiAgICBzbHVnOiBcIi93b3JrXCIsXG4gIH0sXG4gIHtcbiAgICBuYW1lOiBcIkNvbnRhY3QgVXNcIixcbiAgICBzbHVnOiBcIi9jb250YWN0XCIsXG4gIH0sXG5dO1xuXG5jb25zdCBNb2JpbGVOYXYgPSBzdHlsZWQubmF2YFxuICAke3R3YCBcbiAgICBmaXhlZFxuICAgIHotMjBcbiAgICB3LWZ1bGxcbiAgICBtaW4taC1zY3JlZW5cbiAgICBiZy13aGl0ZVxuICAgIG9wYWNpdHktOTBcbiAgICBwLTQgXG4gIGB9XG5gO1xuXG5jb25zdCBNYWluTmF2ID0gc3R5bGVkLm5hdmBcbiAgJHt0d2BcbiAgICBhYnNvbHV0ZVxuICAgIHJpZ2h0LTBcbiAgICB6LTIwXG4gICAgcC00XG4gIGB9XG5gO1xuXG5leHBvcnQgZGVmYXVsdCBmdW5jdGlvbiBOYXYoKSB7XG4gIGNvbnN0IFtpc09wZW4sIHNldElzT3Blbl0gPSB1c2VTdGF0ZShmYWxzZSk7XG5cbiAgcmV0dXJuIChcbiAgICA8ZGl2PlxuICAgICAge2lzT3BlbiA/IChcbiAgICAgICAgPE1vYmlsZU5hdj5cbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0naWNvbi1ob2xkZXInIHR3PSdhYnNvbHV0ZSByaWdodC0wIG1yLTQnPlxuICAgICAgICAgICAgPGJ1dHRvblxuICAgICAgICAgICAgICBvbkNsaWNrPXsoKSA9PiBzZXRJc09wZW4oZmFsc2UpfVxuICAgICAgICAgICAgICB0dz0ncC0xLjUgaG92ZXI6YmctZ3JheS0yMDAgaG92ZXI6cm91bmRlZC1tZCdcbiAgICAgICAgICAgID5cbiAgICAgICAgICAgICAgPHN2Z1xuICAgICAgICAgICAgICAgIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZydcbiAgICAgICAgICAgICAgICB3aWR0aD0nMTkuOTk5J1xuICAgICAgICAgICAgICAgIGhlaWdodD0nMjAnXG4gICAgICAgICAgICAgICAgdmlld0JveD0nMCAwIDE5Ljk5OSAyMCdcbiAgICAgICAgICAgICAgPlxuICAgICAgICAgICAgICAgIDxwYXRoXG4gICAgICAgICAgICAgICAgICBpZD0nUGF0aF80OSdcbiAgICAgICAgICAgICAgICAgIGRhdGEtbmFtZT0nUGF0aCA0OSdcbiAgICAgICAgICAgICAgICAgIGQ9J00yOS42LDI3LjY3MSwyMS45MjgsMjAsMjkuNiwxMi4zMjdBMS4zNjQsMS4zNjQsMCwwLDAsMjcuNjcxLDEwLjRMMjAsMTguMDcxLDEyLjMyOCwxMC40QTEuMzY0LDEuMzY0LDAsMCwwLDEwLjQsMTIuMzI3TDE4LjA3MSwyMCwxMC40LDI3LjY3MUExLjM2NCwxLjM2NCwwLDAsMCwxMi4zMjcsMjkuNkwyMCwyMS45MjcsMjcuNjcxLDI5LjZBMS4zNjQsMS4zNjQsMCwwLDAsMjkuNiwyNy42NzFaJ1xuICAgICAgICAgICAgICAgICAgdHJhbnNmb3JtPSd0cmFuc2xhdGUoLTEwIC05Ljk5OSknXG4gICAgICAgICAgICAgICAgICBmaWxsPScjYjg1ZjUzJ1xuICAgICAgICAgICAgICAgIC8+XG4gICAgICAgICAgICAgIDwvc3ZnPlxuICAgICAgICAgICAgPC9idXR0b24+XG4gICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgPGRpdiB0dz0ncmVsYXRpdmUgdy0zLzQgbXgtYXV0byB0ZXh0LWNlbnRlciB0b3AtMTQnPlxuICAgICAgICAgICAgPHVsIHR3PSd0ZXh0LTN4bCB0ZXh0LW1pbGRncmF5IGZvbnQtc2VtaWJvbGQnPlxuICAgICAgICAgICAgICB7bmF2aWdhdGlvbi5tYXAoKGVsKSA9PiB7XG4gICAgICAgICAgICAgICAgcmV0dXJuIChcbiAgICAgICAgICAgICAgICAgIDxkaXYga2V5PXtlbC5uYW1lfT5cbiAgICAgICAgICAgICAgICAgICAgPGxpIHR3PSdtdC04IG1iLTgnPlxuICAgICAgICAgICAgICAgICAgICAgIDxMaW5rIHRvPXtlbC5zbHVnfT57ZWwubmFtZX08L0xpbms+XG4gICAgICAgICAgICAgICAgICAgIDwvbGk+XG4gICAgICAgICAgICAgICAgICAgIDxzdmdcbiAgICAgICAgICAgICAgICAgICAgICB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnXG4gICAgICAgICAgICAgICAgICAgICAgd2lkdGg9JzI2J1xuICAgICAgICAgICAgICAgICAgICAgIGhlaWdodD0nMydcbiAgICAgICAgICAgICAgICAgICAgICB2aWV3Qm94PScwIDAgMjYgMydcbiAgICAgICAgICAgICAgICAgICAgICB0dz0nbXgtYXV0byBtZDpoaWRkZW4nXG4gICAgICAgICAgICAgICAgICAgID5cbiAgICAgICAgICAgICAgICAgICAgICA8bGluZVxuICAgICAgICAgICAgICAgICAgICAgICAgaWQ9J0xpbmVfMydcbiAgICAgICAgICAgICAgICAgICAgICAgIGRhdGEtbmFtZT0nTGluZSAzJ1xuICAgICAgICAgICAgICAgICAgICAgICAgeDI9JzI2J1xuICAgICAgICAgICAgICAgICAgICAgICAgdHJhbnNmb3JtPSd0cmFuc2xhdGUoMCAxLjUpJ1xuICAgICAgICAgICAgICAgICAgICAgICAgZmlsbD0nbm9uZSdcbiAgICAgICAgICAgICAgICAgICAgICAgIHN0cm9rZT0nI2I4NWY1MydcbiAgICAgICAgICAgICAgICAgICAgICAgIHN0cm9rZVdpZHRoPSczJ1xuICAgICAgICAgICAgICAgICAgICAgIC8+XG4gICAgICAgICAgICAgICAgICAgIDwvc3ZnPlxuICAgICAgICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgICAgICAgKTtcbiAgICAgICAgICAgICAgfSl9XG4gICAgICAgICAgICA8L3VsPlxuICAgICAgICAgIDwvZGl2PlxuICAgICAgICA8L01vYmlsZU5hdj5cbiAgICAgICkgOiAoXG4gICAgICAgIDxNYWluTmF2PlxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSduYXYtaXRlbXMnIHR3PSdoaWRkZW4gc206ZmxleCc+XG4gICAgICAgICAgICB7bmF2aWdhdGlvbi5tYXAoKGVsKSA9PiB7XG4gICAgICAgICAgICAgIHJldHVybiAoXG4gICAgICAgICAgICAgICAgPGRpdiBrZXk9e2VsLm5hbWV9PlxuICAgICAgICAgICAgICAgICAgPHVsIHR3PSd0ZXh0LW1pbGRncmF5IGZvbnQtc2VtaWJvbGQnPlxuICAgICAgICAgICAgICAgICAgICA8bGkgdHc9J21sLTcnPlxuICAgICAgICAgICAgICAgICAgICAgIDxMaW5rIHRvPXtlbC5zbHVnfT57ZWwubmFtZX08L0xpbms+XG4gICAgICAgICAgICAgICAgICAgIDwvbGk+XG4gICAgICAgICAgICAgICAgICA8L3VsPlxuICAgICAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgICAgICApO1xuICAgICAgICAgICAgfSl9XG4gICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9J2ljb24taG9sZGVyJyB0dz0nc206aGlkZGVuIGFic29sdXRlIHJpZ2h0LTAgIG1yLTQgJz5cbiAgICAgICAgICAgIDxidXR0b24gb25DbGljaz17KCkgPT4gc2V0SXNPcGVuKHRydWUpfT5cbiAgICAgICAgICAgICAgPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScyNScgaGVpZ2h0PScxMic+XG4gICAgICAgICAgICAgICAgPGdcbiAgICAgICAgICAgICAgICAgIGRhdGEtbmFtZT0nR3JvdXAgMTEnXG4gICAgICAgICAgICAgICAgICBmaWxsPSdub25lJ1xuICAgICAgICAgICAgICAgICAgc3Ryb2tlPScjYjg1ZjUzJ1xuICAgICAgICAgICAgICAgICAgc3Ryb2tlV2lkdGg9JzInXG4gICAgICAgICAgICAgICAgPlxuICAgICAgICAgICAgICAgICAgPHBhdGggZGF0YS1uYW1lPSdMaW5lIDEnIGQ9J00wIDFoMjUnIC8+XG4gICAgICAgICAgICAgICAgICA8cGF0aCBkYXRhLW5hbWU9J0xpbmUgMicgZD0nTTAgMTFoMjUnIC8+XG4gICAgICAgICAgICAgICAgPC9nPlxuICAgICAgICAgICAgICA8L3N2Zz5cbiAgICAgICAgICAgIDwvYnV0dG9uPlxuICAgICAgICAgIDwvZGl2PlxuICAgICAgICA8L01haW5OYXY+XG4gICAgICApfVxuICAgIDwvZGl2PlxuICApO1xufVxuIl19 */",
+  map: "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9kbG9wZXovRG9jdW1lbnRzL+KAoldlYkRldvCfpJMvMl9Qcm9qZWN0cy9CQlMtV2Vic2l0ZS9zcmMvY29tcG9uZW50cy9OYXYuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBd0I0QiIsImZpbGUiOiIvVXNlcnMvZGxvcGV6L0RvY3VtZW50cy/igKJXZWJEZXbwn6STLzJfUHJvamVjdHMvQkJTLVdlYnNpdGUvc3JjL2NvbXBvbmVudHMvTmF2LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0LCB7IHVzZVN0YXRlIH0gZnJvbSBcInJlYWN0XCI7XG5pbXBvcnQgeyBMaW5rIH0gZnJvbSBcImdhdHNieVwiO1xuaW1wb3J0IHsgY3NzIH0gZnJvbSBcIkBlbW90aW9uL3JlYWN0XCI7XG5pbXBvcnQgdHcsIHsgc3R5bGVkIH0gZnJvbSBcInR3aW4ubWFjcm9cIjtcblxuY29uc3QgbmF2aWdhdGlvbiA9IFtcbiAge1xuICAgIG5hbWU6IFwiSG9tZVwiLFxuICAgIHNsdWc6IFwiL1wiLFxuICB9LFxuICB7XG4gICAgbmFtZTogXCJBYm91dCBVc1wiLFxuICAgIHNsdWc6IFwiL2Fib3V0L1wiLFxuICB9LFxuICB7XG4gICAgbmFtZTogXCJXb3JrXCIsXG4gICAgc2x1ZzogXCIvd29yay9cIixcbiAgfSxcbiAge1xuICAgIG5hbWU6IFwiQ29udGFjdCBVc1wiLFxuICAgIHNsdWc6IFwiL2NvbnRhY3QvXCIsXG4gIH0sXG5dO1xuXG5jb25zdCBNb2JpbGVOYXYgPSBzdHlsZWQubmF2YFxuICAke3R3YCBcbiAgICBmaXhlZFxuICAgIHotMjBcbiAgICB3LWZ1bGxcbiAgICBtaW4taC1zY3JlZW5cbiAgICBiZy13aGl0ZVxuICAgIG9wYWNpdHktOTBcbiAgICBwLTQgXG4gIGB9XG5gO1xuXG5jb25zdCBNYWluTmF2ID0gc3R5bGVkLm5hdmBcbiAgJHt0d2BcbiAgICBhYnNvbHV0ZVxuICAgIHJpZ2h0LTBcbiAgICB6LTIwXG4gICAgcC00XG4gIGB9XG5gO1xuXG5leHBvcnQgZGVmYXVsdCBmdW5jdGlvbiBOYXYoKSB7XG4gIGNvbnN0IFtpc09wZW4sIHNldElzT3Blbl0gPSB1c2VTdGF0ZShmYWxzZSk7XG5cbiAgcmV0dXJuIChcbiAgICA8ZGl2PlxuICAgICAge2lzT3BlbiA/IChcbiAgICAgICAgPE1vYmlsZU5hdj5cbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0naWNvbi1ob2xkZXInIHR3PSdhYnNvbHV0ZSByaWdodC0wIG1yLTQnPlxuICAgICAgICAgICAgPGJ1dHRvblxuICAgICAgICAgICAgICBvbkNsaWNrPXsoKSA9PiBzZXRJc09wZW4oZmFsc2UpfVxuICAgICAgICAgICAgICB0dz0ncC0xLjUgaG92ZXI6YmctZ3JheS0yMDAgaG92ZXI6cm91bmRlZC1tZCdcbiAgICAgICAgICAgID5cbiAgICAgICAgICAgICAgPHN2Z1xuICAgICAgICAgICAgICAgIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZydcbiAgICAgICAgICAgICAgICB3aWR0aD0nMTkuOTk5J1xuICAgICAgICAgICAgICAgIGhlaWdodD0nMjAnXG4gICAgICAgICAgICAgICAgdmlld0JveD0nMCAwIDE5Ljk5OSAyMCdcbiAgICAgICAgICAgICAgPlxuICAgICAgICAgICAgICAgIDxwYXRoXG4gICAgICAgICAgICAgICAgICBpZD0nUGF0aF80OSdcbiAgICAgICAgICAgICAgICAgIGRhdGEtbmFtZT0nUGF0aCA0OSdcbiAgICAgICAgICAgICAgICAgIGQ9J00yOS42LDI3LjY3MSwyMS45MjgsMjAsMjkuNiwxMi4zMjdBMS4zNjQsMS4zNjQsMCwwLDAsMjcuNjcxLDEwLjRMMjAsMTguMDcxLDEyLjMyOCwxMC40QTEuMzY0LDEuMzY0LDAsMCwwLDEwLjQsMTIuMzI3TDE4LjA3MSwyMCwxMC40LDI3LjY3MUExLjM2NCwxLjM2NCwwLDAsMCwxMi4zMjcsMjkuNkwyMCwyMS45MjcsMjcuNjcxLDI5LjZBMS4zNjQsMS4zNjQsMCwwLDAsMjkuNiwyNy42NzFaJ1xuICAgICAgICAgICAgICAgICAgdHJhbnNmb3JtPSd0cmFuc2xhdGUoLTEwIC05Ljk5OSknXG4gICAgICAgICAgICAgICAgICBmaWxsPScjYjg1ZjUzJ1xuICAgICAgICAgICAgICAgIC8+XG4gICAgICAgICAgICAgIDwvc3ZnPlxuICAgICAgICAgICAgPC9idXR0b24+XG4gICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgPGRpdiB0dz0ncmVsYXRpdmUgdy0zLzQgbXgtYXV0byB0ZXh0LWNlbnRlciB0b3AtMTQnPlxuICAgICAgICAgICAgPHVsIHR3PSd0ZXh0LTN4bCB0ZXh0LW1pbGRncmF5IGZvbnQtc2VtaWJvbGQnPlxuICAgICAgICAgICAgICB7bmF2aWdhdGlvbi5tYXAoKGVsKSA9PiB7XG4gICAgICAgICAgICAgICAgcmV0dXJuIChcbiAgICAgICAgICAgICAgICAgIDxkaXYga2V5PXtlbC5uYW1lfT5cbiAgICAgICAgICAgICAgICAgICAgPGxpIHR3PSdtdC04IG1iLTgnPlxuICAgICAgICAgICAgICAgICAgICAgIDxMaW5rIHRvPXtlbC5zbHVnfT57ZWwubmFtZX08L0xpbms+XG4gICAgICAgICAgICAgICAgICAgIDwvbGk+XG4gICAgICAgICAgICAgICAgICAgIDxzdmdcbiAgICAgICAgICAgICAgICAgICAgICB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnXG4gICAgICAgICAgICAgICAgICAgICAgd2lkdGg9JzI2J1xuICAgICAgICAgICAgICAgICAgICAgIGhlaWdodD0nMydcbiAgICAgICAgICAgICAgICAgICAgICB2aWV3Qm94PScwIDAgMjYgMydcbiAgICAgICAgICAgICAgICAgICAgICB0dz0nbXgtYXV0byBtZDpoaWRkZW4nXG4gICAgICAgICAgICAgICAgICAgID5cbiAgICAgICAgICAgICAgICAgICAgICA8bGluZVxuICAgICAgICAgICAgICAgICAgICAgICAgaWQ9J0xpbmVfMydcbiAgICAgICAgICAgICAgICAgICAgICAgIGRhdGEtbmFtZT0nTGluZSAzJ1xuICAgICAgICAgICAgICAgICAgICAgICAgeDI9JzI2J1xuICAgICAgICAgICAgICAgICAgICAgICAgdHJhbnNmb3JtPSd0cmFuc2xhdGUoMCAxLjUpJ1xuICAgICAgICAgICAgICAgICAgICAgICAgZmlsbD0nbm9uZSdcbiAgICAgICAgICAgICAgICAgICAgICAgIHN0cm9rZT0nI2I4NWY1MydcbiAgICAgICAgICAgICAgICAgICAgICAgIHN0cm9rZVdpZHRoPSczJ1xuICAgICAgICAgICAgICAgICAgICAgIC8+XG4gICAgICAgICAgICAgICAgICAgIDwvc3ZnPlxuICAgICAgICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgICAgICAgKTtcbiAgICAgICAgICAgICAgfSl9XG4gICAgICAgICAgICA8L3VsPlxuICAgICAgICAgIDwvZGl2PlxuICAgICAgICA8L01vYmlsZU5hdj5cbiAgICAgICkgOiAoXG4gICAgICAgIDxNYWluTmF2PlxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSduYXYtaXRlbXMnIHR3PSdoaWRkZW4gc206ZmxleCc+XG4gICAgICAgICAgICB7bmF2aWdhdGlvbi5tYXAoKGVsKSA9PiB7XG4gICAgICAgICAgICAgIHJldHVybiAoXG4gICAgICAgICAgICAgICAgPGRpdiBrZXk9e2VsLm5hbWV9PlxuICAgICAgICAgICAgICAgICAgPHVsIHR3PSd0ZXh0LW1pbGRncmF5IGZvbnQtc2VtaWJvbGQnPlxuICAgICAgICAgICAgICAgICAgICA8bGkgdHc9J21sLTcnPlxuICAgICAgICAgICAgICAgICAgICAgIDxMaW5rIHRvPXtlbC5zbHVnfT57ZWwubmFtZX08L0xpbms+XG4gICAgICAgICAgICAgICAgICAgIDwvbGk+XG4gICAgICAgICAgICAgICAgICA8L3VsPlxuICAgICAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgICAgICApO1xuICAgICAgICAgICAgfSl9XG4gICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9J2ljb24taG9sZGVyJyB0dz0nc206aGlkZGVuIGFic29sdXRlIHJpZ2h0LTAgIG1yLTQgJz5cbiAgICAgICAgICAgIDxidXR0b24gb25DbGljaz17KCkgPT4gc2V0SXNPcGVuKHRydWUpfT5cbiAgICAgICAgICAgICAgPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScyNScgaGVpZ2h0PScxMic+XG4gICAgICAgICAgICAgICAgPGdcbiAgICAgICAgICAgICAgICAgIGRhdGEtbmFtZT0nR3JvdXAgMTEnXG4gICAgICAgICAgICAgICAgICBmaWxsPSdub25lJ1xuICAgICAgICAgICAgICAgICAgc3Ryb2tlPScjYjg1ZjUzJ1xuICAgICAgICAgICAgICAgICAgc3Ryb2tlV2lkdGg9JzInXG4gICAgICAgICAgICAgICAgPlxuICAgICAgICAgICAgICAgICAgPHBhdGggZGF0YS1uYW1lPSdMaW5lIDEnIGQ9J00wIDFoMjUnIC8+XG4gICAgICAgICAgICAgICAgICA8cGF0aCBkYXRhLW5hbWU9J0xpbmUgMicgZD0nTTAgMTFoMjUnIC8+XG4gICAgICAgICAgICAgICAgPC9nPlxuICAgICAgICAgICAgICA8L3N2Zz5cbiAgICAgICAgICAgIDwvYnV0dG9uPlxuICAgICAgICAgIDwvZGl2PlxuICAgICAgICA8L01haW5OYXY+XG4gICAgICApfVxuICAgIDwvZGl2PlxuICApO1xufVxuIl19 */",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 });
 
@@ -8763,7 +8811,7 @@ const MainNav = (0,_emotion_styled_base__WEBPACK_IMPORTED_MODULE_0__.default)("n
 })( false ? 0 : {
   name: "1d9yhu8",
   styles: "position:absolute;right:0px;z-index:20;padding:1rem;",
-  map: "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9kbG9wZXovRG9jdW1lbnRzL+KAoldlYkRldvCfpJMvMl9Qcm9qZWN0cy9CQlMtV2Vic2l0ZS9zcmMvY29tcG9uZW50cy9OYXYuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBb0MwQiIsImZpbGUiOiIvVXNlcnMvZGxvcGV6L0RvY3VtZW50cy/igKJXZWJEZXbwn6STLzJfUHJvamVjdHMvQkJTLVdlYnNpdGUvc3JjL2NvbXBvbmVudHMvTmF2LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0LCB7IHVzZVN0YXRlIH0gZnJvbSBcInJlYWN0XCI7XG5pbXBvcnQgeyBMaW5rIH0gZnJvbSBcImdhdHNieVwiO1xuaW1wb3J0IHsgY3NzIH0gZnJvbSBcIkBlbW90aW9uL3JlYWN0XCI7XG5pbXBvcnQgdHcsIHsgc3R5bGVkIH0gZnJvbSBcInR3aW4ubWFjcm9cIjtcblxuY29uc3QgbmF2aWdhdGlvbiA9IFtcbiAge1xuICAgIG5hbWU6IFwiSG9tZVwiLFxuICAgIHNsdWc6IFwiL1wiLFxuICB9LFxuICB7XG4gICAgbmFtZTogXCJBYm91dCBVc1wiLFxuICAgIHNsdWc6IFwiL2Fib3V0XCIsXG4gIH0sXG4gIHtcbiAgICBuYW1lOiBcIldvcmtcIixcbiAgICBzbHVnOiBcIi93b3JrXCIsXG4gIH0sXG4gIHtcbiAgICBuYW1lOiBcIkNvbnRhY3QgVXNcIixcbiAgICBzbHVnOiBcIi9jb250YWN0XCIsXG4gIH0sXG5dO1xuXG5jb25zdCBNb2JpbGVOYXYgPSBzdHlsZWQubmF2YFxuICAke3R3YCBcbiAgICBmaXhlZFxuICAgIHotMjBcbiAgICB3LWZ1bGxcbiAgICBtaW4taC1zY3JlZW5cbiAgICBiZy13aGl0ZVxuICAgIG9wYWNpdHktOTBcbiAgICBwLTQgXG4gIGB9XG5gO1xuXG5jb25zdCBNYWluTmF2ID0gc3R5bGVkLm5hdmBcbiAgJHt0d2BcbiAgICBhYnNvbHV0ZVxuICAgIHJpZ2h0LTBcbiAgICB6LTIwXG4gICAgcC00XG4gIGB9XG5gO1xuXG5leHBvcnQgZGVmYXVsdCBmdW5jdGlvbiBOYXYoKSB7XG4gIGNvbnN0IFtpc09wZW4sIHNldElzT3Blbl0gPSB1c2VTdGF0ZShmYWxzZSk7XG5cbiAgcmV0dXJuIChcbiAgICA8ZGl2PlxuICAgICAge2lzT3BlbiA/IChcbiAgICAgICAgPE1vYmlsZU5hdj5cbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0naWNvbi1ob2xkZXInIHR3PSdhYnNvbHV0ZSByaWdodC0wIG1yLTQnPlxuICAgICAgICAgICAgPGJ1dHRvblxuICAgICAgICAgICAgICBvbkNsaWNrPXsoKSA9PiBzZXRJc09wZW4oZmFsc2UpfVxuICAgICAgICAgICAgICB0dz0ncC0xLjUgaG92ZXI6YmctZ3JheS0yMDAgaG92ZXI6cm91bmRlZC1tZCdcbiAgICAgICAgICAgID5cbiAgICAgICAgICAgICAgPHN2Z1xuICAgICAgICAgICAgICAgIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZydcbiAgICAgICAgICAgICAgICB3aWR0aD0nMTkuOTk5J1xuICAgICAgICAgICAgICAgIGhlaWdodD0nMjAnXG4gICAgICAgICAgICAgICAgdmlld0JveD0nMCAwIDE5Ljk5OSAyMCdcbiAgICAgICAgICAgICAgPlxuICAgICAgICAgICAgICAgIDxwYXRoXG4gICAgICAgICAgICAgICAgICBpZD0nUGF0aF80OSdcbiAgICAgICAgICAgICAgICAgIGRhdGEtbmFtZT0nUGF0aCA0OSdcbiAgICAgICAgICAgICAgICAgIGQ9J00yOS42LDI3LjY3MSwyMS45MjgsMjAsMjkuNiwxMi4zMjdBMS4zNjQsMS4zNjQsMCwwLDAsMjcuNjcxLDEwLjRMMjAsMTguMDcxLDEyLjMyOCwxMC40QTEuMzY0LDEuMzY0LDAsMCwwLDEwLjQsMTIuMzI3TDE4LjA3MSwyMCwxMC40LDI3LjY3MUExLjM2NCwxLjM2NCwwLDAsMCwxMi4zMjcsMjkuNkwyMCwyMS45MjcsMjcuNjcxLDI5LjZBMS4zNjQsMS4zNjQsMCwwLDAsMjkuNiwyNy42NzFaJ1xuICAgICAgICAgICAgICAgICAgdHJhbnNmb3JtPSd0cmFuc2xhdGUoLTEwIC05Ljk5OSknXG4gICAgICAgICAgICAgICAgICBmaWxsPScjYjg1ZjUzJ1xuICAgICAgICAgICAgICAgIC8+XG4gICAgICAgICAgICAgIDwvc3ZnPlxuICAgICAgICAgICAgPC9idXR0b24+XG4gICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgPGRpdiB0dz0ncmVsYXRpdmUgdy0zLzQgbXgtYXV0byB0ZXh0LWNlbnRlciB0b3AtMTQnPlxuICAgICAgICAgICAgPHVsIHR3PSd0ZXh0LTN4bCB0ZXh0LW1pbGRncmF5IGZvbnQtc2VtaWJvbGQnPlxuICAgICAgICAgICAgICB7bmF2aWdhdGlvbi5tYXAoKGVsKSA9PiB7XG4gICAgICAgICAgICAgICAgcmV0dXJuIChcbiAgICAgICAgICAgICAgICAgIDxkaXYga2V5PXtlbC5uYW1lfT5cbiAgICAgICAgICAgICAgICAgICAgPGxpIHR3PSdtdC04IG1iLTgnPlxuICAgICAgICAgICAgICAgICAgICAgIDxMaW5rIHRvPXtlbC5zbHVnfT57ZWwubmFtZX08L0xpbms+XG4gICAgICAgICAgICAgICAgICAgIDwvbGk+XG4gICAgICAgICAgICAgICAgICAgIDxzdmdcbiAgICAgICAgICAgICAgICAgICAgICB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnXG4gICAgICAgICAgICAgICAgICAgICAgd2lkdGg9JzI2J1xuICAgICAgICAgICAgICAgICAgICAgIGhlaWdodD0nMydcbiAgICAgICAgICAgICAgICAgICAgICB2aWV3Qm94PScwIDAgMjYgMydcbiAgICAgICAgICAgICAgICAgICAgICB0dz0nbXgtYXV0byBtZDpoaWRkZW4nXG4gICAgICAgICAgICAgICAgICAgID5cbiAgICAgICAgICAgICAgICAgICAgICA8bGluZVxuICAgICAgICAgICAgICAgICAgICAgICAgaWQ9J0xpbmVfMydcbiAgICAgICAgICAgICAgICAgICAgICAgIGRhdGEtbmFtZT0nTGluZSAzJ1xuICAgICAgICAgICAgICAgICAgICAgICAgeDI9JzI2J1xuICAgICAgICAgICAgICAgICAgICAgICAgdHJhbnNmb3JtPSd0cmFuc2xhdGUoMCAxLjUpJ1xuICAgICAgICAgICAgICAgICAgICAgICAgZmlsbD0nbm9uZSdcbiAgICAgICAgICAgICAgICAgICAgICAgIHN0cm9rZT0nI2I4NWY1MydcbiAgICAgICAgICAgICAgICAgICAgICAgIHN0cm9rZVdpZHRoPSczJ1xuICAgICAgICAgICAgICAgICAgICAgIC8+XG4gICAgICAgICAgICAgICAgICAgIDwvc3ZnPlxuICAgICAgICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgICAgICAgKTtcbiAgICAgICAgICAgICAgfSl9XG4gICAgICAgICAgICA8L3VsPlxuICAgICAgICAgIDwvZGl2PlxuICAgICAgICA8L01vYmlsZU5hdj5cbiAgICAgICkgOiAoXG4gICAgICAgIDxNYWluTmF2PlxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSduYXYtaXRlbXMnIHR3PSdoaWRkZW4gc206ZmxleCc+XG4gICAgICAgICAgICB7bmF2aWdhdGlvbi5tYXAoKGVsKSA9PiB7XG4gICAgICAgICAgICAgIHJldHVybiAoXG4gICAgICAgICAgICAgICAgPGRpdiBrZXk9e2VsLm5hbWV9PlxuICAgICAgICAgICAgICAgICAgPHVsIHR3PSd0ZXh0LW1pbGRncmF5IGZvbnQtc2VtaWJvbGQnPlxuICAgICAgICAgICAgICAgICAgICA8bGkgdHc9J21sLTcnPlxuICAgICAgICAgICAgICAgICAgICAgIDxMaW5rIHRvPXtlbC5zbHVnfT57ZWwubmFtZX08L0xpbms+XG4gICAgICAgICAgICAgICAgICAgIDwvbGk+XG4gICAgICAgICAgICAgICAgICA8L3VsPlxuICAgICAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgICAgICApO1xuICAgICAgICAgICAgfSl9XG4gICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9J2ljb24taG9sZGVyJyB0dz0nc206aGlkZGVuIGFic29sdXRlIHJpZ2h0LTAgIG1yLTQgJz5cbiAgICAgICAgICAgIDxidXR0b24gb25DbGljaz17KCkgPT4gc2V0SXNPcGVuKHRydWUpfT5cbiAgICAgICAgICAgICAgPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScyNScgaGVpZ2h0PScxMic+XG4gICAgICAgICAgICAgICAgPGdcbiAgICAgICAgICAgICAgICAgIGRhdGEtbmFtZT0nR3JvdXAgMTEnXG4gICAgICAgICAgICAgICAgICBmaWxsPSdub25lJ1xuICAgICAgICAgICAgICAgICAgc3Ryb2tlPScjYjg1ZjUzJ1xuICAgICAgICAgICAgICAgICAgc3Ryb2tlV2lkdGg9JzInXG4gICAgICAgICAgICAgICAgPlxuICAgICAgICAgICAgICAgICAgPHBhdGggZGF0YS1uYW1lPSdMaW5lIDEnIGQ9J00wIDFoMjUnIC8+XG4gICAgICAgICAgICAgICAgICA8cGF0aCBkYXRhLW5hbWU9J0xpbmUgMicgZD0nTTAgMTFoMjUnIC8+XG4gICAgICAgICAgICAgICAgPC9nPlxuICAgICAgICAgICAgICA8L3N2Zz5cbiAgICAgICAgICAgIDwvYnV0dG9uPlxuICAgICAgICAgIDwvZGl2PlxuICAgICAgICA8L01haW5OYXY+XG4gICAgICApfVxuICAgIDwvZGl2PlxuICApO1xufVxuIl19 */",
+  map: "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9kbG9wZXovRG9jdW1lbnRzL+KAoldlYkRldvCfpJMvMl9Qcm9qZWN0cy9CQlMtV2Vic2l0ZS9zcmMvY29tcG9uZW50cy9OYXYuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBb0MwQiIsImZpbGUiOiIvVXNlcnMvZGxvcGV6L0RvY3VtZW50cy/igKJXZWJEZXbwn6STLzJfUHJvamVjdHMvQkJTLVdlYnNpdGUvc3JjL2NvbXBvbmVudHMvTmF2LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0LCB7IHVzZVN0YXRlIH0gZnJvbSBcInJlYWN0XCI7XG5pbXBvcnQgeyBMaW5rIH0gZnJvbSBcImdhdHNieVwiO1xuaW1wb3J0IHsgY3NzIH0gZnJvbSBcIkBlbW90aW9uL3JlYWN0XCI7XG5pbXBvcnQgdHcsIHsgc3R5bGVkIH0gZnJvbSBcInR3aW4ubWFjcm9cIjtcblxuY29uc3QgbmF2aWdhdGlvbiA9IFtcbiAge1xuICAgIG5hbWU6IFwiSG9tZVwiLFxuICAgIHNsdWc6IFwiL1wiLFxuICB9LFxuICB7XG4gICAgbmFtZTogXCJBYm91dCBVc1wiLFxuICAgIHNsdWc6IFwiL2Fib3V0L1wiLFxuICB9LFxuICB7XG4gICAgbmFtZTogXCJXb3JrXCIsXG4gICAgc2x1ZzogXCIvd29yay9cIixcbiAgfSxcbiAge1xuICAgIG5hbWU6IFwiQ29udGFjdCBVc1wiLFxuICAgIHNsdWc6IFwiL2NvbnRhY3QvXCIsXG4gIH0sXG5dO1xuXG5jb25zdCBNb2JpbGVOYXYgPSBzdHlsZWQubmF2YFxuICAke3R3YCBcbiAgICBmaXhlZFxuICAgIHotMjBcbiAgICB3LWZ1bGxcbiAgICBtaW4taC1zY3JlZW5cbiAgICBiZy13aGl0ZVxuICAgIG9wYWNpdHktOTBcbiAgICBwLTQgXG4gIGB9XG5gO1xuXG5jb25zdCBNYWluTmF2ID0gc3R5bGVkLm5hdmBcbiAgJHt0d2BcbiAgICBhYnNvbHV0ZVxuICAgIHJpZ2h0LTBcbiAgICB6LTIwXG4gICAgcC00XG4gIGB9XG5gO1xuXG5leHBvcnQgZGVmYXVsdCBmdW5jdGlvbiBOYXYoKSB7XG4gIGNvbnN0IFtpc09wZW4sIHNldElzT3Blbl0gPSB1c2VTdGF0ZShmYWxzZSk7XG5cbiAgcmV0dXJuIChcbiAgICA8ZGl2PlxuICAgICAge2lzT3BlbiA/IChcbiAgICAgICAgPE1vYmlsZU5hdj5cbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0naWNvbi1ob2xkZXInIHR3PSdhYnNvbHV0ZSByaWdodC0wIG1yLTQnPlxuICAgICAgICAgICAgPGJ1dHRvblxuICAgICAgICAgICAgICBvbkNsaWNrPXsoKSA9PiBzZXRJc09wZW4oZmFsc2UpfVxuICAgICAgICAgICAgICB0dz0ncC0xLjUgaG92ZXI6YmctZ3JheS0yMDAgaG92ZXI6cm91bmRlZC1tZCdcbiAgICAgICAgICAgID5cbiAgICAgICAgICAgICAgPHN2Z1xuICAgICAgICAgICAgICAgIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZydcbiAgICAgICAgICAgICAgICB3aWR0aD0nMTkuOTk5J1xuICAgICAgICAgICAgICAgIGhlaWdodD0nMjAnXG4gICAgICAgICAgICAgICAgdmlld0JveD0nMCAwIDE5Ljk5OSAyMCdcbiAgICAgICAgICAgICAgPlxuICAgICAgICAgICAgICAgIDxwYXRoXG4gICAgICAgICAgICAgICAgICBpZD0nUGF0aF80OSdcbiAgICAgICAgICAgICAgICAgIGRhdGEtbmFtZT0nUGF0aCA0OSdcbiAgICAgICAgICAgICAgICAgIGQ9J00yOS42LDI3LjY3MSwyMS45MjgsMjAsMjkuNiwxMi4zMjdBMS4zNjQsMS4zNjQsMCwwLDAsMjcuNjcxLDEwLjRMMjAsMTguMDcxLDEyLjMyOCwxMC40QTEuMzY0LDEuMzY0LDAsMCwwLDEwLjQsMTIuMzI3TDE4LjA3MSwyMCwxMC40LDI3LjY3MUExLjM2NCwxLjM2NCwwLDAsMCwxMi4zMjcsMjkuNkwyMCwyMS45MjcsMjcuNjcxLDI5LjZBMS4zNjQsMS4zNjQsMCwwLDAsMjkuNiwyNy42NzFaJ1xuICAgICAgICAgICAgICAgICAgdHJhbnNmb3JtPSd0cmFuc2xhdGUoLTEwIC05Ljk5OSknXG4gICAgICAgICAgICAgICAgICBmaWxsPScjYjg1ZjUzJ1xuICAgICAgICAgICAgICAgIC8+XG4gICAgICAgICAgICAgIDwvc3ZnPlxuICAgICAgICAgICAgPC9idXR0b24+XG4gICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgPGRpdiB0dz0ncmVsYXRpdmUgdy0zLzQgbXgtYXV0byB0ZXh0LWNlbnRlciB0b3AtMTQnPlxuICAgICAgICAgICAgPHVsIHR3PSd0ZXh0LTN4bCB0ZXh0LW1pbGRncmF5IGZvbnQtc2VtaWJvbGQnPlxuICAgICAgICAgICAgICB7bmF2aWdhdGlvbi5tYXAoKGVsKSA9PiB7XG4gICAgICAgICAgICAgICAgcmV0dXJuIChcbiAgICAgICAgICAgICAgICAgIDxkaXYga2V5PXtlbC5uYW1lfT5cbiAgICAgICAgICAgICAgICAgICAgPGxpIHR3PSdtdC04IG1iLTgnPlxuICAgICAgICAgICAgICAgICAgICAgIDxMaW5rIHRvPXtlbC5zbHVnfT57ZWwubmFtZX08L0xpbms+XG4gICAgICAgICAgICAgICAgICAgIDwvbGk+XG4gICAgICAgICAgICAgICAgICAgIDxzdmdcbiAgICAgICAgICAgICAgICAgICAgICB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnXG4gICAgICAgICAgICAgICAgICAgICAgd2lkdGg9JzI2J1xuICAgICAgICAgICAgICAgICAgICAgIGhlaWdodD0nMydcbiAgICAgICAgICAgICAgICAgICAgICB2aWV3Qm94PScwIDAgMjYgMydcbiAgICAgICAgICAgICAgICAgICAgICB0dz0nbXgtYXV0byBtZDpoaWRkZW4nXG4gICAgICAgICAgICAgICAgICAgID5cbiAgICAgICAgICAgICAgICAgICAgICA8bGluZVxuICAgICAgICAgICAgICAgICAgICAgICAgaWQ9J0xpbmVfMydcbiAgICAgICAgICAgICAgICAgICAgICAgIGRhdGEtbmFtZT0nTGluZSAzJ1xuICAgICAgICAgICAgICAgICAgICAgICAgeDI9JzI2J1xuICAgICAgICAgICAgICAgICAgICAgICAgdHJhbnNmb3JtPSd0cmFuc2xhdGUoMCAxLjUpJ1xuICAgICAgICAgICAgICAgICAgICAgICAgZmlsbD0nbm9uZSdcbiAgICAgICAgICAgICAgICAgICAgICAgIHN0cm9rZT0nI2I4NWY1MydcbiAgICAgICAgICAgICAgICAgICAgICAgIHN0cm9rZVdpZHRoPSczJ1xuICAgICAgICAgICAgICAgICAgICAgIC8+XG4gICAgICAgICAgICAgICAgICAgIDwvc3ZnPlxuICAgICAgICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgICAgICAgKTtcbiAgICAgICAgICAgICAgfSl9XG4gICAgICAgICAgICA8L3VsPlxuICAgICAgICAgIDwvZGl2PlxuICAgICAgICA8L01vYmlsZU5hdj5cbiAgICAgICkgOiAoXG4gICAgICAgIDxNYWluTmF2PlxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSduYXYtaXRlbXMnIHR3PSdoaWRkZW4gc206ZmxleCc+XG4gICAgICAgICAgICB7bmF2aWdhdGlvbi5tYXAoKGVsKSA9PiB7XG4gICAgICAgICAgICAgIHJldHVybiAoXG4gICAgICAgICAgICAgICAgPGRpdiBrZXk9e2VsLm5hbWV9PlxuICAgICAgICAgICAgICAgICAgPHVsIHR3PSd0ZXh0LW1pbGRncmF5IGZvbnQtc2VtaWJvbGQnPlxuICAgICAgICAgICAgICAgICAgICA8bGkgdHc9J21sLTcnPlxuICAgICAgICAgICAgICAgICAgICAgIDxMaW5rIHRvPXtlbC5zbHVnfT57ZWwubmFtZX08L0xpbms+XG4gICAgICAgICAgICAgICAgICAgIDwvbGk+XG4gICAgICAgICAgICAgICAgICA8L3VsPlxuICAgICAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgICAgICApO1xuICAgICAgICAgICAgfSl9XG4gICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9J2ljb24taG9sZGVyJyB0dz0nc206aGlkZGVuIGFic29sdXRlIHJpZ2h0LTAgIG1yLTQgJz5cbiAgICAgICAgICAgIDxidXR0b24gb25DbGljaz17KCkgPT4gc2V0SXNPcGVuKHRydWUpfT5cbiAgICAgICAgICAgICAgPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScyNScgaGVpZ2h0PScxMic+XG4gICAgICAgICAgICAgICAgPGdcbiAgICAgICAgICAgICAgICAgIGRhdGEtbmFtZT0nR3JvdXAgMTEnXG4gICAgICAgICAgICAgICAgICBmaWxsPSdub25lJ1xuICAgICAgICAgICAgICAgICAgc3Ryb2tlPScjYjg1ZjUzJ1xuICAgICAgICAgICAgICAgICAgc3Ryb2tlV2lkdGg9JzInXG4gICAgICAgICAgICAgICAgPlxuICAgICAgICAgICAgICAgICAgPHBhdGggZGF0YS1uYW1lPSdMaW5lIDEnIGQ9J00wIDFoMjUnIC8+XG4gICAgICAgICAgICAgICAgICA8cGF0aCBkYXRhLW5hbWU9J0xpbmUgMicgZD0nTTAgMTFoMjUnIC8+XG4gICAgICAgICAgICAgICAgPC9nPlxuICAgICAgICAgICAgICA8L3N2Zz5cbiAgICAgICAgICAgIDwvYnV0dG9uPlxuICAgICAgICAgIDwvZGl2PlxuICAgICAgICA8L01haW5OYXY+XG4gICAgICApfVxuICAgIDwvZGl2PlxuICApO1xufVxuIl19 */",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 });
 
@@ -10056,6 +10104,64 @@ const NotFoundPage = () => {
 
 /***/ }),
 
+/***/ "./src/pages/about.js":
+/*!****************************!*\
+  !*** ./src/pages/about.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Layout */ "./src/components/Layout.js");
+/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @emotion/react */ "./node_modules/@emotion/react/dist/emotion-react.esm.js");
+
+
+
+
+const AboutPage = () => {
+  return (0,_emotion_react__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_Layout__WEBPACK_IMPORTED_MODULE_1__.default, {
+    seoTitle: "About"
+  }, (0,_emotion_react__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", null, "About Us"), (0,_emotion_react__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", null, "This is the about us page"));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AboutPage);
+
+/***/ }),
+
+/***/ "./src/pages/contact.js":
+/*!******************************!*\
+  !*** ./src/pages/contact.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Layout */ "./src/components/Layout.js");
+/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @emotion/react */ "./node_modules/@emotion/react/dist/emotion-react.esm.js");
+
+
+
+
+const AboutPage = () => {
+  return (0,_emotion_react__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_Layout__WEBPACK_IMPORTED_MODULE_1__.default, {
+    seoTitle: "Contact"
+  }, (0,_emotion_react__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", null, "Contact Us"), (0,_emotion_react__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", null, "This is the contact us page"));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AboutPage);
+
+/***/ }),
+
 /***/ "./src/pages/index.js":
 /*!****************************!*\
   !*** ./src/pages/index.js ***!
@@ -10112,6 +10218,44 @@ const IndexPage = () => {
 
 /***/ }),
 
+/***/ "./src/pages/work/index.js":
+/*!*********************************!*\
+  !*** ./src/pages/work/index.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Layout */ "./src/components/Layout.js");
+/* harmony import */ var gatsby__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! gatsby */ "./.cache/gatsby-browser-entry.js");
+/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @emotion/react */ "./node_modules/@emotion/react/dist/emotion-react.esm.js");
+
+
+
+
+
+const Work = ({
+  data
+}) => {
+  return (0,_emotion_react__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_Layout__WEBPACK_IMPORTED_MODULE_1__.default, {
+    seoTitle: "Work"
+  }, (0,_emotion_react__WEBPACK_IMPORTED_MODULE_3__.jsx)("h1", null, "Our featured work"), (0,_emotion_react__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", null, "Below, you'll find our latest work. Enjoy!"), (0,_emotion_react__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", null), data.allMdx.nodes.map(node => (0,_emotion_react__WEBPACK_IMPORTED_MODULE_3__.jsx)("article", {
+    key: node.id
+  }, (0,_emotion_react__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", null, (0,_emotion_react__WEBPACK_IMPORTED_MODULE_3__.jsx)(gatsby__WEBPACK_IMPORTED_MODULE_2__.Link, {
+    to: `/work/${node.slug}`
+  }, node.frontmatter.title)), (0,_emotion_react__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", null, "Location: ", node.frontmatter.location), (0,_emotion_react__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", null, "Posted: ", node.frontmatter.date), (0,_emotion_react__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", null))));
+};
+
+const query = "2158827011";
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Work);
+
+/***/ }),
+
 /***/ "./src/pages/work/workDetailPageTemplate.js":
 /*!**************************************************!*\
   !*** ./src/pages/work/workDetailPageTemplate.js ***!
@@ -10141,7 +10285,9 @@ __webpack_require__.r(__webpack_exports__);
 const WorkDetailPage = ({
   data
 }) => {
-  console.log(data);
+  console.log(data); //TODO: implement lightbox when user clicks images
+  //TODO: Build out card with project details towards bottom
+
   return (0,_emotion_react__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_Layout__WEBPACK_IMPORTED_MODULE_3__.default, {
     seoTitle: data.mdx.frontmatter.title
   }, (0,_emotion_react__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
@@ -10149,7 +10295,6 @@ const WorkDetailPage = ({
   }, (0,_emotion_react__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
     className: "work-images"
   }, data.allFile.nodes.map(node => {
-    console.log("Gatsby Image Data: ", node.childImageSharp);
     const image = (0,gatsby_plugin_image__WEBPACK_IMPORTED_MODULE_5__.getImage)(node.childImageSharp.gatsbyImageData);
     return (0,_emotion_react__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       key: node.childImageSharp.id
@@ -10159,10 +10304,10 @@ const WorkDetailPage = ({
     }));
   })), (0,_emotion_react__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
     className: "card-holder"
-  }, (0,_emotion_react__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", null, data.mdx.frontmatter.title), (0,_emotion_react__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", null, data.mdx.frontmatter.subhead), (0,_emotion_react__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", null, data.mdx.frontmatter.location), (0,_emotion_react__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", null, data.mdx.frontmatter.date), (0,_emotion_react__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", null, data.mdx.frontmatter.client), (0,_emotion_react__WEBPACK_IMPORTED_MODULE_4__.jsx)(gatsby_plugin_mdx__WEBPACK_IMPORTED_MODULE_2__.MDXRenderer, null, data.mdx.body))));
+  }, (0,_emotion_react__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", null, data.mdx.frontmatter.title), (0,_emotion_react__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", null, data.mdx.frontmatter.subhead), (0,_emotion_react__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", null, data.mdx.frontmatter.location), (0,_emotion_react__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", null, data.mdx.frontmatter.date), (0,_emotion_react__WEBPACK_IMPORTED_MODULE_4__.jsx)(gatsby_plugin_mdx__WEBPACK_IMPORTED_MODULE_2__.MDXRenderer, null, data.mdx.body))));
 };
 
-const getWork = "538743163";
+const getWork = "4120724693";
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (WorkDetailPage);
 
 /***/ }),
@@ -19936,10 +20081,25 @@ module.exports = str => encodeURIComponent(str).replace(/[!'()*]/g, x => `%${x.c
 
 /***/ }),
 
-/***/ "./src/images/Logo.svg":
-/*!*****************************!*\
-  !*** ./src/images/Logo.svg ***!
-  \*****************************/
+/***/ "./src/images/BBS-Footer-Logo.svg":
+/*!****************************************!*\
+  !*** ./src/images/BBS-Footer-Logo.svg ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNjAiIGhlaWdodD0iMTQuOTMzIj4KICA8ZyBkYXRhLW5hbWU9Ikdyb3VwIDEzIiBmaWxsPSIjMjMyMzIzIj4KICA8cGF0aCBkYXRhLW5hbWU9IlBhdGggMjgiIGQ9Ik05LjQzOCA3LjA5M2EzLjEgMy4xIDAgMDAxLjUtMi44OTFjMC0yLjUzOC0xLjc4OS0zLjkzMS00LjQzMS0zLjkzMUgwdjE0LjM5M2g2LjUwOWMzLjE2MiAwIDQuOTUxLTEuNTQgNC45NTEtNC4xOGEzLjQ0IDMuNDQgMCAwMC0yLjAyMi0zLjM5MXptLTYuNDY0LTQuMDhoMy42YTEuMzc3IDEuMzc3IDAgMDExLjUxOCAxLjQ3NiAxLjUgMS41IDAgMDEtMS41MTggMS42aC0zLjZ6bTMuNTE1IDguOTIySDIuOTc0di0zLjM3SDYuMjZjMS4zOTMgMCAyLjMyOS40NTggMi4zMjkgMS43MjYgMCAxLjA2Ni0uNjg1IDEuNjQ4LTIuMSAxLjY0OHoiLz48cGF0aCBkYXRhLW5hbWU9IlBhdGggMjkiIGQ9Ik0yMS44ODIgOS4yNzdhMi41NDMgMi41NDMgMCAwMS0yLjY0IDIuNzI0IDIuNTA3IDIuNTA3IDAgMDEtMi42MjItMi43MjRWLjI3MWgtMy4wMzh2OS4wMDZjMCAzLjY4MSAyLjU3OCA1LjUxMSA1LjY1NyA1LjUxMSAzLjExOSAwIDUuNy0xLjgzMSA1LjctNS41MTFWLjI3MWgtMy4wNTd6Ii8+PHBhdGggZGF0YS1uYW1lPSJSZWN0YW5nbGUgNDEiIGQ9Ik0yOC4wNzcuMjcxaDMuMDU4djE0LjM5M2gtMy4wNTh6Ii8+PHBhdGggZGF0YS1uYW1lPSJQYXRoIDMwIiBkPSJNMzcuNDk4LjI3MWgtMy4wMzZ2MTQuMzkyaDkuOXYtMi44MDhoLTYuODY0eiIvPjxwYXRoIGRhdGEtbmFtZT0iUGF0aCAzMSIgZD0iTTUwLjg5My4yNzFoLTQuNDA4djE0LjM5M2g0LjQwOWM0LjMyNiAwIDcuNzc5LTIuNzg3IDcuNzc5LTcuMjM4LS4wMDEtNC40MzEtMy40MTItNy4xNTUtNy43OC03LjE1NXptLjAyMiAxMS42MDZoLTEuMzUzdi04LjhoMS4zNTNjMi42IDAgNC43IDEuNTYgNC43IDQuMzg3cy0yLjEwMiA0LjQxMy00LjcgNC40MTN6Ii8+PHBhdGggZGF0YS1uYW1lPSJQYXRoIDMyIiBkPSJNNzYuNzQ1IDcuMDkzYTMuMSAzLjEgMCAwMDEuNS0yLjg5MWMwLTIuNTM4LTEuNzg5LTMuOTMxLTQuNDMtMy45MzFoLTYuNTA5djE0LjM5M2g2LjUwOWMzLjE2MiAwIDQuOTUtMS41NCA0Ljk1LTQuMThhMy40NCAzLjQ0IDAgMDAtMi4wMi0zLjM5MXptLTYuNDY4LTQuMDhoMy42YTEuMzc3IDEuMzc3IDAgMDExLjUxOCAxLjQ3NiAxLjUgMS41IDAgMDEtMS41MTggMS42aC0zLjZ6bTMuNTE1IDguOTIyaC0zLjUxNXYtMy4zN2gzLjI4NmMxLjM5MyAwIDIuMzI5LjQ1OCAyLjMyOSAxLjcyNiAwIDEuMDY2LS42ODUgMS42NDgtMi4xIDEuNjQ4eiIvPjxwYXRoIGRhdGEtbmFtZT0iUGF0aCAzMyIgZD0iTTg0LjExMSA4LjY3M2g0LjU3N3YtMi43aC00LjU3N1YzLjA3OWg2LjQ0OFYuMjcxaC05LjQ4NHYxNC4zOTJoOS42Mjl2LTIuODA4aC02LjU5M3oiLz48cGF0aCBkYXRhLW5hbWU9IlBhdGggMzQiIGQ9Ik05Ny4xOS4yNzFsLTUuMjgyIDE0LjM5M2gzLjJsLjkzNi0yLjcyNGg1LjUzM2wuOTU2IDIuNzI0aDMuMjIyTDEwMC40MTEuMjcxem0tLjIyOSA5LjAwNmwxLjgzMS01LjM0NiAxLjg3MSA1LjM0NnoiLz48cGF0aCBkYXRhLW5hbWU9IlBhdGggMzUiIGQ9Ik0xMTQuOTMxIDkuMjc3YTIuNTQ0IDIuNTQ0IDAgMDEtMi42NDIgMi43MjQgMi41MDYgMi41MDYgMCAwMS0yLjYyLTIuNzI0Vi4yNzFoLTMuMDM3djkuMDA2YzAgMy42ODEgMi41NzkgNS41MTEgNS42NTcgNS41MTEgMy4xMiAwIDUuNy0xLjgzMSA1LjctNS41MTFWLjI3MWgtMy4wNTZ6Ii8+PHBhdGggZGF0YS1uYW1lPSJQYXRoIDM2IiBkPSJNMTE5LjkyMyAzLjA3OWg0LjEzOXYxMS41ODRoMy4wMzZWMy4wNzloNC4xMThWLjI3MWgtMTEuMjkzeiIvPjxwYXRoIGRhdGEtbmFtZT0iUmVjdGFuZ2xlIDQyIiBkPSJNMTMzLjMzOC4yNzFoMy4wNTh2MTQuMzkzaC0zLjA1OHoiLz48cGF0aCBkYXRhLW5hbWU9IlBhdGggMzciIGQ9Ik0xMzkuNzIyIDE0LjY2M2gzLjAzN1Y4LjkwMmg0LjI2NFY2LjE1N2gtNC4yNjRWMy4wNzloNi4wMTFWLjI3MWgtOS4wNDh6Ii8+PHBhdGggZGF0YS1uYW1lPSJQYXRoIDM4IiBkPSJNMTU5LjAwMyA5LjI3N2EyLjU0NCAyLjU0NCAwIDAxLTIuNjQyIDIuNzI0IDIuNTA2IDIuNTA2IDAgMDEtMi42Mi0yLjcyNFYuMjcxaC0zLjAzN3Y5LjAwNmMwIDMuNjgxIDIuNTc5IDUuNTExIDUuNjU3IDUuNTExIDMuMTIgMCA1LjctMS44MzEgNS43LTUuNTExVi4yNzFoLTMuMDU2eiIvPjxwYXRoIGRhdGEtbmFtZT0iUGF0aCAzOSIgZD0iTTE2OC4yMzguMjcxaC0zLjAzOXYxNC4zOTJoOS45di0yLjgwOGgtNi44NjR6Ii8+PHBhdGggZGF0YS1uYW1lPSJQYXRoIDQwIiBkPSJNMjAyLjY1OC4yNzFoLTYuMTU2djE0LjM5M2gzLjAzNnYtNS4yMmgzLjEyYzMuMTIgMCA1LjItMS41NCA1LjItNC41NzdzLTIuMDgtNC41OTYtNS4yLTQuNTk2em0uMDYzIDYuNTMxaC0zLjJWMy4wMTNoMy4yYzEuMzUzIDAgMi4yNjcuNTgyIDIuMjY3IDEuODcxIDAgMS4zMTQtLjkxNCAxLjkxOC0yLjI2NyAxLjkxOHoiLz48cGF0aCBkYXRhLW5hbWU9IlBhdGggNDEiIGQ9Ik0yMTIuNTM3LjI3MWwtNS4yODIgMTQuMzkzaDMuMmwuOTM2LTIuNzI0aDUuNTM3bC45NTcgMi43MjRoMy4yMjNMMjE1Ljc2NC4yNzF6bS0uMjI5IDkuMDA2bDEuODMxLTUuMzQ2IDEuODcxIDUuMzQ2eiIvPjxwYXRoIGRhdGEtbmFtZT0iUGF0aCA0MiIgZD0iTTIyOC40MDcgMi44MDhhMy41ODggMy41ODggMCAwMTMuMjg2IDIuMDE3bDIuMi0xLjY0NGE1Ljc2NSA1Ljc2NSAwIDAwLTUuNDctMy4xODJjLTMuODg5IDAtNi43MzggMi42LTYuNzM4IDcuNDY2IDAgNC45MDkgMi44NzEgNy40NjYgNi43MTcgNy40NjZhNi4wMjUgNi4wMjUgMCAwMDUuNDI5LTMuMDE1bC0yLjIyNi0xLjYyMmEzLjU3OCAzLjU3OCAwIDAxLTMuMiAxLjg1MWMtMi4yODggMC0zLjY4Mi0xLjUzOC0zLjY4Mi00LjY1OHMxLjM5Ni00LjY3OSAzLjY4NC00LjY3OXoiLz48cGF0aCBkYXRhLW5hbWU9IlBhdGggNDMiIGQ9Ik0yMzkuNTM1IDguNjczaDQuNTc1di0yLjdoLTQuNTc1VjMuMDc5aDYuNDQ4Vi4yNzFoLTkuNDgydjE0LjM5Mmg5LjYyOXYtMi44MDhoLTYuNTkyeiIvPjxwYXRoIGRhdGEtbmFtZT0iUGF0aCA0NCIgZD0iTTI1Ny4xNyA2LjUzMWMtMS40NTUtLjU2MS0zLjItLjc0OS00LjM4OC0xLjE4NS0uNTYyLS4yMDktMS4xNjUtLjUtMS4xNjUtMS4yMDcgMC0uODUzLjkxNi0xLjMxMSAyLjMyOS0xLjMxMWE0Ljc3OSA0Ljc3OSAwIDAxMy41NTcgMS40MzVsMi4xMjEtMS44NTFhNi44NDUgNi44NDUgMCAwMC01LjUzMi0yLjI4N2MtMy40NzMgMC01LjM4NiAxLjctNS4zODYgNC4xMzggMCAxLjg3MSAxLjE0MyAyLjc0NiAyLjY4MiAzLjM2OSAxLjQ3Ny42IDMuMTIuODUzIDQuMjg1IDEuMjI3Ljc2OS4yNTEgMS4zOTMuNTYyIDEuMzkzIDEuNDc3IDAgMS4xNDQtMSAxLjg1MS0yLjg3IDEuODUxYTUuNjE4IDUuNjE4IDAgMDEtNC4yNjQtMS44MDlsLTIuMjQ3IDEuODUxYTcuODQxIDcuODQxIDAgMDA2LjMyMyAyLjZjMy41MTUgMCA1Ljk5LTEuNTQgNS45OS00LjUxM2EzLjgzMSAzLjgzMSAwIDAwLTIuODI4LTMuNzg1eiIvPjxnIGRhdGEtbmFtZT0iR3JvdXAgMTIiPjxwYXRoIGRhdGEtbmFtZT0iUGF0aCA0NSIgZD0iTTE4NS41NDMgNy42MzRjLjMyNS4xMzMuNjU5LjI0OC45OTQuMzUybDIuMDY2LTIuMTg4YTEzLjc0NSAxMy43NDUgMCAwMS0xLjY2Ny0uNDVjLS41NjItLjIwOS0xLjE2NC0uNS0xLjE2NC0xLjIwNiAwLS44NTMuOTE2LTEuMzEgMi4zMjgtMS4zMWE0Ljc4IDQuNzggMCAwMTMuNTU2IDEuNDM1bDIuMTItMS44NTFhNi44NDIgNi44NDIgMCAwMC01LjUzLTIuMjg2Yy0zLjQ3MiAwLTUuMzg1IDEuNy01LjM4NSA0LjEzNyAwIDEuODY5IDEuMTQyIDIuNzQ0IDIuNjgyIDMuMzY3eiIvPjxwYXRoIGRhdGEtbmFtZT0iUGF0aCA0NiIgZD0iTTE5MS4zMjIgNi41MzJhMTEuMSAxMS4xIDAgMDAtMS4xMTYtLjM1NkwxODguMSA4LjQwOGMuNjI5LjE1NCAxLjIyMi4yOTIgMS43MjUuNDUzLjc2OS4yNSAxLjM5My41NjIgMS4zOTMgMS40NzcgMCAxLjE0NC0xIDEuODUxLTIuODY4IDEuODUxYTUuNjE1IDUuNjE1IDAgMDEtNC4yNjMtMS44MDlsLTIuMjQ2IDEuODUxYTcuODM4IDcuODM4IDAgMDA2LjMyIDIuNmMzLjUxNCAwIDUuOTg5LTEuNTM5IDUuOTg5LTQuNTEyYTMuODMgMy44MyAwIDAwLTIuODI4LTMuNzg3eiIvPjwvZz4KICA8L2c+Cjwvc3ZnPg==");
+
+/***/ }),
+
+/***/ "./src/images/BBS-Logo.svg":
+/*!*********************************!*\
+  !*** ./src/images/BBS-Logo.svg ***!
+  \*********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -21152,7 +21312,7 @@ module.exports = JSON.parse('{"data":{"site":{"siteMetadata":{"defaultTitle":"BB
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"data":{"allMdx":{"nodes":[{"id":"b1928d0c-08d4-5937-ab3e-f06dee375b4b","frontmatter":{"hero_image_alt":"Remodeled kitchen","title":"Rennovate Kitchen Cabinets","hero_image":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#181818","images":{"fallback":{"src":"/static/9414e5907cba5393f7de1ce5cb897bd0/3832f/kitchen-cabinets-rennovation-K-01.jpg","srcSet":"/static/9414e5907cba5393f7de1ce5cb897bd0/fdd27/kitchen-cabinets-rennovation-K-01.jpg 480w,\\n/static/9414e5907cba5393f7de1ce5cb897bd0/93fdb/kitchen-cabinets-rennovation-K-01.jpg 960w,\\n/static/9414e5907cba5393f7de1ce5cb897bd0/3832f/kitchen-cabinets-rennovation-K-01.jpg 1920w","sizes":"(min-width: 1920px) 1920px, 100vw"},"sources":[{"srcSet":"/static/9414e5907cba5393f7de1ce5cb897bd0/a1501/kitchen-cabinets-rennovation-K-01.webp 480w,\\n/static/9414e5907cba5393f7de1ce5cb897bd0/55375/kitchen-cabinets-rennovation-K-01.webp 960w,\\n/static/9414e5907cba5393f7de1ce5cb897bd0/e4c47/kitchen-cabinets-rennovation-K-01.webp 1920w","type":"image/webp","sizes":"(min-width: 1920px) 1920px, 100vw"}]},"width":1920,"height":1440}}}},"slug":"k-kitchen-cabinets-lg-vanity/"},{"id":"ba1cacfd-790a-571d-8b21-5bad3d2255a4","frontmatter":{"hero_image_alt":"Renovated shower","title":"Rennovate Master Shower","hero_image":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#080808","images":{"fallback":{"src":"/static/70cd1406255b41dfd279ad397f032e9b/3832f/shower-rennovation-C-01.jpg","srcSet":"/static/70cd1406255b41dfd279ad397f032e9b/fdd27/shower-rennovation-C-01.jpg 480w,\\n/static/70cd1406255b41dfd279ad397f032e9b/93fdb/shower-rennovation-C-01.jpg 960w,\\n/static/70cd1406255b41dfd279ad397f032e9b/3832f/shower-rennovation-C-01.jpg 1920w","sizes":"(min-width: 1920px) 1920px, 100vw"},"sources":[{"srcSet":"/static/70cd1406255b41dfd279ad397f032e9b/a1501/shower-rennovation-C-01.webp 480w,\\n/static/70cd1406255b41dfd279ad397f032e9b/55375/shower-rennovation-C-01.webp 960w,\\n/static/70cd1406255b41dfd279ad397f032e9b/e4c47/shower-rennovation-C-01.webp 1920w","type":"image/webp","sizes":"(min-width: 1920px) 1920px, 100vw"}]},"width":1920,"height":1440}}}},"slug":"c-shower-rennovation/"},{"id":"1a52f71e-616c-5437-af43-c24d591bf040","frontmatter":{"hero_image_alt":"Reconstructed outdoor planters","title":"Vintage Planter Rennovation","hero_image":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#181818","images":{"fallback":{"src":"/static/bed72c40949348d0d2375d8217fcb785/3832f/planter-renovation-before-01.jpg","srcSet":"/static/bed72c40949348d0d2375d8217fcb785/fdd27/planter-renovation-before-01.jpg 480w,\\n/static/bed72c40949348d0d2375d8217fcb785/93fdb/planter-renovation-before-01.jpg 960w,\\n/static/bed72c40949348d0d2375d8217fcb785/3832f/planter-renovation-before-01.jpg 1920w","sizes":"(min-width: 1920px) 1920px, 100vw"},"sources":[{"srcSet":"/static/bed72c40949348d0d2375d8217fcb785/a1501/planter-renovation-before-01.webp 480w,\\n/static/bed72c40949348d0d2375d8217fcb785/55375/planter-renovation-before-01.webp 960w,\\n/static/bed72c40949348d0d2375d8217fcb785/e4c47/planter-renovation-before-01.webp 1920w","type":"image/webp","sizes":"(min-width: 1920px) 1920px, 100vw"}]},"width":1920,"height":1440}}}},"slug":"2021-07-01-v-planters/"},{"id":"edb94bbc-2131-53e0-92f4-8e856284c233","frontmatter":{"hero_image_alt":"New cedar closet with custom shelf lighting","title":"Closet Renovation","hero_image":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#582828","images":{"fallback":{"src":"/static/be1e440db22c875620cf40bc3f7d61ca/3832f/closet-renovation-process-11.jpg","srcSet":"/static/be1e440db22c875620cf40bc3f7d61ca/fdd27/closet-renovation-process-11.jpg 480w,\\n/static/be1e440db22c875620cf40bc3f7d61ca/93fdb/closet-renovation-process-11.jpg 960w,\\n/static/be1e440db22c875620cf40bc3f7d61ca/3832f/closet-renovation-process-11.jpg 1920w","sizes":"(min-width: 1920px) 1920px, 100vw"},"sources":[{"srcSet":"/static/be1e440db22c875620cf40bc3f7d61ca/a1501/closet-renovation-process-11.webp 480w,\\n/static/be1e440db22c875620cf40bc3f7d61ca/55375/closet-renovation-process-11.webp 960w,\\n/static/be1e440db22c875620cf40bc3f7d61ca/e4c47/closet-renovation-process-11.webp 1920w","type":"image/webp","sizes":"(min-width: 1920px) 1920px, 100vw"}]},"width":1920,"height":1440}}}},"slug":"2021-07-15-wc-closet-rennovation/"},{"id":"85ca82ee-cb08-5602-afe8-f96e0377fc6d","frontmatter":{"hero_image_alt":"Renovated main shared bathroom","title":"AA Main Bathroom","hero_image":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#080808","images":{"fallback":{"src":"/static/2c7cd550669d9144927d8421c88cefc6/3832f/main-bathroom-rennovation-AA-11.jpg","srcSet":"/static/2c7cd550669d9144927d8421c88cefc6/fdd27/main-bathroom-rennovation-AA-11.jpg 480w,\\n/static/2c7cd550669d9144927d8421c88cefc6/93fdb/main-bathroom-rennovation-AA-11.jpg 960w,\\n/static/2c7cd550669d9144927d8421c88cefc6/3832f/main-bathroom-rennovation-AA-11.jpg 1920w","sizes":"(min-width: 1920px) 1920px, 100vw"},"sources":[{"srcSet":"/static/2c7cd550669d9144927d8421c88cefc6/a1501/main-bathroom-rennovation-AA-11.webp 480w,\\n/static/2c7cd550669d9144927d8421c88cefc6/55375/main-bathroom-rennovation-AA-11.webp 960w,\\n/static/2c7cd550669d9144927d8421c88cefc6/e4c47/main-bathroom-rennovation-AA-11.webp 1920w","type":"image/webp","sizes":"(min-width: 1920px) 1920px, 100vw"}]},"width":1920,"height":1440}}}},"slug":"2020-12-30-aa-main-bathroom/"},{"id":"9d36ba46-a2f7-59b9-879d-47a1c29895c4","frontmatter":{"hero_image_alt":"Renovated master bathroom","title":"AA Master Bathroom","hero_image":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#080808","images":{"fallback":{"src":"/static/ff09aeebb3a5ccdf8fdd8b458fa9e3e6/3832f/master-bathroom-rennovation-AA-05.jpg","srcSet":"/static/ff09aeebb3a5ccdf8fdd8b458fa9e3e6/fdd27/master-bathroom-rennovation-AA-05.jpg 480w,\\n/static/ff09aeebb3a5ccdf8fdd8b458fa9e3e6/93fdb/master-bathroom-rennovation-AA-05.jpg 960w,\\n/static/ff09aeebb3a5ccdf8fdd8b458fa9e3e6/3832f/master-bathroom-rennovation-AA-05.jpg 1920w","sizes":"(min-width: 1920px) 1920px, 100vw"},"sources":[{"srcSet":"/static/ff09aeebb3a5ccdf8fdd8b458fa9e3e6/a1501/master-bathroom-rennovation-AA-05.webp 480w,\\n/static/ff09aeebb3a5ccdf8fdd8b458fa9e3e6/55375/master-bathroom-rennovation-AA-05.webp 960w,\\n/static/ff09aeebb3a5ccdf8fdd8b458fa9e3e6/e4c47/master-bathroom-rennovation-AA-05.webp 1920w","type":"image/webp","sizes":"(min-width: 1920px) 1920px, 100vw"}]},"width":1920,"height":1440}}}},"slug":"2020-03-24-aa-master-bathroom/"}]}}}');
+module.exports = JSON.parse('{"data":{"allMdx":{"nodes":[{"id":"ba1cacfd-790a-571d-8b21-5bad3d2255a4","frontmatter":{"hero_image_alt":"Renovated shower","title":"Rennovate Master Shower","hero_image":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#080808","images":{"fallback":{"src":"/static/70cd1406255b41dfd279ad397f032e9b/3832f/shower-rennovation-C-01.jpg","srcSet":"/static/70cd1406255b41dfd279ad397f032e9b/fdd27/shower-rennovation-C-01.jpg 480w,\\n/static/70cd1406255b41dfd279ad397f032e9b/93fdb/shower-rennovation-C-01.jpg 960w,\\n/static/70cd1406255b41dfd279ad397f032e9b/3832f/shower-rennovation-C-01.jpg 1920w","sizes":"(min-width: 1920px) 1920px, 100vw"},"sources":[{"srcSet":"/static/70cd1406255b41dfd279ad397f032e9b/a1501/shower-rennovation-C-01.webp 480w,\\n/static/70cd1406255b41dfd279ad397f032e9b/55375/shower-rennovation-C-01.webp 960w,\\n/static/70cd1406255b41dfd279ad397f032e9b/e4c47/shower-rennovation-C-01.webp 1920w","type":"image/webp","sizes":"(min-width: 1920px) 1920px, 100vw"}]},"width":1920,"height":1440}}}},"slug":"c-shower-rennovation/"},{"id":"b1928d0c-08d4-5937-ab3e-f06dee375b4b","frontmatter":{"hero_image_alt":"Remodeled kitchen","title":"Rennovate Kitchen Cabinets","hero_image":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#181818","images":{"fallback":{"src":"/static/9414e5907cba5393f7de1ce5cb897bd0/3832f/kitchen-cabinets-rennovation-K-01.jpg","srcSet":"/static/9414e5907cba5393f7de1ce5cb897bd0/fdd27/kitchen-cabinets-rennovation-K-01.jpg 480w,\\n/static/9414e5907cba5393f7de1ce5cb897bd0/93fdb/kitchen-cabinets-rennovation-K-01.jpg 960w,\\n/static/9414e5907cba5393f7de1ce5cb897bd0/3832f/kitchen-cabinets-rennovation-K-01.jpg 1920w","sizes":"(min-width: 1920px) 1920px, 100vw"},"sources":[{"srcSet":"/static/9414e5907cba5393f7de1ce5cb897bd0/a1501/kitchen-cabinets-rennovation-K-01.webp 480w,\\n/static/9414e5907cba5393f7de1ce5cb897bd0/55375/kitchen-cabinets-rennovation-K-01.webp 960w,\\n/static/9414e5907cba5393f7de1ce5cb897bd0/e4c47/kitchen-cabinets-rennovation-K-01.webp 1920w","type":"image/webp","sizes":"(min-width: 1920px) 1920px, 100vw"}]},"width":1920,"height":1440}}}},"slug":"k-kitchen-cabinets-lg-vanity/"},{"id":"1a52f71e-616c-5437-af43-c24d591bf040","frontmatter":{"hero_image_alt":"Reconstructed outdoor planters","title":"Vintage Planter Rennovation","hero_image":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#181818","images":{"fallback":{"src":"/static/bed72c40949348d0d2375d8217fcb785/3832f/planter-renovation-before-01.jpg","srcSet":"/static/bed72c40949348d0d2375d8217fcb785/fdd27/planter-renovation-before-01.jpg 480w,\\n/static/bed72c40949348d0d2375d8217fcb785/93fdb/planter-renovation-before-01.jpg 960w,\\n/static/bed72c40949348d0d2375d8217fcb785/3832f/planter-renovation-before-01.jpg 1920w","sizes":"(min-width: 1920px) 1920px, 100vw"},"sources":[{"srcSet":"/static/bed72c40949348d0d2375d8217fcb785/a1501/planter-renovation-before-01.webp 480w,\\n/static/bed72c40949348d0d2375d8217fcb785/55375/planter-renovation-before-01.webp 960w,\\n/static/bed72c40949348d0d2375d8217fcb785/e4c47/planter-renovation-before-01.webp 1920w","type":"image/webp","sizes":"(min-width: 1920px) 1920px, 100vw"}]},"width":1920,"height":1440}}}},"slug":"2021-07-01-v-planters/"},{"id":"edb94bbc-2131-53e0-92f4-8e856284c233","frontmatter":{"hero_image_alt":"New cedar closet with custom shelf lighting","title":"Closet Renovation","hero_image":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#582828","images":{"fallback":{"src":"/static/be1e440db22c875620cf40bc3f7d61ca/3832f/closet-renovation-process-11.jpg","srcSet":"/static/be1e440db22c875620cf40bc3f7d61ca/fdd27/closet-renovation-process-11.jpg 480w,\\n/static/be1e440db22c875620cf40bc3f7d61ca/93fdb/closet-renovation-process-11.jpg 960w,\\n/static/be1e440db22c875620cf40bc3f7d61ca/3832f/closet-renovation-process-11.jpg 1920w","sizes":"(min-width: 1920px) 1920px, 100vw"},"sources":[{"srcSet":"/static/be1e440db22c875620cf40bc3f7d61ca/a1501/closet-renovation-process-11.webp 480w,\\n/static/be1e440db22c875620cf40bc3f7d61ca/55375/closet-renovation-process-11.webp 960w,\\n/static/be1e440db22c875620cf40bc3f7d61ca/e4c47/closet-renovation-process-11.webp 1920w","type":"image/webp","sizes":"(min-width: 1920px) 1920px, 100vw"}]},"width":1920,"height":1440}}}},"slug":"2021-07-15-wc-closet-rennovation/"},{"id":"85ca82ee-cb08-5602-afe8-f96e0377fc6d","frontmatter":{"hero_image_alt":"Renovated main shared bathroom","title":"AA Main Bathroom","hero_image":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#080808","images":{"fallback":{"src":"/static/2c7cd550669d9144927d8421c88cefc6/3832f/main-bathroom-rennovation-AA-11.jpg","srcSet":"/static/2c7cd550669d9144927d8421c88cefc6/fdd27/main-bathroom-rennovation-AA-11.jpg 480w,\\n/static/2c7cd550669d9144927d8421c88cefc6/93fdb/main-bathroom-rennovation-AA-11.jpg 960w,\\n/static/2c7cd550669d9144927d8421c88cefc6/3832f/main-bathroom-rennovation-AA-11.jpg 1920w","sizes":"(min-width: 1920px) 1920px, 100vw"},"sources":[{"srcSet":"/static/2c7cd550669d9144927d8421c88cefc6/a1501/main-bathroom-rennovation-AA-11.webp 480w,\\n/static/2c7cd550669d9144927d8421c88cefc6/55375/main-bathroom-rennovation-AA-11.webp 960w,\\n/static/2c7cd550669d9144927d8421c88cefc6/e4c47/main-bathroom-rennovation-AA-11.webp 1920w","type":"image/webp","sizes":"(min-width: 1920px) 1920px, 100vw"}]},"width":1920,"height":1440}}}},"slug":"2020-12-30-aa-main-bathroom/"},{"id":"9d36ba46-a2f7-59b9-879d-47a1c29895c4","frontmatter":{"hero_image_alt":"Renovated master bathroom","title":"AA Master Bathroom","hero_image":{"childImageSharp":{"gatsbyImageData":{"layout":"constrained","backgroundColor":"#080808","images":{"fallback":{"src":"/static/ff09aeebb3a5ccdf8fdd8b458fa9e3e6/3832f/master-bathroom-rennovation-AA-05.jpg","srcSet":"/static/ff09aeebb3a5ccdf8fdd8b458fa9e3e6/fdd27/master-bathroom-rennovation-AA-05.jpg 480w,\\n/static/ff09aeebb3a5ccdf8fdd8b458fa9e3e6/93fdb/master-bathroom-rennovation-AA-05.jpg 960w,\\n/static/ff09aeebb3a5ccdf8fdd8b458fa9e3e6/3832f/master-bathroom-rennovation-AA-05.jpg 1920w","sizes":"(min-width: 1920px) 1920px, 100vw"},"sources":[{"srcSet":"/static/ff09aeebb3a5ccdf8fdd8b458fa9e3e6/a1501/master-bathroom-rennovation-AA-05.webp 480w,\\n/static/ff09aeebb3a5ccdf8fdd8b458fa9e3e6/55375/master-bathroom-rennovation-AA-05.webp 960w,\\n/static/ff09aeebb3a5ccdf8fdd8b458fa9e3e6/e4c47/master-bathroom-rennovation-AA-05.webp 1920w","type":"image/webp","sizes":"(min-width: 1920px) 1920px, 100vw"}]},"width":1920,"height":1440}}}},"slug":"2020-03-24-aa-master-bathroom/"}]}}}');
 
 /***/ })
 

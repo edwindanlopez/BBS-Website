@@ -10,15 +10,15 @@ const navigation = [
   },
   {
     name: "About Us",
-    slug: "/about",
+    slug: "/about/",
   },
   {
     name: "Work",
-    slug: "/work",
+    slug: "/work/",
   },
   {
     name: "Contact Us",
-    slug: "/contact",
+    slug: "/contact/",
   },
 ];
 
