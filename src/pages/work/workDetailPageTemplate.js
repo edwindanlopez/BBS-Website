@@ -4,6 +4,7 @@ import { MDXRenderer } from "gatsby-plugin-mdx";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 import Layout from "../../components/Layout";
+import DetailPageCard from "../../components/detailPageCard";
 
 const WorkDetailPage = ({ data }) => {
   console.log(data);
@@ -25,13 +26,7 @@ const WorkDetailPage = ({ data }) => {
           })}
         </div>
 
-        <div className='card-holder'>
-          <h3>{data.mdx.frontmatter.title}</h3>
-          <h3>{data.mdx.frontmatter.subhead}</h3>
-          <h3>{data.mdx.frontmatter.location}</h3>
-          <h3>{data.mdx.frontmatter.date}</h3>
-          <MDXRenderer>{data.mdx.body}</MDXRenderer>
-        </div>
+        <DetailPageCard {...data.mdx} />
       </div>
     </Layout>
   );

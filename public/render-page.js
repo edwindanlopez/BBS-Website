@@ -9527,6 +9527,45 @@ function CtaTiles() {
 
 /***/ }),
 
+/***/ "./src/components/detailPageCard/index.js":
+/*!************************************************!*\
+  !*** ./src/components/detailPageCard/index.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ DetailPageCard)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var gatsby_plugin_mdx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! gatsby-plugin-mdx */ "./node_modules/gatsby-plugin-mdx/index.js");
+/* harmony import */ var gatsby_plugin_mdx__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(gatsby_plugin_mdx__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @emotion/react */ "./node_modules/@emotion/react/dist/emotion-react.esm.js");
+function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
+
+
+
+
+
+var _ref =  false ? 0 : {
+  name: "z8pwi7-DetailPageCard",
+  styles: "--tw-bg-opacity:1;background-color:rgba(239, 68, 68, var(--tw-bg-opacity));label:DetailPageCard;",
+  toString: _EMOTION_STRINGIFIED_CSS_ERROR__
+};
+
+function DetailPageCard(mdx) {
+  console.log("Incoming props: ", mdx);
+  return (0,_emotion_react__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    className: "card-holder",
+    css: _ref,
+    "data-tw": "bg-red-500"
+  }, (0,_emotion_react__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", null, mdx.frontmatter.title), (0,_emotion_react__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", null, mdx.frontmatter.subhead), (0,_emotion_react__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", null, mdx.frontmatter.location), (0,_emotion_react__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", null, mdx.frontmatter.date), (0,_emotion_react__WEBPACK_IMPORTED_MODULE_2__.jsx)(gatsby_plugin_mdx__WEBPACK_IMPORTED_MODULE_1__.MDXRenderer, null, mdx.body));
+}
+
+/***/ }),
+
 /***/ "./src/components/featuredwork/Work.js":
 /*!*********************************************!*\
   !*** ./src/components/featuredwork/Work.js ***!
@@ -10272,9 +10311,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gatsby__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! gatsby */ "./.cache/gatsby-browser-entry.js");
 /* harmony import */ var gatsby_plugin_mdx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! gatsby-plugin-mdx */ "./node_modules/gatsby-plugin-mdx/index.js");
 /* harmony import */ var gatsby_plugin_mdx__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(gatsby_plugin_mdx__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var gatsby_plugin_image__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! gatsby-plugin-image */ "./node_modules/gatsby-plugin-image/dist/gatsby-image.module.js");
+/* harmony import */ var gatsby_plugin_image__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! gatsby-plugin-image */ "./node_modules/gatsby-plugin-image/dist/gatsby-image.module.js");
 /* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Layout */ "./src/components/Layout.js");
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @emotion/react */ "./node_modules/@emotion/react/dist/emotion-react.esm.js");
+/* harmony import */ var _components_detailPageCard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/detailPageCard */ "./src/components/detailPageCard/index.js");
+/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @emotion/react */ "./node_modules/@emotion/react/dist/emotion-react.esm.js");
+
 
 
 
@@ -10288,23 +10329,21 @@ const WorkDetailPage = ({
   console.log(data); //TODO: implement lightbox when user clicks images
   //TODO: Build out card with project details towards bottom
 
-  return (0,_emotion_react__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_Layout__WEBPACK_IMPORTED_MODULE_3__.default, {
+  return (0,_emotion_react__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Layout__WEBPACK_IMPORTED_MODULE_3__.default, {
     seoTitle: data.mdx.frontmatter.title
-  }, (0,_emotion_react__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+  }, (0,_emotion_react__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
     className: "container"
-  }, (0,_emotion_react__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+  }, (0,_emotion_react__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
     className: "work-images"
   }, data.allFile.nodes.map(node => {
-    const image = (0,gatsby_plugin_image__WEBPACK_IMPORTED_MODULE_5__.getImage)(node.childImageSharp.gatsbyImageData);
-    return (0,_emotion_react__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    const image = (0,gatsby_plugin_image__WEBPACK_IMPORTED_MODULE_6__.getImage)(node.childImageSharp.gatsbyImageData);
+    return (0,_emotion_react__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
       key: node.childImageSharp.id
-    }, (0,_emotion_react__WEBPACK_IMPORTED_MODULE_4__.jsx)(gatsby_plugin_image__WEBPACK_IMPORTED_MODULE_5__.GatsbyImage, {
+    }, (0,_emotion_react__WEBPACK_IMPORTED_MODULE_5__.jsx)(gatsby_plugin_image__WEBPACK_IMPORTED_MODULE_6__.GatsbyImage, {
       image: image,
       alt: ""
     }));
-  })), (0,_emotion_react__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-    className: "card-holder"
-  }, (0,_emotion_react__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", null, data.mdx.frontmatter.title), (0,_emotion_react__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", null, data.mdx.frontmatter.subhead), (0,_emotion_react__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", null, data.mdx.frontmatter.location), (0,_emotion_react__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", null, data.mdx.frontmatter.date), (0,_emotion_react__WEBPACK_IMPORTED_MODULE_4__.jsx)(gatsby_plugin_mdx__WEBPACK_IMPORTED_MODULE_2__.MDXRenderer, null, data.mdx.body))));
+  })), (0,_emotion_react__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_detailPageCard__WEBPACK_IMPORTED_MODULE_4__.default, data.mdx)));
 };
 
 const getWork = "4120724693";
