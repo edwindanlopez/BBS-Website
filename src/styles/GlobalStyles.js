@@ -40,6 +40,7 @@ const customStyles = css({
     flexBasis: "100%",
     height: "0",
   },
+
   /* width */
   "::-webkit-scrollbar": {
     width: "10px",

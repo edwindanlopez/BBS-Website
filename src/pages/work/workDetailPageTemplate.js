@@ -7,10 +7,7 @@ import Layout from "../../components/Layout";
 import DetailPageCard from "../../components/detailPageCard";
 
 const WorkDetailPage = ({ data }) => {
-  console.log(data);
-
   //TODO: implement lightbox when user clicks images
-  //TODO: Build out card with project details towards bottom
 
   return (
     <Layout seoTitle={data.mdx.frontmatter.title}>
@@ -20,7 +17,7 @@ const WorkDetailPage = ({ data }) => {
             const image = getImage(node.childImageSharp.gatsbyImageData);
             return (
               <div key={node.childImageSharp.id}>
-                <GatsbyImage image={image} alt='' />
+                <GatsbyImage image={image} alt={node.name} />
               </div>
             );
           })}
@@ -59,6 +56,7 @@ export const getWork = graphql`
           )
           id
         }
+        name
       }
     }
   }
