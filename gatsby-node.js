@@ -1,5 +1,6 @@
 const path = require("path");
 
+// generate detail pages for the workPortfolio
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
   const blogPostTemplate = path.resolve(
@@ -25,7 +26,8 @@ exports.createPages = ({ graphql, actions }) => {
       throw result.errors;
     }
 
-    // Create detail page for each item
+    // pass both the slug and absolute path without trailing slash
+    // to use for querying in the workDetailPageTemplate
     result.data.allMdx.edges.forEach((edge) => {
       const removedTrailingSlash = edge.node.slug.replace(/\/$/gm, "");
 

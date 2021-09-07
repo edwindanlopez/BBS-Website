@@ -48,10 +48,21 @@ module.exports = {
         250: "2.5",
         275: "2.75",
       },
+      zIndex: {
+        "-5": "-5",
+        "-10": "-10",
+        "-20": "-20",
+        "-30": "-30",
+      },
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      /* for use with collapse or accordion component*/
+      transitionProperty: {
+        height: "height",
+      },
+    },
   },
   plugins: [],
 };
