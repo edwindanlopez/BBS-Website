@@ -1,5 +1,0 @@
-{
-    "componentChunkName": "component---src-pages-work-work-detail-page-template-js",
-    "path": "/work/workDetailPageTemplate/",
-    "result": {"errors":[{"message":"Variable \"$slug\" of required type \"String!\" was not provided.","locations":[{"line":1,"column":22}]},{"message":"Variable \"$absolutePathSlug\" of required type \"String!\" was not provided.","locations":[{"line":1,"column":38}]}],"pageContext":{}},
-    "staticQueryHashes": ["3361508366"]}
