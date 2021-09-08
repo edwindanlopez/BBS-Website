@@ -13,7 +13,7 @@ import CtaTiles from "../components/ctaTiles";
 const IndexPage = () => {
   return (
     <Layout seoTitle={"Home"}>
-      <header id='top-hero'>
+      <header>
         <TopHero />
       </header>
       <section tw='pt-8 mx-auto'>

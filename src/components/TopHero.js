@@ -2,20 +2,18 @@ import React from "react";
 import { StaticImage } from "gatsby-plugin-image";
 import { theme } from "twin.macro";
 
-import Logo from "./Logo";
 import Button from "../lib/Button";
 
 export default function TopHero() {
   return (
-    <div tw='relative flex h-96'>
+    <div id='top-hero' tw='relative flex items-center h-96'>
       <div className='hero-items' tw='absolute z-10 w-full '>
-        <Logo />
         {/* <div classNmae='break'></div> */}
-        <div tw='flex flex-wrap justify-center w-full max-w-md h-52 mx-auto mt-20'>
-          <div id='main-header' tw='w-11/12 '>
+        <div tw='flex flex-wrap justify-center w-full max-w-md mx-auto mt-20'>
+          <div id='main-header' tw='w-11/12 mb-4'>
             <h1 tw='text-center'>Bring your space to the next level</h1>
           </div>
-          <Button variant='primary' id='hero-btn' type='button'>
+          <Button variant='primary' id='hero-btn' type='button' tw='mt-4'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               width='27.163'
@@ -38,7 +36,7 @@ export default function TopHero() {
           </Button>
         </div>
       </div>
-      <div id='hero-img' tw='w-full overflow-hidden'>
+      <div id='hero-img' tw='w-full h-full overflow-hidden'>
         <StaticImage
           alt='BBS Hero image of beautiful refurnished white kitchen cabinet'
           src='../images/BBS-Top-Hero-Image.jpg'

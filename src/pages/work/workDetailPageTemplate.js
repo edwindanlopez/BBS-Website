@@ -9,6 +9,8 @@ import DetailPageCard from "../../components/detailPageCard";
 const WorkDetailPage = ({ data }) => {
   //TODO: implement lightbox when user clicks images
 
+  console.log(data);
+
   return (
     <Layout seoTitle={data.mdx.frontmatter.title}>
       <div className='container'>
@@ -43,7 +45,7 @@ export const getWork = graphql`
     }
     allFile(
       filter: {
-        extension: { regex: "/(jpg)/" }
+        extension: { regex: "/(jpe?g|png|gif)/" }
         relativeDirectory: { eq: $absolutePathSlug }
       }
       sort: { fields: name, order: ASC }
