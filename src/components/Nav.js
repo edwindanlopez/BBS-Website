@@ -29,7 +29,6 @@ export default function Nav() {
 
   const handleScroll = () => {
     const position = window.pageYOffset;
-    console.log("Scroll position: ", position);
     setScrollPosition(position);
   };
 
@@ -48,7 +47,7 @@ export default function Nav() {
         <div
           className='logo-wrapper'
           css={[
-            tw`w-full h-full flex items-center `,
+            tw`w-full h-full flex items-center`,
             scrollPosition < 100 && {
               "#logo": {
                 transitionProperty: "all",
@@ -76,11 +75,11 @@ export default function Nav() {
         <div
           className='nav-items'
           css={[
-            tw`hidden sm:flex sm:justify-end`,
+            tw`hidden sm:flex sm:justify-end sm:mr-4`,
             scrollPosition > 100 && {
               position: "absolute",
               right: "1.5rem",
-              top: "1.5rem",
+              top: "1.2rem",
             },
           ]}
         >
@@ -99,7 +98,7 @@ export default function Nav() {
 
         {/* Responsive mobile nav Icon - shows only sm and below */}
         <div
-          className='icon-holder'
+          className='mobile-nav-icon'
           css={[
             tw`absolute z-10 right-0 m-6 sm:hidden`,
             scrollPosition >= 100 && tw`mt-0`,

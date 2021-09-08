@@ -3,6 +3,7 @@ import Seo from "../components/Seo";
 import "twin.macro";
 
 import Nav from "./Nav";
+import LayoutWrapper from "./layoutWrappers/LayoutWrapper";
 import Footer from "./Footer";
 
 import GlobalStyles from "../styles/GlobalStyles";
@@ -13,7 +14,9 @@ export default function Layout({ children, seoTitle, ...rest }) {
       <Seo title={seoTitle} />
       <GlobalStyles />
       <Nav />
-      <main>{children}</main>
+      <LayoutWrapper>
+        <main>{children}</main>
+      </LayoutWrapper>
       <Footer />
     </div>
   );

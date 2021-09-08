@@ -1,32 +1,30 @@
 import React from "react";
 import { graphql, Link } from "gatsby";
 import { MDXRenderer } from "gatsby-plugin-mdx";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 import Layout from "../../components/Layout";
+import WorkDetailPageWrapper from "../../components/layoutWrappers/WorkDetailPageWrapper";
 import DetailPageCard from "../../components/detailPageCard";
+import Lightbox from "../../components/Lightbox";
 
 const WorkDetailPage = ({ data }) => {
   //TODO: implement lightbox when user clicks images
 
-  console.log(data);
+  // console.log(data);
 
   return (
     <Layout seoTitle={data.mdx.frontmatter.title}>
-      <div className='container'>
-        <div className='work-images'>
-          {data.allFile.nodes.map((node) => {
-            const image = getImage(node.childImageSharp.gatsbyImageData);
-            return (
-              <div key={node.childImageSharp.id}>
-                <GatsbyImage image={image} alt={node.name} />
-              </div>
-            );
-          })}
-        </div>
+      <WorkDetailPageWrapper>
+        <div className='container'>
+          <div className='work-images'>
+            {data.allFile.nodes.map((node) => {
+              return <Lightbox node={node} key={node.childImageSharp.id} />;
+            })}
+          </div>
 
-        <DetailPageCard {...data.mdx} />
-      </div>
+          <DetailPageCard {...data.mdx} />
+        </div>
+      </WorkDetailPageWrapper>
     </Layout>
   );
 };

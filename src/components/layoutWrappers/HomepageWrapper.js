@@ -1,7 +1,7 @@
 import React from "react";
-import tw from "twin.macro";
+import "twin.macro";
 
-export default function HomepageWrapper({ children }) {
+export default function LayoutWrapper({ children }) {
   return (
     <div
       id='homepage-wrapper'
@@ -11,8 +11,7 @@ export default function HomepageWrapper({ children }) {
       mx-auto
       sm:mx-auto
       sm:max-w-screen-sm
-      pb-4
-      pt-14
+      mb-16
     '
     >
       {children}

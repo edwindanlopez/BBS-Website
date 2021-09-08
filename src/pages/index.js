@@ -9,6 +9,11 @@ import Snapavid from "../components/snapVid";
 import Otherprojects from "../components/otherProjects";
 import ActivityMap from "../components/activityMap";
 import CtaTiles from "../components/ctaTiles";
+import HomepageWrapper from "../components/layoutWrappers/HomepageWrapper";
+
+const sectionStyles = {
+  paddingTop: "4rem",
+};
 
 const IndexPage = () => {
   return (
@@ -16,14 +21,26 @@ const IndexPage = () => {
       <header>
         <TopHero />
       </header>
-      <section tw='pt-8 mx-auto'>
-        <Categories />
-        <Featuredwork />
-        <Snapavid />
-        <Otherprojects />
-        <ActivityMap />
-        <CtaTiles />
-      </section>
+      <HomepageWrapper>
+        <section style={sectionStyles}>
+          <Categories />
+        </section>
+        <section style={sectionStyles}>
+          <Featuredwork />
+        </section>
+        <section style={sectionStyles}>
+          <Snapavid />
+        </section>
+        <section style={sectionStyles}>
+          <Otherprojects />
+        </section>
+        <section style={sectionStyles}>
+          <ActivityMap />
+        </section>
+        <section style={sectionStyles}>
+          <CtaTiles />
+        </section>
+      </HomepageWrapper>
     </Layout>
   );
 };
