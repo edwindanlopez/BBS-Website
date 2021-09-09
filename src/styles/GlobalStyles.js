@@ -46,6 +46,7 @@ const customStyles = css({
   "div[data-reach-dialog-content]": {
     // TODO: add media query
   },
+  /*Scrolling------------------------- */
   /* width */
   "::-webkit-scrollbar": {
     width: "10px",
@@ -68,6 +69,14 @@ const customStyles = css({
   /* Handle on hover */
   "::-webkit-scrollbar-thumb:hover": {
     background: "#a0aec0",
+  },
+
+  /*Lightbox buttons------------------------- */
+  ".right-arrow-button:hover svg.right-arrow-icon": {
+    opacity: "1",
+  },
+  ".left-arrow-button:hover svg.left-arrow-icon": {
+    opacity: "1",
   },
 });
 
