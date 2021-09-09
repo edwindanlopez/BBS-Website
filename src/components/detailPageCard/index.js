@@ -1,7 +1,6 @@
 import React, { useState, useRef } from "react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import tw from "twin.macro";
-import { transform } from "framer-motion";
 
 export default function DetailPageCard(mdx) {
   const [isOpen, setIsOpen] = useState(false);

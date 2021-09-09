@@ -1,5 +1,5 @@
 import React from "react";
-import tw, { css } from "twin.macro";
+import tw from "twin.macro";
 
 export default function Category({ categories }) {
   return (

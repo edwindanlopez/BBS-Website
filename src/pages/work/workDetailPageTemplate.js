@@ -1,29 +1,26 @@
 import React from "react";
-import { graphql, Link } from "gatsby";
-import { MDXRenderer } from "gatsby-plugin-mdx";
+import { graphql } from "gatsby";
+import tw from "twin.macro";
 
 import Layout from "../../components/Layout";
 import WorkDetailPageWrapper from "../../components/layoutWrappers/WorkDetailPageWrapper";
-import DetailPageCard from "../../components/detailPageCard";
+import InfoCard from "../../components/detailPageCard";
 import Lightbox from "../../components/Lightbox";
 
+const GridWrapper = tw.div`
+  md:grid grid-cols-2 gap-3
+`;
+
 const WorkDetailPage = ({ data }) => {
-  //TODO: implement lightbox when user clicks images
-
-  // console.log(data);
-
   return (
     <Layout seoTitle={data.mdx.frontmatter.title}>
       <WorkDetailPageWrapper>
-        <div className='container'>
-          <div className='work-images'>
-            {data.allFile.nodes.map((node) => {
-              return <Lightbox node={node} key={node.childImageSharp.id} />;
-            })}
-          </div>
-
-          <DetailPageCard {...data.mdx} />
-        </div>
+        <GridWrapper>
+          {data.allFile.nodes.map((node) => {
+            return <Lightbox node={node} key={node.childImageSharp.id} />;
+          })}
+        </GridWrapper>
+        <InfoCard {...data.mdx} />
       </WorkDetailPageWrapper>
     </Layout>
   );

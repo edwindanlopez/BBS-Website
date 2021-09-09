@@ -6,8 +6,8 @@ import Button from "../lib/Button";
 
 export default function TopHero() {
   return (
-    <div id='top-hero' tw='relative flex items-center h-96'>
-      <div className='hero-items' tw='absolute z-10 w-full '>
+    <div id='top-hero' tw='flex items-center h-96' style={{ zIndex: "-1" }}>
+      <div className='cta-items' tw='absolute w-full'>
         {/* <div classNmae='break'></div> */}
         <div tw='flex flex-wrap justify-center w-full max-w-md mx-auto mt-20'>
           <div id='main-header' tw='w-11/12 mb-4'>
@@ -36,7 +36,11 @@ export default function TopHero() {
           </Button>
         </div>
       </div>
-      <div id='hero-img' tw='w-full h-full overflow-hidden'>
+      <div
+        id='hero-img'
+        tw='w-full h-full overflow-hidden'
+        style={{ zIndex: "-1" }}
+      >
         <StaticImage
           alt='BBS Hero image of beautiful refurnished white kitchen cabinet'
           src='../images/BBS-Top-Hero-Image.jpg'

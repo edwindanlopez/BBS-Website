@@ -2,7 +2,7 @@ import React from "react";
 import tw from "twin.macro";
 
 const StyledWrapper = tw.div`
-  sm:w-11/12
+  md:w-11/12 md:mx-auto
 `;
 
 export default function WorkDetailPageWrapper({ children }) {

@@ -40,7 +40,12 @@ const customStyles = css({
     flexBasis: "100%",
     height: "0",
   },
-
+  "div[data-reach-dialog-overlay]": {
+    // TODO: add media query
+  },
+  "div[data-reach-dialog-content]": {
+    // TODO: add media query
+  },
   /* width */
   "::-webkit-scrollbar": {
     width: "10px",

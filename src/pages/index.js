@@ -18,9 +18,7 @@ const sectionStyles = {
 const IndexPage = () => {
   return (
     <Layout seoTitle={"Home"}>
-      <header>
-        <TopHero />
-      </header>
+      <TopHero />
       <HomepageWrapper>
         <section style={sectionStyles}>
           <Categories />

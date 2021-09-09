@@ -14,7 +14,7 @@ export default function Work({ data }) {
           <div tw='mr-4' key={el.id}>
             <Link to={`/work/${el.slug}`}>
               <GatsbyImage
-                tw='w-72 h-72 object-cover object-center bg-neutral rounded-md'
+                tw='relative w-72 h-72 object-cover object-center bg-neutral rounded-md'
                 image={image}
                 alt={el.frontmatter.hero_image_alt}
               />
