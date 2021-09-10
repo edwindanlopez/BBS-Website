@@ -67,11 +67,9 @@ export default function DetailPageCard(mdx) {
 
 const Collapse = ({ isOpen, children }) => {
   const ref = useRef(null);
-
   return (
     <div
       ref={ref}
-      aria-hidden={!isOpen}
       css={[
         tw`ease-in-out mt-2 text-gray-600 overflow-hidden duration-300`,
         isOpen ? { height: ref.current?.scrollHeight } : { height: 0 },
