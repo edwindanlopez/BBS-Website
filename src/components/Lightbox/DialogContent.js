@@ -1,14 +1,15 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { motion, AnimatePresence } from "framer-motion";
 import { wrap } from "popmotion";
 import "twin.macro";
 
-import { ImageSlidesContext } from "../../pages/work/workDetailPageTemplate";
+import { DialogContext } from "./DialogContext";
 import PaginateButton from "./PaginateButton";
 import { DialogContent as ReachDialogContent } from "@reach/dialog";
 import "@reach/dialog/styles.css";
 
+// framer motion variants
 const variants = {
   enter: (direction) => {
     return {
@@ -30,24 +31,27 @@ const variants = {
   },
 };
 
+// framer motion helpers
 const swipeConfidenceThreshold = 10000;
 
 const swipePower = (offset, velocity) => {
   return Math.abs(offset) * velocity;
 };
 
-export default function DialogContent({ node, close }) {
-  const [[page, direction], setPage] = useState([0, 0]);
-  const [slides] = useContext(ImageSlidesContext);
+export default function DialogContent() {
+  // pull in dialog and image slide values from react context
+  const { imgNode, direction, setImgNode, setShowDialog, imageSlides } =
+    useContext(DialogContext);
+
+  const page = imageSlides.indexOf(imgNode);
 
   const paginate = (newDirection) => {
-    setPage([page + newDirection, newDirection]);
-  };
+    // cycle images indefinitely by wrapping array index back at the beginning
+    const newImageIndex = wrap(0, imageSlides.length, page + newDirection);
+    const newImageNode = imageSlides[newImageIndex];
 
-  const imageIndex = wrap(0, slides.length, page);
-  const image = getImage(node.childImageSharp.gatsbyImageData);
-  // const Component = React.forwardRef((props, ref) => <GatsbyImage ref={ref} />);
-  // const MotionGatsbyImage = motion(Component);
+    setImgNode([newImageNode, newDirection]);
+  };
 
   return (
     <>
@@ -65,20 +69,7 @@ export default function DialogContent({ node, close }) {
           className='top-area'
           tw='relative w-full flex justify-end items-center h-16'
         >
-          <button
-            className='close-button'
-            onClick={close}
-            tw='text-white mr-4 p-2 rounded-md hover:bg-white hover:bg-opacity-20'
-          >
-            <span aria-hidden>
-              <svg xmlns='http://www.w3.org/2000/svg' width='15' height='15'>
-                <path
-                  d='M15 2.727 12.273 0 7.5 4.773 2.727 0 0 2.727 4.773 7.5 0 12.273 2.727 15 7.5 10.227 12.273 15 15 12.273 10.227 7.5Z'
-                  fill='#fff'
-                />
-              </svg>
-            </span>
-          </button>
+          <CloseButton onClick={() => setShowDialog(false)} />
         </div>
         <div className='img-overlay-wrapper' tw='w-full flex items-center'>
           <span
@@ -87,19 +78,17 @@ export default function DialogContent({ node, close }) {
             tw='absolute z-10 w-full flex justify-between items-center h-20'
           >
             <PaginateButton
-              direction='previous'
               className='left-arrow-button'
               onClick={() => paginate(-1)}
             />
             <PaginateButton
-              direction='next'
               className='right-arrow-button'
               onClick={() => paginate(1)}
             />
           </span>
           <AnimatePresence initial={false} custom={direction}>
             <motion.div
-              key={image}
+              key={page}
               custom={direction}
               variants={variants}
               initial='enter'
@@ -122,8 +111,8 @@ export default function DialogContent({ node, close }) {
               }}
             >
               <GatsbyImage
-                image={slides[imageIndex].gatsbyImageData}
-                alt={node.name}
+                image={imageSlides[page].gatsbyImageData}
+                alt='Temp Alt tag'
                 style={{
                   maxHeight: "100vh",
                 }}
@@ -149,3 +138,20 @@ export default function DialogContent({ node, close }) {
     </>
   );
 }
+
+const CloseButton = ({ onClick }) => (
+  <button
+    onClick={onClick}
+    className='close-button'
+    tw='text-white mr-4 p-2 rounded-md hover:bg-white hover:bg-opacity-20'
+  >
+    <span aria-hidden>
+      <svg xmlns='http://www.w3.org/2000/svg' width='15' height='15'>
+        <path
+          d='M15 2.727 12.273 0 7.5 4.773 2.727 0 0 2.727 4.773 7.5 0 12.273 2.727 15 7.5 10.227 12.273 15 15 12.273 10.227 7.5Z'
+          fill='#fff'
+        />
+      </svg>
+    </span>
+  </button>
+);

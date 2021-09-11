@@ -1,15 +1,19 @@
 import React from "react";
 import "twin.macro";
 
-export default function PaginateButton({ direction, className, onClick }) {
+export default function PaginateButton({ className, onClick }) {
   return (
-    <div className={direction}>
+    <div>
       <button
         className={className}
         onClick={onClick}
         tw='text-white ml-4 p-4 rounded-md hover:bg-white hover:bg-opacity-20'
       >
-        {direction === "previous" ? <LeftArrowIcon /> : <RightArrowIcon />}
+        {className === "left-arrow-button" ? (
+          <LeftArrowIcon />
+        ) : (
+          <RightArrowIcon />
+        )}
       </button>
     </div>
   );
