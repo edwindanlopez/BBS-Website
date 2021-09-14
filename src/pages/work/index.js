@@ -4,7 +4,7 @@ import { Link, graphql } from "gatsby";
 import "twin.macro";
 
 import HomePageWrapper from "../../components/layoutWrappers/HomePageWrapper";
-import WorkTiles from "./WorkTiles";
+import WorkTiles from "../../components/WorkTiles";
 
 const Work = ({ data }) => {
   const nodes = data.allMdx.nodes;
@@ -28,9 +28,12 @@ const Work = ({ data }) => {
                   {node.frontmatter.location}
                 </h3>
                 <div tw='flex justify-end items-center'>
-                  {node.frontmatter.tags.map((tag) => {
+                  {node.frontmatter.tags.map((tag, i) => {
                     return (
-                      <div tw='backgroundColor[rgb(194 220 208 / 51%)] pl-3 pr-3 ml-3 rounded-sm'>
+                      <div
+                        tw='backgroundColor[rgb(194 220 208 / 51%)] pl-3 pr-3 ml-3 rounded-sm'
+                        key={i}
+                      >
                         <p tw='fontSize[10px] uppercase tracking-wider font-semibold text-mildgray'>
                           {tag}
                         </p>
