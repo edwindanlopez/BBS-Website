@@ -13,11 +13,13 @@ import "@reach/dialog/styles.css";
 const variants = {
   enter: (direction) => {
     return {
+      scale: 1.4,
       x: direction > 0 ? 1000 : -1000,
       opacity: 0,
     };
   },
   center: {
+    scale: 1,
     zIndex: 1,
     x: 0,
     opacity: 1,
@@ -95,7 +97,11 @@ export default function DialogContent() {
               animate='center'
               exit='exit'
               transition={{
-                x: { type: "spring", stiffness: 300, damping: 30 },
+                x: {
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 30,
+                },
                 opacity: { duration: 0.2 },
               }}
               drag='x'
@@ -119,6 +125,7 @@ export default function DialogContent() {
                 imgStyle={{
                   height: "100%",
                   objectFit: "contain",
+                  pointerEvents: "none",
                 }}
               />
             </motion.div>

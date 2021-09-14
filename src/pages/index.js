@@ -2,6 +2,7 @@ import * as React from "react";
 import Layout from "../components/Layout";
 import "twin.macro";
 
+import Nav from "../components/Nav";
 import TopHero from "../components/TopHero";
 import Categories from "../components/categories";
 import Featuredwork from "../components/featuredwork";
@@ -9,7 +10,7 @@ import Snapavid from "../components/snapVid";
 import Otherprojects from "../components/otherProjects";
 import ActivityMap from "../components/activityMap";
 import CtaTiles from "../components/ctaTiles";
-import HomepageWrapper from "../components/layoutWrappers/HomepageWrapper";
+import HomePageWrapper from "../components/layoutWrappers/HomePageWrapper";
 
 const sectionStyles = {
   paddingTop: "4rem",
@@ -19,7 +20,7 @@ const IndexPage = () => {
   return (
     <Layout seoTitle={"Home"}>
       <TopHero />
-      <HomepageWrapper>
+      <HomePageWrapper>
         <section style={sectionStyles}>
           <Categories />
         </section>
@@ -38,7 +39,7 @@ const IndexPage = () => {
         <section style={sectionStyles}>
           <CtaTiles />
         </section>
-      </HomepageWrapper>
+      </HomePageWrapper>
     </Layout>
   );
 };

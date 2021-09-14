@@ -66,7 +66,7 @@ const WorkDetailPage = ({ data }) => {
             const imageFromNode = node.childImageSharp;
             return (
               <div
-                tw='aspect-w-3 aspect-h-4 flex justify-center items-center mb-2'
+                tw='flex justify-center items-center mb-2'
                 key={node.childImageSharp.id}
               >
                 <PreviewButton onClick={() => handleOpen(imageFromNode)}>

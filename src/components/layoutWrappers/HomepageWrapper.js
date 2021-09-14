@@ -4,7 +4,7 @@ import "twin.macro";
 export default function LayoutWrapper({ children }) {
   return (
     <div
-      id='homepage-wrapper'
+      id='layout-wrapper'
       tw='
       w-11/12
       max-w-lg

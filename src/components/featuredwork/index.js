@@ -26,7 +26,6 @@ const query = graphql`
 
 const FeaturedWork = () => {
   const data = useStaticQuery(query);
-
   return (
     <>
       <h2 tw='mb-4'>Featured Works</h2>
