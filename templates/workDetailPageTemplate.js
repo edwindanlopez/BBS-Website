@@ -3,17 +3,17 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { graphql } from "gatsby";
 import tw from "twin.macro";
 
-import Layout from "../../components/Layout";
-import WorkDetailPageWrapper from "../../components/layoutWrappers/WorkDetailPageWrapper";
-import InfoCard from "../../components/detailPageCard";
-import Lightbox from "../../components/Lightbox/Index";
-import { DialogContext } from "../../components/Lightbox/DialogContext";
+import Layout from "../src/components/Layout";
+import WorkDetailPageWrapper from "../src/components/layoutWrappers/WorkDetailPageWrapper";
+import InfoCard from "../src/components/detailPageCard";
+import Lightbox from "../src/components/Lightbox/Index";
+import { DialogContext } from "../src/components/Lightbox/DialogContext";
 
 const GridWrapper = tw.div`
   md:grid grid-cols-2 gap-3
 `;
 
-const WorkDetailPage = ({ data }) => {
+const WorkDetailPageTemplate = ({ data }) => {
   const nodes = data.allFile.nodes;
 
   const [imageSlides, setImageSlides] = useState(null);
@@ -119,4 +119,4 @@ export const getWork = graphql`
   }
 `;
 
-export default WorkDetailPage;
+export default WorkDetailPageTemplate;

@@ -1,21 +1,21 @@
 import * as React from "react";
-import Layout from "../../components/Layout";
+import Layout from "../components/Layout";
 import { Link, graphql } from "gatsby";
 import "twin.macro";
 
-import HomePageWrapper from "../../components/layoutWrappers/HomePageWrapper";
-import WorkTiles from "../../components/WorkTiles";
+import HomePageWrapper from "../components/layoutWrappers/HomePageWrapper";
+import WorkTiles from "../components/WorkTiles";
+import CategoryFilter from "../components/categories/CategoryFilter";
 
 const Work = ({ data }) => {
   const nodes = data.allMdx.nodes;
-  console.log("Data from parent container: ", data);
+
+  console.log("Incoming data nodes: ", nodes);
 
   return (
     <Layout seoTitle='Work'>
       <HomePageWrapper>
-        <h1>Our featured work</h1>
-        <p>Below, you'll find our latest work. Enjoy!</p>
-        <br />
+        <CategoryFilter nodes={nodes} />
         {nodes.map((node) => {
           return (
             <div className='work-collection' key={node.id} tw='mt-10'>
