@@ -23,10 +23,27 @@ const Work = ({ data }) => {
                 <h2 tw='mt-4 mb-4'>{node.frontmatter.title}</h2>
                 <WorkTiles node={node} />
               </div>
-              <h3 tw='text-ltgray mt-2 mb-2'>{node.frontmatter.location}</h3>
-              <p>{node.excerpt}</p>
+              <div tw='flex justify-between items-center'>
+                <h3 tw='text-mildgray mt-4 mb-2'>
+                  {node.frontmatter.location}
+                </h3>
+                <div tw='flex justify-end items-center'>
+                  {node.frontmatter.tags.map((tag) => {
+                    return (
+                      <div tw='backgroundColor[rgb(194 220 208 / 51%)] pl-3 pr-3 ml-3 rounded-sm'>
+                        <p tw='fontSize[10px] uppercase tracking-wider font-semibold text-mildgray'>
+                          {tag}
+                        </p>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+              <p tw='text-ltgray'>{node.excerpt}</p>
               <Link to={`/work/${node.slug}`} tw='h-96'>
-                <p tw='text-sm text-orangeAmber mt-2'>Learn more</p>
+                <p tw='text-sm font-semibold text-orangeAmber mt-2'>
+                  Learn more
+                </p>
               </Link>
             </div>
           );
@@ -51,11 +68,12 @@ export const query = graphql`
               id
             }
           }
+          tags
         }
         id
         slug
         body
-        excerpt(pruneLength: 50)
+        excerpt(pruneLength: 75)
       }
     }
   }
