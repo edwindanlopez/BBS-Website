@@ -14,11 +14,10 @@ const GridWrapper = tw.div`
 `;
 
 const WorkDetailPageTemplate = ({ data }) => {
-  const nodes = data.allFile.nodes;
-
   const [imageSlides, setImageSlides] = useState(null);
   const [[imgNode, direction], setImgNode] = React.useState([false, 0]);
   const [showDialog, setShowDialog] = React.useState(false);
+  const nodes = data.allFile.nodes;
 
   const handleOpen = (imageFromNode) => {
     setShowDialog(true);

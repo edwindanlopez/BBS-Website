@@ -1,7 +1,9 @@
 const path = require("path");
+const { getAllCategories } = require("../constants/categories");
 
 module.exports = async (graphql, actions) => {
   const { createPage } = actions;
+  const allCategories = await getAllCategories(graphql);
 
   return graphql(
     `
@@ -33,6 +35,7 @@ module.exports = async (graphql, actions) => {
         context: {
           slug: `${edge.node.slug}`,
           absolutePathSlug: removedTrailingSlash,
+          allCategories,
         },
       });
     });

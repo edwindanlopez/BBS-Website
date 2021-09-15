@@ -47,10 +47,6 @@ const customStyles = css({
     // TODO: add media query
   },
   /*Swiper------------------------- */
-  ".swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction":
-    {
-      bottom: "40px",
-    },
   ".swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet":
     {
       backgroundColor: "white",

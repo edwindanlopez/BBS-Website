@@ -3,11 +3,10 @@ import { Link } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import "twin.macro";
 
-import SwiperCore, { Virtual, Pagination } from "swiper";
+import SwiperCore, { Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css/pagination";
 import "swiper/css";
-import "swiper/css/virtual";
+import "swiper/css/pagination";
 
 export default function WorkTiles({ node }) {
   SwiperCore.use([Pagination]);

@@ -6,15 +6,17 @@ import Layout from "../components/Layout";
 import HomePageWrapper from "../components/layoutWrappers/HomePageWrapper";
 import WorkTiles from "../components/WorkTiles";
 import CategoryFilter from "../components/categories/CategoryFilter";
+import Tags from "../components/Tags";
 
 const categoryTemplate = ({ data, pageContext }) => {
-  console.log("Incoming data nodes: ", data);
   const nodes = data.allMdx.nodes;
+
+  const { allCategories, category } = pageContext;
 
   return (
     <Layout seoTitle='Work'>
       <HomePageWrapper>
-        <CategoryFilter nodes={nodes} />
+        <CategoryFilter allCategories={allCategories} category={category} />
         {nodes.map((node) => {
           return (
             <div className='work-collection' key={node.id} tw='mt-10'>
@@ -26,20 +28,7 @@ const categoryTemplate = ({ data, pageContext }) => {
                 <h3 tw='text-mildgray mt-4 mb-2'>
                   {node.frontmatter.location}
                 </h3>
-                <div tw='flex justify-end items-center'>
-                  {node.frontmatter.tags.map((tag, i) => {
-                    return (
-                      <div
-                        tw='backgroundColor[rgb(194 220 208 / 51%)] pl-3 pr-3 ml-3 rounded-sm'
-                        key={i}
-                      >
-                        <p tw='fontSize[10px] uppercase tracking-wider font-semibold text-mildgray'>
-                          {tag}
-                        </p>
-                      </div>
-                    );
-                  })}
-                </div>
+                <Tags tags={node.frontmatter.tags} />
               </div>
               <p tw='text-ltgray'>{node.excerpt}</p>
               <Link to={`/work/${node.slug}`} tw='h-96'>
@@ -54,10 +43,6 @@ const categoryTemplate = ({ data, pageContext }) => {
     </Layout>
   );
 };
-
-// render all "posts/images" for a specific category only
-// want to have access to all other categories for user to cycle between them
-// need render feat. images just like in work page
 
 export const query = graphql`
   query CategoryPage($category: String, $postsLimit: Int!, $postsOffset: Int!) {

@@ -11,8 +11,6 @@ module.exports = {
       }
     `);
 
-    console.log("Result from 1st getAllCategories query: ", result);
-
     return result.data.allMdx.group.map((cat) => ({
       ...cat,
     }));
