@@ -7,10 +7,9 @@ import HomePageWrapper from "../components/layoutWrappers/HomePageWrapper";
 import WorkTiles from "../components/WorkTiles";
 import CategoryFilter from "../components/categories/CategoryFilter";
 
-const Work = ({ data }) => {
+const categoryTemplate = ({ data, pageContext }) => {
+  console.log("Incoming data nodes: ", data);
   const nodes = data.allMdx.nodes;
-
-  console.log("Incoming data nodes: ", nodes);
 
   return (
     <Layout seoTitle='Work'>
@@ -56,9 +55,18 @@ const Work = ({ data }) => {
   );
 };
 
+// render all "posts/images" for a specific category only
+// want to have access to all other categories for user to cycle between them
+// need render feat. images just like in work page
+
 export const query = graphql`
-  query queryWork {
-    allMdx(sort: { order: DESC, fields: frontmatter___date }) {
+  query CategoryPage($category: String, $postsLimit: Int!, $postsOffset: Int!) {
+    allMdx(
+      limit: $postsLimit
+      skip: $postsOffset
+      filter: { frontmatter: { category: { eq: $category } } }
+      sort: { order: DESC, fields: [frontmatter___date] }
+    ) {
       nodes {
         frontmatter {
           title
@@ -82,4 +90,4 @@ export const query = graphql`
   }
 `;
 
-export default Work;
+export default categoryTemplate;

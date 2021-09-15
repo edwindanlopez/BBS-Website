@@ -4,8 +4,12 @@ export default function CategoryFilter({ nodes }) {
   // console.log("Nodes from category filter: ", nodes);
   return (
     <>
-      <h1>Our featured work</h1>
-      <p>Below, you'll find our latest work. Enjoy!</p>
+      <h1>This is the category filter</h1>
+      <p>Still a work in progress.</p>
+      <p>
+        This component receives the active category and displays all the other
+        categories
+      </p>
     </>
   );
 }
