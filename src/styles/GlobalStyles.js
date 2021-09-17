@@ -83,6 +83,7 @@ const customStyles = css({
   ".left-arrow-button:hover svg.left-arrow-icon": {
     opacity: "1",
   },
+  /*Form Styling------------------------- */
 });
 
 const GlobalStyles = () => (

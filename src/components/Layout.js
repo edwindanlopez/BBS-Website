@@ -15,7 +15,7 @@ export default function Layout({ children, seoTitle, ...rest }) {
       <GlobalStyles />
       <Nav />
       <LayoutWrapper>
-        <main>{children}</main>
+        <main tw='mx-auto sm:mx-auto sm:max-w-screen-sm mb-16'>{children}</main>
       </LayoutWrapper>
       <Footer />
     </div>

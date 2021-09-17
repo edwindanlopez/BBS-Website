@@ -2,6 +2,7 @@ import tw, { styled } from "twin.macro";
 
 const StyledButton = styled.button(({ variant }) => [
   tw`
+    w-full
     rounded-md
     border
     p-3
@@ -14,7 +15,6 @@ const StyledButton = styled.button(({ variant }) => [
   `,
   variant === "primary" &&
     tw`
-    w-4/5
     max-w-md
     max-h-14
     bg-white
@@ -25,7 +25,6 @@ const StyledButton = styled.button(({ variant }) => [
   `,
   variant === "secondary" &&
     tw`
-    w-3/5
     bg-white
     border-mildgray
     text-mildgray
@@ -35,19 +34,3 @@ const StyledButton = styled.button(({ variant }) => [
 ]);
 
 export default StyledButton;
-// export const StyledButton = styled.button(({ isSecondary }) => [
-//   // updated
-//   tw`py-3 px-8 uppercase rounded border border-primary hover:bg-primary duration-200`,
-
-//   css`
-//     & {
-//       background-color: ${theme`colors.whiteAlt`};
-//     }
-
-//     &:hover {
-//       font-size: 2rem;
-//     }
-//   `,
-
-//   isSecondary && tw`border-secondary hover:bg-secondary hover:text-white`, // new
-// ]);

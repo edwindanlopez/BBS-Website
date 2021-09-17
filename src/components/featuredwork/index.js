@@ -2,7 +2,7 @@ import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import "twin.macro";
 
-import Work from "./Work";
+import FeatWorkTiles from "./FeatWorkTiles";
 
 const query = graphql`
   query queryFeaturedWork {
@@ -27,10 +27,10 @@ const query = graphql`
 const FeaturedWork = () => {
   const data = useStaticQuery(query);
   return (
-    <>
+    <div>
       <h2 tw='mb-4'>Featured Works</h2>
-      <Work data={data} />
-    </>
+      <FeatWorkTiles data={data} />
+    </div>
   );
 };
 

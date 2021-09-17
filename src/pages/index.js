@@ -2,7 +2,6 @@ import * as React from "react";
 import Layout from "../components/Layout";
 import "twin.macro";
 
-import Nav from "../components/Nav";
 import TopHero from "../components/TopHero";
 import Categories from "../components/categories";
 import Featuredwork from "../components/featuredwork";

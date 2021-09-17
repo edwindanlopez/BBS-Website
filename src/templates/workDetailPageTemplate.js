@@ -43,7 +43,7 @@ const WorkDetailPageTemplate = ({ data }) => {
   const fetchList = async () => {
     const images = [];
     nodes.map((node) => {
-      images.push(node.childImageSharp);
+      return images.push(node.childImageSharp);
     });
     return images;
   };
