@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { StaticImage } from "gatsby-plugin-image";
 
@@ -49,10 +49,10 @@ const ContactForm = () => {
 
   const characterLimit = 220;
 
-  const TextInput = ({ label, ...props }) => {
+  const TextInput = ({ label, colSpan, ...props }) => {
     const [field, meta] = useField(props);
     return (
-      <div tw='col-span-1'>
+      <div css={[colSpan == 1 ? tw`col-span-1` : tw`col-span-2`]}>
         <StyledLabel htmlFor={props.id || props.name}>{label}</StyledLabel>
         <input
           className='text-input'
@@ -63,6 +63,72 @@ const ContactForm = () => {
         {meta.touched && meta.error ? (
           <StyledErrorMessage>{meta.error}</StyledErrorMessage>
         ) : null}
+      </div>
+    );
+  };
+
+  const FileUploadInput = ({ label, ...props }) => {
+    const [qty, setQty] = useState(null);
+
+    const imageRef = useRef();
+    const previewAreaRef = useRef();
+
+    const handleUploadChange = (e) => {
+      let fileList = e.target.files;
+      const numFiles = fileList.length;
+
+      // iterate through all uploaded images
+      for (let i = 0; i < numFiles; i++) {
+        const file = fileList[i];
+
+        // if doesn't pass - terminate execution in current iteration and continue to the next iteration
+        if (!file.type.startsWith("image/")) {
+          continue;
+        }
+
+        // get ref to dom nodes for manipulation
+        const preview = previewAreaRef.current;
+        const img = imageRef.current;
+        img.classList.add("thumbnail");
+        img.file = file;
+        preview.appendChild(img);
+
+        let reader = new FileReader();
+        // triggered each time reader operation is successfully completed
+        reader.onload = ((image) => {
+          return (e) => (image.src = e.target.result);
+        })(img);
+        reader.readAsDataURL(file);
+      }
+      setQty(numFiles);
+    };
+
+    const removeUpload = (event) => {
+      const preview = previewAreaRef.current;
+    };
+
+    return (
+      <div tw='col-span-1 items-center justify-center'>
+        <StyledLabel htmlFor={props.id || props.name}>{label}</StyledLabel>
+        {qty === null && (
+          <input
+            {...props}
+            onChange={(event) => handleUploadChange(event)}
+            tw='text-tan'
+          />
+        )}
+        <div id='previewArea' ref={previewAreaRef}>
+          <img ref={imageRef} />
+        </div>
+        {qty > 0 && (
+          <Button
+            variant='secondary'
+            onClick={(event) => removeUpload(event)}
+            tw='w-40 mt-4 text-xs'
+          >
+            Remove photo
+          </Button>
+        )}
       </div>
     );
   };
@@ -196,12 +262,14 @@ const ContactForm = () => {
           >
             <Form tw='grid grid-cols-2 gap-10 mt-12'>
               <TextInput
+                colSpan='1'
                 label='First Name'
                 name='firstName'
                 type='text'
                 placeholder=''
               />
               <TextInput
+                colSpan='1'
                 label='Last Name'
                 name='lastName'
                 type='text'
@@ -213,12 +281,14 @@ const ContactForm = () => {
                 <option value='phone'>Phone</option>
               </Dropdown>
               <TextInput
+                colSpan='1'
                 label='Phone'
                 name='phone'
                 type='phone'
                 placeholder=''
               />
               <TextInput
+                colSpan='1'
                 label='Email'
                 name='email'
                 type='email'
@@ -230,9 +300,23 @@ const ContactForm = () => {
                 type='textArea'
                 placeholder='Tell us about your project...'
               />
-              <TextInput label='City' name='city' type='text' placeholder='' />
-
-              <Button type='submit' variant='primary'>
+              <TextInput
+                colSpan='2'
+                label='City'
+                name='city'
+                type='text'
+                placeholder=''
+              />
+              <FileUploadInput
+                colSpan='2'
+                label='Attach Photo'
+                type='file'
+                name='imageFile'
+                capture='environment'
+                accept='image/*'
+                multiple
+              />
+              <Button type='submit' variant='primary' tw='col-span-2'>
                 Submit
               </Button>
             </Form>
