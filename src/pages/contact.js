@@ -2,13 +2,22 @@ import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { StaticImage } from "gatsby-plugin-image";
 
-import tw, { theme, styled } from "twin.macro";
+import "twin.macro";
 import { Formik, Form, useField } from "formik";
 import * as Yup from "yup";
 
 import Layout from "../components/Layout";
 import HomePageWrapper from "../components/layoutWrappers/HomePageWrapper";
 import Button from "../lib/Button";
+import {
+  TextInput,
+  FileUploadInput,
+  Dropdown,
+  TextArea,
+  DisplayFormErrors,
+  phoneRegExp,
+  characterLimit,
+} from "../lib/FormFieldComponents";
 
 const ContactForm = () => {
   // const [serverState, setServerState] = useState({
@@ -44,146 +53,14 @@ const ContactForm = () => {
   //     });
   // };
 
-  const phoneRegExp =
-    /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+  const supportedFormats = [
+    "image/jpg",
+    "image/jpeg",
+    "image/gif",
+    "image/png",
+  ];
 
-  const characterLimit = 220;
-
-  const TextInput = ({ label, colSpan, ...props }) => {
-    const [field, meta] = useField(props);
-    return (
-      <div css={[colSpan == 1 ? tw`col-span-1` : tw`col-span-2`]}>
-        <StyledLabel htmlFor={props.id || props.name}>{label}</StyledLabel>
-        <input
-          className='text-input'
-          tw='w-full text-lg text-orangeAmber border-b border-gray-300'
-          {...field}
-          {...props}
-        />
-        {meta.touched && meta.error ? (
-          <StyledErrorMessage>{meta.error}</StyledErrorMessage>
-        ) : null}
-      </div>
-    );
-  };
-
-  const FileUploadInput = ({ label, ...props }) => {
-    const [qty, setQty] = useState(null);
-
-    const imageRef = useRef();
-    const previewAreaRef = useRef();
-
-    const handleUploadChange = (e) => {
-      let fileList = e.target.files;
-      const numFiles = fileList.length;
-
-      // iterate through all uploaded images
-      for (let i = 0; i < numFiles; i++) {
-        const file = fileList[i];
-
-        // if doesn't pass - terminate execution in current iteration and continue to the next iteration
-        if (!file.type.startsWith("image/")) {
-          continue;
-        }
-
-        // get ref to dom nodes for manipulation
-        const preview = previewAreaRef.current;
-        const img = imageRef.current;
-        img.classList.add("thumbnail");
-        img.file = file;
-        preview.appendChild(img);
-
-        let reader = new FileReader();
-        // triggered each time reader operation is successfully completed
-        reader.onload = ((image) => {
-          return (e) => (image.src = e.target.result);
-        })(img);
-        reader.readAsDataURL(file);
-      }
-      setQty(numFiles);
-    };
-
-    const removeUpload = (event) => {
-      const preview = previewAreaRef.current;
-    };
-
-    return (
-      <div tw='col-span-1 items-center justify-center'>
-        <StyledLabel htmlFor={props.id || props.name}>{label}</StyledLabel>
-        {qty === null && (
-          <input
-            {...props}
-            onChange={(event) => handleUploadChange(event)}
-            tw='text-tan'
-          />
-        )}
-        <div id='previewArea' ref={previewAreaRef}>
-          <img ref={imageRef} />
-        </div>
-        {qty > 0 && (
-          <Button
-            variant='secondary'
-            onClick={(event) => removeUpload(event)}
-            tw='w-40 mt-4 text-xs'
-          >
-            Remove photo
-          </Button>
-        )}
-      </div>
-    );
-  };
-
-  const Dropdown = ({ label, ...props }) => {
-    const [field, meta] = useField(props);
-    return (
-      <div tw='col-span-2'>
-        <StyledLabel htmlFor={props.id || props.name}>{label}</StyledLabel>
-        <StyledSelect {...field} {...props} />
-        {meta.touched && meta.error ? (
-          <StyledErrorMessage>{meta.error}</StyledErrorMessage>
-        ) : null}
-      </div>
-    );
-  };
-
-  const TextArea = ({ label, ...props }) => {
-    const [field, meta] = useField(props);
-    return (
-      <div tw='col-span-2'>
-        <div tw='relative'>
-          <textarea
-            className='text-area'
-            tw='w-full h-32 border rounded-md border-gray-300 p-4 mt-4'
-            {...field}
-            {...props}
-          />
-          <span tw='absolute right-0 bottom-0 mb-4 mr-4 text-tan font-semibold fontSize[.75rem]'>
-            {`${characterLimit - meta.value.length} / ${characterLimit} left`}
-          </span>
-        </div>
-        {meta.touched && meta.error ? (
-          <StyledErrorMessage>{meta.error}</StyledErrorMessage>
-        ) : null}
-      </div>
-    );
-  };
-
-  // Styled components ....
-  const StyledSelect = styled.select(() => [
-    tw`w-full text-lg text-orangeAmber border-b border-gray-300 mt-1`,
-  ]);
-
-  const StyledErrorMessage = styled.div({
-    ...tw`w-full mt-2 text-red-800 fontSize[0.75rem]`,
-    "&:before": {
-      content: '"❌  "',
-      fontSize: "10px",
-    },
-  });
-
-  const StyledLabel = styled.label(() => [
-    tw`w-full text-ltgray fontSize[.75rem]`,
-  ]);
+  const maxFileSize = 5000000;
 
   return (
     <Layout seoTitle={"About"}>
@@ -225,7 +102,7 @@ const ContactForm = () => {
               email: "",
               textArea: "",
               city: "",
-              media: "",
+              file: null,
             }}
             validationSchema={Yup.object({
               firstName: Yup.string()
@@ -254,72 +131,97 @@ const ContactForm = () => {
               city: Yup.string()
                 .max(20, "Must be 20 characters or less")
                 .required("Required"),
+              file: Yup.mixed()
+                .test(
+                  "fileFormat",
+                  "Unsupported file type",
+                  (value) =>
+                    value === null ||
+                    (value && supportedFormats.includes(value.type))
+                )
+                .test(
+                  "fileSize",
+                  "File too large",
+                  (value) =>
+                    value === null || (value && value.size <= maxFileSize)
+                ),
             })}
-            onSubmit={async (values, { setSubmitting }) => {
+            onSubmit={async (values) => {
               await new Promise((r) => setTimeout(r, 500));
-              setSubmitting(false);
+              alert(JSON.stringify(values, null, 2));
             }}
           >
-            <Form tw='grid grid-cols-2 gap-10 mt-12'>
-              <TextInput
-                colSpan='1'
-                label='First Name'
-                name='firstName'
-                type='text'
-                placeholder=''
-              />
-              <TextInput
-                colSpan='1'
-                label='Last Name'
-                name='lastName'
-                type='text'
-                placeholder=''
-              />
-              <Dropdown label='Prefered method of Contact' name='contactMethod'>
-                <option value=''>What's the best way to reach you?</option>
-                <option value='email'>Email</option>
-                <option value='phone'>Phone</option>
-              </Dropdown>
-              <TextInput
-                colSpan='1'
-                label='Phone'
-                name='phone'
-                type='phone'
-                placeholder=''
-              />
-              <TextInput
-                colSpan='1'
-                label='Email'
-                name='email'
-                type='email'
-                placeholder=''
-              />
-              <TextArea
-                label='Description'
-                name='textArea'
-                type='textArea'
-                placeholder='Tell us about your project...'
-              />
-              <TextInput
-                colSpan='2'
-                label='City'
-                name='city'
-                type='text'
-                placeholder=''
-              />
-              <FileUploadInput
-                colSpan='2'
-                label='Attach Photo'
-                type='file'
-                name='imageFile'
-                capture='environment'
-                accept='image/*'
-                multiple
-              />
-              <Button type='submit' variant='primary' tw='col-span-2'>
-                Submit
-              </Button>
-            </Form>
+            {(formProps) => (
+              <Form tw='grid grid-cols-2 gap-10 mt-12'>
+                <TextInput
+                  colSpan='1'
+                  label='First Name'
+                  name='firstName'
+                  type='text'
+                  placeholder=''
+                />
+                <TextInput
+                  colSpan='1'
+                  label='Last Name'
+                  name='lastName'
+                  type='text'
+                  placeholder=''
+                />
+                <Dropdown
+                  label='Prefered method of Contact'
+                  name='contactMethod'
+                >
+                  <option value=''>What's the best way to reach you?</option>
+                  <option value='email'>Email</option>
+                  <option value='phone'>Phone</option>
+                </Dropdown>
+                <TextInput
+                  colSpan='1'
+                  label='Phone'
+                  name='phone'
+                  type='phone'
+                  placeholder=''
+                />
+                <TextInput
+                  colSpan='1'
+                  label='Email'
+                  name='email'
+                  type='email'
+                  placeholder=''
+                />
+                <TextArea
+                  label='Description'
+                  name='textArea'
+                  type='textArea'
+                  placeholder='Tell us about your project...'
+                />
+                <TextInput
+                  colSpan='2'
+                  label='City'
+                  name='city'
+                  type='text'
+                  placeholder=''
+                />
+                <FileUploadInput
+                  colSpan='2'
+                  label='Attach Photo'
+                  name='file'
+                  type='file'
+                  capture='environment'
+                  accept='image/*'
+                  setFieldValue={formProps.setFieldValue}
+                  setFieldError={formProps.setFieldError}
+                  values={formProps.values}
+                />
+                <Button type='submit' variant='primary' tw='col-span-2'>
+                  Submit
+                </Button>
+                <DisplayFormErrors
+                  errors={formProps.errors}
+                  touched={formProps.touched}
+                />
+              </Form>
+            )}
           </Formik>
         </div>
       </HomePageWrapper>
