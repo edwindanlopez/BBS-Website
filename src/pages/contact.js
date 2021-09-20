@@ -20,39 +20,6 @@ import {
 } from "../lib/FormFieldComponents";
 
 const ContactForm = () => {
-  // const [serverState, setServerState] = useState({
-  //   submitting: false,
-  //   status: null,
-  // });
-
-  // const handleServerResponse = (ok, msg, form) => {
-  //   setServerState({
-  //     submitting: false,
-  //     status: { ok, msg },
-  //   });
-  //   if (ok) {
-  //     form.reset();
-  //   }
-  // };
-
-  // const handleOnSubmit = (e) => {
-  //   e.preventDefault();
-  //   const form = e.target;
-  //   setServerState({ submitting: true });
-  //   axios({
-  //     method: "post",
-  //     url: "https://getform.io/f/https://getform.io/f/b5b5bd86-b676-4cfc-b177-32da9e151421",
-  //     data: new FormData(form),
-  //   })
-  //     .then((res) => {
-  //       console.log("getForm response: ", res);
-  //       handleServerResponse(true, "Thanks!", form);
-  //     })
-  //     .catch((error) => {
-  //       handleServerResponse(false, error.response.data.error, form);
-  //     });
-  // };
-
   const supportedFormats = [
     "image/jpg",
     "image/jpeg",
@@ -86,18 +53,11 @@ const ContactForm = () => {
           <p tw='text-mildgray font-semibold w-11/12 mb-4'>
             Fill out the form below and we’ll get back to you within 24 hours
           </p>
-          {/* getForm requires each input to have a name attribute */}
-          {/* <form onSubmit={handleOnSubmit}>
-            <input type='email' name='email' placeholder='Your Email' />
-            <input type='text' name='name' placeholder='Your Name' />
-            <input type='text' name='message' placeholder='Your Message' />
-            <button type='submit'>Send</button>
-          </form> */}
           <Formik
             initialValues={{
               firstName: "",
               lastName: "",
-              contactMethod: "",
+              select: "",
               phone: "",
               email: "",
               textArea: "",
@@ -111,7 +71,7 @@ const ContactForm = () => {
               lastName: Yup.string()
                 .max(20, "Must be 20 characters or less")
                 .required("Required"),
-              contactMethod: Yup.string()
+              select: Yup.string()
                 // specify the set of valid values for job type
                 // @see http://bit.ly/yup-mixed-oneOf
                 .oneOf(["email", "phone"], "Invalid Job Type")
@@ -147,12 +107,33 @@ const ContactForm = () => {
                 ),
             })}
             onSubmit={async (values) => {
-              await new Promise((r) => setTimeout(r, 500));
+              await new Promise((resolve, reject) =>
+                setTimeout(() => {
+                  axios({
+                    method: "post",
+                    url: "https://getform.io/f/b5b5bd86-b676-4cfc-b177-32da9e151421",
+                    headers: { accept: "application/json" },
+                    // withCredentials: true,
+                    data: { ...values },
+                  })
+                    .then((res) => {
+                      console.log("getForm response: ", res);
+                      resolve();
+                    })
+                    .catch((error) => {
+                      console.log("There was an error: ", error);
+                      reject(error);
+                    });
+                }, 500)
+              );
               alert(JSON.stringify(values, null, 2));
             }}
           >
             {(formProps) => (
-              <Form tw='grid grid-cols-2 gap-10 mt-12'>
+              <Form
+                tw='grid grid-cols-2 gap-10 mt-12'
+                encType='multipart/form-data'
+              >
                 <TextInput
                   colSpan='1'
                   label='First Name'
@@ -167,10 +148,7 @@ const ContactForm = () => {
                   type='text'
                   placeholder=''
                 />
-                <Dropdown
-                  label='Prefered method of Contact'
-                  name='contactMethod'
-                >
+                <Dropdown label='Prefered method of Contact' name='select'>
                   <option value=''>What's the best way to reach you?</option>
                   <option value='email'>Email</option>
                   <option value='phone'>Phone</option>
