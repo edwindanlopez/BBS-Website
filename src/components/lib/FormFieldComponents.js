@@ -48,7 +48,7 @@ const FileUploadInput = ({
   const { setTouched } = helpers;
 
   useEffect(() => {
-    if (values.file !== null) {
+    if (values.file && values.file !== null) {
       let reader = new FileReader();
       reader.onload = () => {
         setThumb(reader.result);
@@ -71,8 +71,8 @@ const FileUploadInput = ({
         {...props}
         ref={imgInput}
         onChange={(evt) => {
-          setTouched(true);
           setFieldValue("file", evt.target.files[0]);
+          setTouched(true);
         }}
         tw='text-mildgray w-full mt-2'
       />
@@ -115,10 +115,14 @@ const FileUploadInput = ({
                 className='img-details'
                 tw='w-full flex flex-wrap mt-2 mb-2 ml-auto mr-auto'
               >
-                <p tw='fontSize[.85rem] text-mildgray w-full'>{`Name: ${values.file.name}`}</p>
-                <p tw='fontSize[.85rem] text-mildgray w-full'>{`Type: ${values.file.type}`}</p>
+                <p tw='fontSize[.85rem] text-mildgray w-full'>{`Name: ${
+                  values.name && values.file.name
+                }`}</p>
+                <p tw='fontSize[.85rem] text-mildgray w-full'>{`Type: ${
+                  values.file && values.file.type
+                }`}</p>
                 <p tw='fontSize[.85rem] text-mildgray w-full'>{`Size: ${formatBytes(
-                  values.file.size,
+                  values.size && values.file.size,
                   2
                 )}`}</p>
               </div>

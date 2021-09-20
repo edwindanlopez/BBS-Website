@@ -2,7 +2,7 @@ import React from "react";
 import { StaticImage } from "gatsby-plugin-image";
 import { theme } from "twin.macro";
 
-import Button from "../lib/Button";
+import Button from "./lib/Button";
 
 export default function TopHero() {
   return (

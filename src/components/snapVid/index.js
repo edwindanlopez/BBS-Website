@@ -1,7 +1,7 @@
 import React from "react";
 import { theme } from "twin.macro";
 
-import Button from "../../lib/Button";
+import Button from "../lib/Button";
 
 export default function Snapavid() {
   return (

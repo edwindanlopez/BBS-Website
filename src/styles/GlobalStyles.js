@@ -40,12 +40,6 @@ const customStyles = css({
     flexBasis: "100%",
     height: "0",
   },
-  "div[data-reach-dialog-overlay]": {
-    // TODO: add media query
-  },
-  "div[data-reach-dialog-content]": {
-    // TODO: add media query
-  },
   /*Swiper------------------------- */
   ".swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet":
     {

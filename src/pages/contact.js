@@ -1,36 +1,104 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { StaticImage } from "gatsby-plugin-image";
 
 import "twin.macro";
-import { Formik, Form, useField } from "formik";
-import * as Yup from "yup";
+import { Formik, Form } from "formik";
 
 import Layout from "../components/Layout";
 import HomePageWrapper from "../components/layoutWrappers/HomePageWrapper";
-import Button from "../lib/Button";
+import Button from "../components/lib/Button";
 import {
   TextInput,
   FileUploadInput,
   Dropdown,
   TextArea,
   DisplayFormErrors,
-  phoneRegExp,
-  characterLimit,
-} from "../lib/FormFieldComponents";
+} from "../components/lib/FormFieldComponents";
+import validationSchema from "../components/lib/FormValidationSchema";
+import Modal from "../components/lib/Modal";
 
 const ContactForm = () => {
-  const supportedFormats = [
-    "image/jpg",
-    "image/jpeg",
-    "image/gif",
-    "image/png",
-  ];
+  const [modalStatus, setModalStatus] = useState({
+    isOpen: false,
+    success: null,
+    failed: null,
+    err: null,
+  });
 
-  const maxFileSize = 5000000;
+  const handleSubmit = async (values, resetForm) => {
+    console.log("Values: ", values);
+    let formData = new FormData();
+    // store all field values in formData
+    for (const [key, value] of Object.entries(values)) {
+      if (key === "file") {
+        const file = {};
+        for (const property in value) {
+          file[property] = value;
+        }
+        formData.append(key, file);
+      }
+      formData.append(key, value);
+    }
+
+    await new Promise(async (resolve, reject) => {
+      setTimeout(() => {
+        // log form data
+        for (var pair of formData.entries()) {
+          console.log(pair[0] + ", " + pair[1]);
+        }
+
+        // axios({
+        //   method: "post",
+        //   url: "https://usebasin.com/f/691b1e9cedd7.json",
+        //   headers: {
+        //     accept: "application/json",
+        //     "content-type": "multipart/form-data",
+        //   },
+        //   data: formData,
+        // })
+        //   .then((res) => {
+        //     console.log("Resolved: ", res);
+        //     resolve(
+        //       setModalStatus({
+        //         isOpen: true,
+        //         success: true,
+        //         failed: false,
+        //         err: null,
+        //       })
+        //     );
+        //     resetForm();
+        //   })
+        //   .catch((error) => {
+        //     console.log("There was an error: ", error);
+        //     reject(
+        //       setModalStatus({
+        //         isOpen: true,
+        //         success: false,
+        //         failed: false,
+        //         err: error.message,
+        //       })
+        //     );
+        //     resetForm();
+        //   });
+      }, 500);
+    });
+  };
+
+  const initialValues = {
+    firstName: "",
+    lastName: "",
+    select: "",
+    phone: "",
+    email: "",
+    textArea: "",
+    city: "",
+    file: null,
+  };
 
   return (
-    <Layout seoTitle={"About"}>
+    <Layout seoTitle={"Contact"}>
+      <Modal modalStatus={modalStatus} setModalStatus={setModalStatus} />
       <div id='top-hero' tw='h-56' style={{ zIndex: "-1" }}>
         <div
           id='hero-img'
@@ -54,84 +122,16 @@ const ContactForm = () => {
             Fill out the form below and we’ll get back to you within 24 hours
           </p>
           <Formik
-            initialValues={{
-              firstName: "",
-              lastName: "",
-              select: "",
-              phone: "",
-              email: "",
-              textArea: "",
-              city: "",
-              file: null,
-            }}
-            validationSchema={Yup.object({
-              firstName: Yup.string()
-                .max(15, "Must be 15 characters or less")
-                .required("Required"),
-              lastName: Yup.string()
-                .max(20, "Must be 20 characters or less")
-                .required("Required"),
-              select: Yup.string()
-                // specify the set of valid values for job type
-                // @see http://bit.ly/yup-mixed-oneOf
-                .oneOf(["email", "phone"], "Invalid Job Type")
-                .required("Required"),
-              phone: Yup.string()
-                .matches(phoneRegExp, "Invalid phone number")
-                .required("Required"),
-              email: Yup.string()
-                .email("Invalid email addresss`")
-                .required("Required"),
-              textArea: Yup.string()
-                .max(
-                  characterLimit,
-                  `Must be ${characterLimit} characters or less`
-                )
-                .required("Required"),
-              city: Yup.string()
-                .max(20, "Must be 20 characters or less")
-                .required("Required"),
-              file: Yup.mixed()
-                .test(
-                  "fileFormat",
-                  "Unsupported file type",
-                  (value) =>
-                    value === null ||
-                    (value && supportedFormats.includes(value.type))
-                )
-                .test(
-                  "fileSize",
-                  "File too large",
-                  (value) =>
-                    value === null || (value && value.size <= maxFileSize)
-                ),
-            })}
-            onSubmit={async (values) => {
-              await new Promise((resolve, reject) =>
-                setTimeout(() => {
-                  axios({
-                    method: "post",
-                    url: "https://getform.io/f/b5b5bd86-b676-4cfc-b177-32da9e151421",
-                    headers: { accept: "application/json" },
-                    // withCredentials: true,
-                    data: { ...values },
-                  })
-                    .then((res) => {
-                      console.log("getForm response: ", res);
-                      resolve();
-                    })
-                    .catch((error) => {
-                      console.log("There was an error: ", error);
-                      reject(error);
-                    });
-                }, 500)
-              );
-              alert(JSON.stringify(values, null, 2));
-            }}
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={(values, { resetForm }) =>
+              handleSubmit(values, resetForm)
+            }
           >
             {(formProps) => (
               <Form
-                tw='grid grid-cols-2 gap-10 mt-12'
+                acceptCharset='UTF-8'
+                tw='grid grid-cols-2 gap-7 mt-12'
                 encType='multipart/form-data'
               >
                 <TextInput
@@ -149,7 +149,7 @@ const ContactForm = () => {
                   placeholder=''
                 />
                 <Dropdown label='Prefered method of Contact' name='select'>
-                  <option value=''>What's the best way to reach you?</option>
+                  <option value=''></option>
                   <option value='email'>Email</option>
                   <option value='phone'>Phone</option>
                 </Dropdown>
@@ -191,6 +191,7 @@ const ContactForm = () => {
                   setFieldError={formProps.setFieldError}
                   values={formProps.values}
                 />
+                <input type='hidden' name='you_shall_not_pass_bot'></input>
                 <Button type='submit' variant='primary' tw='col-span-2'>
                   Submit
                 </Button>
