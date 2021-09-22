@@ -3,6 +3,7 @@ import { useStaticQuery, graphql } from "gatsby";
 import "twin.macro";
 
 import FeatWorkTiles from "./FeatWorkTiles";
+import PageLayoutWrapper from "../layoutWrappers/PageLayoutWrapper";
 
 const query = graphql`
   query queryFeaturedWork {
@@ -27,10 +28,10 @@ const query = graphql`
 const FeaturedWork = () => {
   const data = useStaticQuery(query);
   return (
-    <div>
+    <PageLayoutWrapper>
       <h2 tw='mb-4'>Featured Works</h2>
       <FeatWorkTiles data={data} />
-    </div>
+    </PageLayoutWrapper>
   );
 };
 

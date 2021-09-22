@@ -3,7 +3,7 @@ import { Link, graphql } from "gatsby";
 import "twin.macro";
 
 import Layout from "../components/Layout";
-import HomePageWrapper from "../components/layoutWrappers/HomePageWrapper";
+import PageLayoutWrapper from "../components/layoutWrappers/PageLayoutWrapper";
 import WorkTiles from "../components/WorkTiles";
 import CategoryFilter from "../components/categories/CategoryFilter";
 import Tags from "../components/Tags";
@@ -15,7 +15,7 @@ const categoryTemplate = ({ data, pageContext }) => {
 
   return (
     <Layout seoTitle='Work'>
-      <HomePageWrapper>
+      <PageLayoutWrapper>
         <CategoryFilter allCategories={allCategories} category={category} />
         {nodes.map((node) => {
           return (
@@ -39,7 +39,7 @@ const categoryTemplate = ({ data, pageContext }) => {
             </div>
           );
         })}
-      </HomePageWrapper>
+      </PageLayoutWrapper>
     </Layout>
   );
 };

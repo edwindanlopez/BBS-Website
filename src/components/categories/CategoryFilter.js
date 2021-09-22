@@ -6,12 +6,13 @@ export default function CategoryFilter({ allCategories, category }) {
   return (
     <div
       className='category-filter'
-      tw=' grid grid-cols-3 mt-8 place-content-between place-items-center gap-6'
+      tw=' grid grid-cols-3 mt-8 place-items-center gap-6 sm:grid-cols-5 sm:w-11/12 sm:mx-auto lg:w-9/12 '
     >
       <span>
         <Link to={`/work/`}>
           <div
             css={[
+              // style the "all" category as selected
               tw`w-12 h-12 rounded-full bg-pasteleGreen m-auto p-2`,
               category === undefined && tw`border-2 border-orangeAmber`,
             ]}

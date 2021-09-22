@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link } from "gatsby";
-import HomePageWrapper from "../components/layoutWrappers/HomePageWrapper";
+import PageLayoutWrapper from "../components/layoutWrappers/PageLayoutWrapper";
 
 // styles
 const pageStyles = {
@@ -28,7 +28,7 @@ const codeStyles = {
 // markup
 const NotFoundPage = () => {
   return (
-    <HomePageWrapper>
+    <PageLayoutWrapper>
       <main style={pageStyles}>
         <title>Not found</title>
         <h1 style={headingStyles}>Page not found</h1>
@@ -50,7 +50,7 @@ const NotFoundPage = () => {
           <Link to='/'>Go home</Link>.
         </p>
       </main>
-    </HomePageWrapper>
+    </PageLayoutWrapper>
   );
 };
 

@@ -1,8 +1,10 @@
 import * as React from "react";
 import Layout from "../components/Layout";
-import HomePageWrapper from "../components/layoutWrappers/HomePageWrapper";
-import { StaticImage } from "gatsby-plugin-image";
 import "twin.macro";
+
+import PageLayoutWrapper from "../components/layoutWrappers/PageLayoutWrapper";
+import ContentWrapper from "../components/layoutWrappers/ContentWrapper";
+import { StaticImage } from "gatsby-plugin-image";
 
 const paragraphStyle = {
   margin: "1rem  0 1rem",
@@ -24,32 +26,34 @@ const AboutPage = () => {
           />
         </div>
       </div>
-      <HomePageWrapper>
-        <div tw='mt-8'>
-          <h3 tw='text-dark text-xl w-11/12 mb-4'>
-            Building beautiful spaces is our way of making people feel good
-          </h3>
-          <p style={paragraphStyle}>
-            Above all, we care about helping people create a space that will
-            elevate their life. This begins with the first point of contact, and
-            continues even after the project is completed.
-          </p>
-          <p style={paragraphStyle}>
-            Sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.
-          </p>
-          <p style={paragraphStyle}>
-            Ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-            voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-            officia deserunt mollit anim id est laborum.
-          </p>
-        </div>
-        <div tw='w-full h-40 mt-3 bg-mildgray rounded-md flex justify-center items-center'>
-          <h3 tw='text-white'>Contact Us</h3>
-        </div>
-      </HomePageWrapper>
+      <PageLayoutWrapper>
+        <ContentWrapper>
+          <div tw='mt-8'>
+            <h3 tw='text-dark text-xl w-11/12 mb-4'>
+              Building beautiful spaces is our way of making people feel good
+            </h3>
+            <p style={paragraphStyle}>
+              Above all, we care about helping people create a space that will
+              elevate their life. This begins with the first point of contact,
+              and continues even after the project is completed.
+            </p>
+            <p style={paragraphStyle}>
+              Sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+              veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.
+            </p>
+            <p style={paragraphStyle}>
+              Ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+              voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+              officia deserunt mollit anim id est laborum.
+            </p>
+          </div>
+          <div tw='w-full h-40 mt-3 bg-mildgray rounded-md flex justify-center items-center'>
+            <h3 tw='text-white'>Contact Us</h3>
+          </div>
+        </ContentWrapper>
+      </PageLayoutWrapper>
     </Layout>
   );
 };

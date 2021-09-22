@@ -6,7 +6,8 @@ import "twin.macro";
 import { Formik, Form } from "formik";
 
 import Layout from "../components/Layout";
-import HomePageWrapper from "../components/layoutWrappers/HomePageWrapper";
+import PageLayoutWrapper from "../components/layoutWrappers/PageLayoutWrapper";
+import ContentWrapper from "../components/layoutWrappers/ContentWrapper";
 import Button from "../components/lib/Button";
 import {
   TextInput,
@@ -29,58 +30,55 @@ const ContactForm = () => {
   const handleSubmit = async (values, resetForm) => {
     console.log("Values: ", values);
     let formData = new FormData();
-    // store all field values in formData
+
+    // append fields to form data
     for (const [key, value] of Object.entries(values)) {
-      if (key === "file") {
-        const file = {};
-        for (const property in value) {
-          file[property] = value;
-        }
-        formData.append(key, file);
-      }
       formData.append(key, value);
     }
 
     await new Promise(async (resolve, reject) => {
       setTimeout(() => {
-        // log form data
-        for (var pair of formData.entries()) {
-          console.log(pair[0] + ", " + pair[1]);
+        // log form values
+        for (var key of formData.keys()) {
+          console.log(key);
+        }
+        for (var value of formData.values()) {
+          console.log(value);
         }
 
-        // axios({
-        //   method: "post",
-        //   url: "https://usebasin.com/f/691b1e9cedd7.json",
-        //   headers: {
-        //     accept: "application/json",
-        //     "content-type": "multipart/form-data",
-        //   },
-        //   data: formData,
-        // })
-        //   .then((res) => {
-        //     console.log("Resolved: ", res);
-        //     resolve(
-        //       setModalStatus({
-        //         isOpen: true,
-        //         success: true,
-        //         failed: false,
-        //         err: null,
-        //       })
-        //     );
-        //     resetForm();
-        //   })
-        //   .catch((error) => {
-        //     console.log("There was an error: ", error);
-        //     reject(
-        //       setModalStatus({
-        //         isOpen: true,
-        //         success: false,
-        //         failed: false,
-        //         err: error.message,
-        //       })
-        //     );
-        //     resetForm();
-        //   });
+        axios({
+          method: "post",
+          url: "https://usebasin.com/f/691b1e9cedd7.json",
+          headers: {
+            accept: "application/json",
+            contentType: "form-data",
+          },
+          data: formData,
+        })
+          .then((res) => {
+            console.log("Resolved: ", res);
+            resolve(
+              setModalStatus({
+                isOpen: true,
+                success: true,
+                failed: false,
+                err: null,
+              })
+            );
+            resetForm();
+          })
+          .catch((error) => {
+            console.log("There was an error: ", error);
+            reject(
+              setModalStatus({
+                isOpen: true,
+                success: false,
+                failed: false,
+                err: error.message,
+              })
+            );
+            resetForm();
+          });
       }, 500);
     });
   };
@@ -112,98 +110,100 @@ const ContactForm = () => {
           />
         </div>
       </div>
-      <HomePageWrapper>
-        <div tw='mt-8'>
-          <h3 tw='text-dark text-xl w-11/12 mb-4'>
-            Wether you’re looking for a secondary reference, or want to level up
-            your space, we guarantee transparency.
-          </h3>
-          <p tw='text-mildgray font-semibold w-11/12 mb-4'>
-            Fill out the form below and we’ll get back to you within 24 hours
-          </p>
-          <Formik
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            onSubmit={(values, { resetForm }) =>
-              handleSubmit(values, resetForm)
-            }
-          >
-            {(formProps) => (
-              <Form
-                acceptCharset='UTF-8'
-                tw='grid grid-cols-2 gap-7 mt-12'
-                encType='multipart/form-data'
-              >
-                <TextInput
-                  colSpan='1'
-                  label='First Name'
-                  name='firstName'
-                  type='text'
-                  placeholder=''
-                />
-                <TextInput
-                  colSpan='1'
-                  label='Last Name'
-                  name='lastName'
-                  type='text'
-                  placeholder=''
-                />
-                <Dropdown label='Prefered method of Contact' name='select'>
-                  <option value=''></option>
-                  <option value='email'>Email</option>
-                  <option value='phone'>Phone</option>
-                </Dropdown>
-                <TextInput
-                  colSpan='1'
-                  label='Phone'
-                  name='phone'
-                  type='phone'
-                  placeholder=''
-                />
-                <TextInput
-                  colSpan='1'
-                  label='Email'
-                  name='email'
-                  type='email'
-                  placeholder=''
-                />
-                <TextArea
-                  label='Description'
-                  name='textArea'
-                  type='textArea'
-                  placeholder='Tell us about your project...'
-                />
-                <TextInput
-                  colSpan='2'
-                  label='City'
-                  name='city'
-                  type='text'
-                  placeholder=''
-                />
-                <FileUploadInput
-                  colSpan='2'
-                  label='Attach Photo'
-                  name='file'
-                  type='file'
-                  capture='environment'
-                  accept='image/*'
-                  setFieldValue={formProps.setFieldValue}
-                  setFieldError={formProps.setFieldError}
-                  values={formProps.values}
-                />
-                <input type='hidden' name='you_shall_not_pass_bot'></input>
-                <Button type='submit' variant='primary' tw='col-span-2'>
-                  Submit
-                </Button>
-                <DisplayFormErrors
-                  errors={formProps.errors}
-                  touched={formProps.touched}
-                />
-              </Form>
-            )}
-          </Formik>
-        </div>
-      </HomePageWrapper>
+      <PageLayoutWrapper>
+        <ContentWrapper>
+          <div tw='mt-8'>
+            <h3 tw='text-dark text-xl w-11/12 mb-4'>
+              Wether you’re looking for a secondary reference, or want to level
+              up your space, we guarantee transparency.
+            </h3>
+            <p tw='text-mildgray font-semibold w-11/12 mb-4'>
+              Fill out the form below and we’ll get back to you within 24 hours
+            </p>
+            <Formik
+              initialValues={initialValues}
+              validationSchema={validationSchema}
+              onSubmit={(values, { resetForm }) =>
+                handleSubmit(values, resetForm)
+              }
+            >
+              {(formProps) => (
+                <Form
+                  acceptCharset='UTF-8'
+                  tw='grid grid-cols-2 gap-7 mt-12'
+                  encType='multipart/form-data'
+                >
+                  <TextInput
+                    colSpan='1'
+                    label='First Name'
+                    name='firstName'
+                    type='text'
+                    placeholder=''
+                  />
+                  <TextInput
+                    colSpan='1'
+                    label='Last Name'
+                    name='lastName'
+                    type='text'
+                    placeholder=''
+                  />
+                  <Dropdown label='Prefered method of Contact' name='select'>
+                    <option value=''></option>
+                    <option value='email'>Email</option>
+                    <option value='phone'>Phone</option>
+                  </Dropdown>
+                  <TextInput
+                    colSpan='1'
+                    label='Phone'
+                    name='phone'
+                    type='phone'
+                    placeholder=''
+                  />
+                  <TextInput
+                    colSpan='1'
+                    label='Email'
+                    name='email'
+                    type='email'
+                    placeholder=''
+                  />
+                  <TextArea
+                    label='Description'
+                    name='textArea'
+                    type='textArea'
+                    placeholder='Tell us about your project...'
+                  />
+                  <TextInput
+                    colSpan='2'
+                    label='City'
+                    name='city'
+                    type='text'
+                    placeholder=''
+                  />
+                  <FileUploadInput
+                    colSpan='2'
+                    label='Attach Photo'
+                    name='file'
+                    type='file'
+                    capture='environment'
+                    accept='image/*'
+                    setFieldValue={formProps.setFieldValue}
+                    setFieldError={formProps.setFieldError}
+                    values={formProps.values}
+                  />
+                  <input type='hidden' name='you_shall_not_pass_bot'></input>
+                  <Button type='submit' variant='primary' tw='col-span-2'>
+                    Submit
+                  </Button>
+                  <DisplayFormErrors
+                    errors={formProps.errors}
+                    touched={formProps.touched}
+                  />
+                </Form>
+              )}
+            </Formik>
+          </div>
+        </ContentWrapper>
+      </PageLayoutWrapper>
     </Layout>
   );
 };

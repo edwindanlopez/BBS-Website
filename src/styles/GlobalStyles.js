@@ -1,6 +1,8 @@
 import React from "react";
 import { Global, css } from "@emotion/react";
 import { theme, GlobalStyles as BaseStyles } from "twin.macro";
+import arrowLeft from "../images/arrowLeft.svg";
+import arrowRight from "../images/arrowRight.svg";
 
 const customStyles = css({
   body: {
@@ -45,6 +47,21 @@ const customStyles = css({
     {
       backgroundColor: "white",
     },
+  ".swiper-button-next": {
+    backgroundImage: `url(${arrowRight})`,
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "100% auto",
+    backgroundPosition: "center",
+  },
+  ".swiper-button-prev": {
+    backgroundImage: `url(${arrowLeft})`,
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "100% auto",
+    backgroundPosition: "center",
+  },
+  ".swiper-button-next::after, .swiper-button-prev::after": {
+    display: "none",
+  },
   /*Scrolling------------------------- */
   /* width */
   "::-webkit-scrollbar": {

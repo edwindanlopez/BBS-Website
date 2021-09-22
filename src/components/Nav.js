@@ -3,6 +3,7 @@ import { Link } from "gatsby";
 import tw from "twin.macro";
 
 import Logo from "../components/Logo";
+import PageLayoutWrapper from "./layoutWrappers/PageLayoutWrapper";
 
 const navItems = [
   {
@@ -43,83 +44,52 @@ export default function Nav() {
   return (
     <header tw='sticky top-0 z-20'>
       <MobileDrawer isOpen={isOpen} setIsOpen={setIsOpen} />
-      <nav tw='h-24'>
-        <div className='nav-wrapper' tw='h-full flex items-center'>
+      <nav tw='h-24 pt-4 backgroundColor[rgb(255 255 255 / 90%)]'>
+        <PageLayoutWrapper>
           <div
-            className='logo-wrapper'
-            css={[
-              tw`w-full h-full flex items-center`,
-              scrollPosition < 100 && {
-                "#logo": {
-                  transitionProperty: "all",
-                  transitionDuration: "0.5s",
-                  transform: "scale(1)",
-                },
-                backgroundColor: "white",
-              },
-              scrollPosition > 100 && {
-                "#logo": {
-                  transitionProperty: "all",
-                  transitionDuration: "0.5s",
-                  transform: "scale(0.75)",
-                },
-                backgroundColor: "rgba(255, 255, 255, 0.75)",
-                height: "4.2rem",
-                transition: "height 0.5s linear",
-                position: "absolute",
-                top: "0",
-              },
-            ]}
+            className='nav-wrapper'
+            tw='h-full flex justify-between items-center'
           >
             <Logo />
-          </div>
-          <div
-            className='nav-items'
-            css={[
-              tw`hidden sm:flex sm:justify-end sm:mr-4`,
-              scrollPosition > 100 && {
-                position: "absolute",
-                right: "1.5rem",
-                top: "1.2rem",
-              },
-            ]}
-          >
-            {navItems.map((el) => {
-              return (
-                <div key={el.name} tw='text-center'>
-                  <ul tw='text-mildgray font-semibold w-24'>
-                    <li>
+            <div
+              className='nav-items'
+              tw='hidden sm:flex sm:justify-between sm:content-end sm:width[65rem]'
+            >
+              {navItems.map((el) => {
+                return (
+                  <ul key={el.name}>
+                    <li tw='text-right text-mildgray font-semibold ml-8'>
                       <Link to={el.slug}>{el.name}</Link>
                     </li>
                   </ul>
-                </div>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
 
-          {/* Responsive mobile nav Icon - shows only sm and below */}
-          <div
-            className='mobile-icon'
-            css={[
-              tw`absolute right-0 m-6 sm:hidden`,
-              scrollPosition >= 100 && tw`mt-0`,
-            ]}
-          >
-            <button onClick={() => setIsOpen(true)}>
-              <svg xmlns='http://www.w3.org/2000/svg' width='25' height='12'>
-                <g
-                  data-name='Group 11'
-                  fill='none'
-                  stroke='#b85f53'
-                  strokeWidth='2'
-                >
-                  <path data-name='Line 1' d='M0 1h25' />
-                  <path data-name='Line 2' d='M0 11h25' />
-                </g>
-              </svg>
-            </button>
+            {/* Responsive mobile nav Icon - shows only sm and below */}
+            <div
+              className='mobile-icon'
+              css={[
+                tw`absolute right-0 m-6 sm:hidden`,
+                scrollPosition >= 100 && tw`mt-0`,
+              ]}
+            >
+              <button onClick={() => setIsOpen(true)}>
+                <svg xmlns='http://www.w3.org/2000/svg' width='25' height='12'>
+                  <g
+                    data-name='Group 11'
+                    fill='none'
+                    stroke='#b85f53'
+                    strokeWidth='2'
+                  >
+                    <path data-name='Line 1' d='M0 1h25' />
+                    <path data-name='Line 2' d='M0 11h25' />
+                  </g>
+                </svg>
+              </button>
+            </div>
           </div>
-        </div>
+        </PageLayoutWrapper>
       </nav>
     </header>
   );

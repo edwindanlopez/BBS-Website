@@ -57,6 +57,11 @@ const FileUploadInput = ({
     }
   }, [values.file]);
 
+  const handleChange = (evt) => {
+    setTouched(true);
+    setFieldValue("file", evt.target.files[0]);
+  };
+
   const removeUpload = (evt) => {
     // remove both the dom node and formik's fieldValue instance
     const imgUpload = imgInput.current;
@@ -70,10 +75,7 @@ const FileUploadInput = ({
       <input
         {...props}
         ref={imgInput}
-        onChange={(evt) => {
-          setFieldValue("file", evt.target.files[0]);
-          setTouched(true);
-        }}
+        onChange={(evt) => handleChange(evt)}
         tw='text-mildgray w-full mt-2'
       />
       {values.file !== null && (
@@ -116,13 +118,13 @@ const FileUploadInput = ({
                 tw='w-full flex flex-wrap mt-2 mb-2 ml-auto mr-auto'
               >
                 <p tw='fontSize[.85rem] text-mildgray w-full'>{`Name: ${
-                  values.name && values.file.name
+                  values.file && values.file.name
                 }`}</p>
                 <p tw='fontSize[.85rem] text-mildgray w-full'>{`Type: ${
                   values.file && values.file.type
                 }`}</p>
                 <p tw='fontSize[.85rem] text-mildgray w-full'>{`Size: ${formatBytes(
-                  values.size && values.file.size,
+                  values.file && values.file.size,
                   2
                 )}`}</p>
               </div>
