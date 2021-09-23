@@ -7,13 +7,13 @@ import Footer from "./Footer";
 
 import GlobalStyles from "../styles/GlobalStyles";
 
-export default function Layout({ children, seoTitle, ...rest }) {
+export default function Layout({ children, seoTitle, ...props }) {
   return (
-    <div {...rest}>
+    <div {...props}>
       <Seo title={seoTitle} />
       <GlobalStyles />
       <Nav />
-      <main tw='mx-auto mb-16 sm:mx-auto'>{children}</main>
+      <main tw='mx-auto sm:mx-auto'>{children}</main>
       <Footer />
     </div>
   );

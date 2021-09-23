@@ -22,14 +22,14 @@ const customStyles = css({
     fontSize: "1.25rem", //20px
     lineHeight: "1.5rem", //24px
     characterSpacing: "-8px",
-    color: theme`colors.mildgray`,
+    color: theme`colors.mildGray`,
   },
   h3: {
     fontFamily: theme`fontFamily.sans`,
     fontWeight: "800", //bold
     fontSize: "1rem", //16px
     lineHeight: "1.125rem", //18px
-    color: theme`colors.ltgray`,
+    color: theme`colors.lightGray`,
   },
   p: {
     fontFamily: theme`fontFamily.sans`,
@@ -43,6 +43,12 @@ const customStyles = css({
     height: "0",
   },
   /*Swiper------------------------- */
+  ".swiper-scrollbar": {
+    background: "#f7f7f7",
+  },
+  ".swiper-scrollbar-drag": {
+    background: "#e8eaea",
+  },
   ".swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet":
     {
       backgroundColor: "white",

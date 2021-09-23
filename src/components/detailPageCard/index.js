@@ -2,6 +2,8 @@ import React, { useState, useRef } from "react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import tw from "twin.macro";
 
+import PageLayoutWrapper from "../layoutWrappers/PageLayoutWrapper";
+
 export default function DetailPageCard(mdx) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -37,29 +39,34 @@ export default function DetailPageCard(mdx) {
   };
 
   return (
-    <div className='card-holder-wrapper' tw='sticky bottom-0 transform '>
+    <div
+      className='card-holder-wrapper'
+      tw='sticky bottom-0 transform flex justify-center lg:justify-end'
+    >
       <div
         className='card-holder'
-        tw='w-11/12 mx-auto p-5 bg-white rounded-tl-xl rounded-tr-xl'
+        tw='w-full pt-4 pb-4 bg-white rounded-tl-xl rounded-tr-xl lg:(width[28rem])'
       >
-        <h1 tw='text-mossGreen mb-2'>{mdx.frontmatter.title}</h1>
-        <h3 tw='mt-2 mb-4'>{mdx.frontmatter.subhead}</h3>
-        <Collapse isOpen={isOpen}>
-          <span tw='block'>
-            <h3 tw='inline-block'>Area / Location:</h3>
-            <h3 tw='inline-block ml-2 text-softGreen'>
-              {mdx.frontmatter.location}
-            </h3>
-          </span>
-          <span tw='block mb-4'>
-            <h3 tw='inline-block pt-2 pb-2'>Date:</h3>
-            <h3 tw='inline-block ml-2 pt-2 pb-2 text-softGreen'>
-              {mdx.frontmatter.date}
-            </h3>
-          </span>
-          <MDXRenderer>{mdx.body}</MDXRenderer>
-        </Collapse>
-        <ReadBtn isOpen={isOpen} />
+        <PageLayoutWrapper>
+          <h1 tw='text-mossGreen mt-2 mb-2'>{mdx.frontmatter.title}</h1>
+          <h3 tw='mt-2 mb-4'>{mdx.frontmatter.subhead}</h3>
+          <Collapse isOpen={isOpen}>
+            <span tw='block'>
+              <h3 tw='inline-block'>Area / Location:</h3>
+              <h3 tw='inline-block ml-2 text-softGreen'>
+                {mdx.frontmatter.location}
+              </h3>
+            </span>
+            <span tw='block mb-4'>
+              <h3 tw='inline-block pt-2 pb-2'>Date:</h3>
+              <h3 tw='inline-block ml-2 pt-2 pb-2 text-softGreen'>
+                {mdx.frontmatter.date}
+              </h3>
+            </span>
+            <MDXRenderer>{mdx.body}</MDXRenderer>
+          </Collapse>
+          <ReadBtn isOpen={isOpen} />
+        </PageLayoutWrapper>
       </div>
     </div>
   );

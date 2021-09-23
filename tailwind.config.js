@@ -26,8 +26,8 @@ module.exports = {
       }),
       colors: {
         dark: "#232323",
-        mildgray: "#505050",
-        ltgray: "#818389",
+        mildGray: "#505050",
+        lightGray: "#818389",
         brown: "#604E3F",
         tan: "#A3856E",
         neutral: "#B9B2AD",
@@ -64,4 +64,5 @@ module.exports = {
       },
     },
   },
+  plugins: [require("@tailwindcss/aspect-ratio")],
 };

@@ -141,3 +141,6 @@ public
 
 #videos
 src/videos/*.mp4
+
+#typescript declaration
+.d.ts

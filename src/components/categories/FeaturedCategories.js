@@ -2,11 +2,12 @@ import React from "react";
 import tw from "twin.macro";
 import { Link } from "gatsby";
 
-import PageLayoutWrapper from "../layoutWrappers/PageLayoutWrapper";
+import { Pagination, Navigation, Scrollbar } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Scrollbar } from "swiper";
 import "swiper/css";
+import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import PageLayoutWrapper from "../layoutWrappers/PageLayoutWrapper";
 
 const categories = [
   "closet",
@@ -18,16 +19,17 @@ const categories = [
 ];
 
 export default function Categories() {
-  SwiperCore.use([Scrollbar]);
   return (
     <PageLayoutWrapper>
-      <h2 tw='mb-4'>Featured Categories</h2>
-      <div>
+      <div tw=' md:width[90%] mx-auto'>
         <Swiper
           tw='h-32'
-          scrollbar={{
-            draggable: true,
+          modules={[Pagination, Navigation, Scrollbar]}
+          scrollbar={{ draggable: true }}
+          pagination={{
+            clickable: true,
           }}
+          navigation
           breakpoints={{
             320: {
               slidesPerView: "3",
@@ -43,15 +45,18 @@ export default function Categories() {
             },
           }}
         >
-          <div tw='flex overflow-x-scroll'>
+          <div tw='flex'>
             {categories.map((el) => (
-              <SwiperSlide key={el}>
+              <SwiperSlide
+                key={el}
+                style={{ display: "flex", justifyContent: "center" }}
+              >
                 <Link to={`/category/${el}/`}>
                   <div
                     className={`${el}-tile-texture`}
                     css={[
                       // base styles
-                      tw`h-24 w-24 sm:h-28 sm:w-28 bg-contain flex justify-center items-center rounded-full bg-gradient-to-r from-beige to-tan`,
+                      tw`h-24 w-24 sm:h-28 sm:w-28 bg-contain flex justify-center items-center rounded-full bg-gradient-to-r from-beige to-tan hover:(border-4 border-orangeAmber)`,
                       // conditional styles
                       el === "closet" &&
                         tw`bg-closet-ptrn flex justify-center items-center after:block after:w-14 after:opacity-100 `,
@@ -67,7 +72,7 @@ export default function Categories() {
                         tw`bg-shower-ptrn flex justify-center items-center after:block after:w-12 after:opacity-100 `,
                     ]}
                   >
-                    <p tw='absolute text-center font-bold text-sm text-ltgray'>
+                    <p tw='absolute text-center font-bold text-sm text-lightGray'>
                       {el}
                     </p>
                   </div>

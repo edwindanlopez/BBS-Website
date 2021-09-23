@@ -50,7 +50,6 @@ export default function ActivityMap() {
   }
 
   useEffect(() => {
-    console.log("Maps JS API loaded");
     const displayMap = mapWrapper.current;
 
     loader
@@ -66,7 +65,7 @@ export default function ActivityMap() {
 
   return (
     <div tw='mb-3'>
-      <h2 tw='mt-6 mb-6'>Serving the Central Orlando FL Region</h2>
+      <h2 tw='mb-6'>Serving the Central Orlando FL Region</h2>
       <div
         tw='w-full h-80 bg-neutral rounded-md'
         ref={mapWrapper}

@@ -62,11 +62,11 @@ const SuccessMessage = ({ onItemClick }) => {
   return (
     <div
       className='modal-wrapper'
-      tw='border rounded-md border-ltgray shadow-2xl pl-16 pr-16 pt-16 pb-14 bg-white text-center'
+      tw='border rounded-md border-lightGray shadow-2xl pl-16 pr-16 pt-16 pb-14 bg-white text-center'
     >
       <h1>Thank you for contacting us!</h1>
       <div tw='w-96'>
-        <p tw='mt-4 text-ltgray'>
+        <p tw='mt-4 text-lightGray'>
           Your message has been successfully submitted.
         </p>
         <p tw='mt-8'>
@@ -74,12 +74,12 @@ const SuccessMessage = ({ onItemClick }) => {
           you shortly.
         </p>
         <br />
-        <p tw='text-ltgray'>
+        <p tw='text-lightGray'>
           If your request is more immediate, please leave a message for Edwin at
           407.848.0562
         </p>
         <br />
-        <p tw='text-ltgray'>Our work hours are M-F, 9am - 6:30pm</p>
+        <p tw='text-lightGray'>Our work hours are M-F, 9am - 6:30pm</p>
         <Button variant='primary' tw='mt-8' onClick={onItemClick}>
           Continue
         </Button>
@@ -94,11 +94,11 @@ const FailedMessage = ({ onItemClick, modalStatus }) => {
   return (
     <div
       className='modal-wrapper'
-      tw='border rounded-md border-ltgray shadow-2xl pl-16 pr-16 pt-16 pb-14 bg-white text-center'
+      tw='border rounded-md border-lightGray shadow-2xl pl-16 pr-16 pt-16 pb-14 bg-white text-center'
     >
       <h1>Submission failed :( </h1>
       <div tw='w-96'>
-        <p tw='mt-4 text-ltgray'>
+        <p tw='mt-4 text-lightGray'>
           We've encountered an error with this submission.
         </p>
         <p tw='mt-8'>{error}</p>
@@ -107,7 +107,7 @@ const FailedMessage = ({ onItemClick, modalStatus }) => {
           try again later.
         </p>
         <br />
-        <p tw='text-ltgray'>
+        <p tw='text-lightGray'>
           If the problem persists, please call 407.848.0562
         </p>
         <br />

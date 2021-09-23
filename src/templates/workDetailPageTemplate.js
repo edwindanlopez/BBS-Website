@@ -55,7 +55,7 @@ const WorkDetailPageTemplate = ({ data }) => {
   }, []);
 
   return (
-    <Layout seoTitle={data.mdx.frontmatter.title}>
+    <Layout seoTitle={data.mdx.frontmatter.title} tw='bg-dark'>
       <WorkDetailPageWrapper>
         <GridWrapper>
           <DialogContext.Provider value={providerVal}>
@@ -65,7 +65,7 @@ const WorkDetailPageTemplate = ({ data }) => {
             const imageFromNode = node.childImageSharp;
             return (
               <div
-                tw='flex justify-center items-center mb-2'
+                tw='flex aspect-w-4 aspect-h-3 justify-center items-center mb-2'
                 key={node.childImageSharp.id}
               >
                 <PreviewButton onClick={() => handleOpen(imageFromNode)}>

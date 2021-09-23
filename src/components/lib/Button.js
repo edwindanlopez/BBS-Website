@@ -29,8 +29,8 @@ const StyledButton = ({ children, variant, ...rest }) => {
         variant === "secondary" &&
           tw`
               bg-white
-              border-mildgray
-              text-mildgray
+              border-mildGray
+              text-mildGray
               hover:text-gray-50
               focus:ring-gray-500
             `,

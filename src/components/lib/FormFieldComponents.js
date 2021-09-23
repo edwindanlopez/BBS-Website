@@ -23,7 +23,7 @@ const TextInput = ({ label, colSpan, ...props }) => {
       <StyledLabel htmlFor={props.id || props.name}>{label}</StyledLabel>
       <input
         className='text-input'
-        tw='w-full text-lg text-mildgray border-b border-gray-300 focus-visible:outline-none'
+        tw='w-full text-lg text-mildGray border-b border-gray-300 focus-visible:outline-none'
         {...field}
         {...props}
       />
@@ -76,7 +76,7 @@ const FileUploadInput = ({
         {...props}
         ref={imgInput}
         onChange={(evt) => handleChange(evt)}
-        tw='text-mildgray w-full mt-2'
+        tw='text-mildGray w-full mt-2'
       />
       {values.file !== null && (
         <div>
@@ -117,13 +117,13 @@ const FileUploadInput = ({
                 className='img-details'
                 tw='w-full flex flex-wrap mt-2 mb-2 ml-auto mr-auto'
               >
-                <p tw='fontSize[.85rem] text-mildgray w-full'>{`Name: ${
+                <p tw='fontSize[.85rem] text-mildGray w-full'>{`Name: ${
                   values.file && values.file.name
                 }`}</p>
-                <p tw='fontSize[.85rem] text-mildgray w-full'>{`Type: ${
+                <p tw='fontSize[.85rem] text-mildGray w-full'>{`Type: ${
                   values.file && values.file.type
                 }`}</p>
-                <p tw='fontSize[.85rem] text-mildgray w-full'>{`Size: ${formatBytes(
+                <p tw='fontSize[.85rem] text-mildGray w-full'>{`Size: ${formatBytes(
                   values.file && values.file.size,
                   2
                 )}`}</p>
@@ -159,11 +159,11 @@ const TextArea = ({ label, ...props }) => {
       <div tw='relative'>
         <textarea
           className='text-area'
-          tw='w-full h-32 border text-lg text-mildgray rounded-md border-gray-300 p-4 mt-4'
+          tw='w-full h-32 border text-lg text-mildGray rounded-md border-gray-300 p-4 mt-4'
           {...field}
           {...props}
         />
-        <span tw='absolute right-0 bottom-0 mb-4 mr-4 text-mildgray font-semibold fontSize[.75rem]'>
+        <span tw='absolute right-0 bottom-0 mb-4 mr-4 text-mildGray font-semibold fontSize[.75rem]'>
           {`${characterLimit - meta.value.length} / ${characterLimit} left`}
         </span>
       </div>
@@ -196,7 +196,7 @@ const DisplayFormErrors = ({ errors, touched }) => {
           {errs.map((err, i) => {
             return (
               <span key={i} tw='w-full mb-2'>
-                <p tw='text-sm text-mildgray inline'>{`Error for ${err[0]} input...`}</p>
+                <p tw='text-sm text-mildGray inline'>{`Error for ${err[0]} input...`}</p>
                 <p tw='text-sm font-semibold text-orangeAmber inline ml-2'>
                   {err[1]}
                 </p>
@@ -211,7 +211,7 @@ const DisplayFormErrors = ({ errors, touched }) => {
 
 // Styled components ....
 const StyledSelect = styled.select(() => [
-  tw`w-full text-lg text-mildgray border-b border-gray-300 mt-1`,
+  tw`w-full text-lg text-mildGray border-b border-gray-300 mt-1`,
 ]);
 
 const StyledErrorMessage = styled.div({
@@ -223,7 +223,7 @@ const StyledErrorMessage = styled.div({
 });
 
 const StyledLabel = styled.label(() => [
-  tw`w-full text-ltgray fontSize[.75rem]`,
+  tw`w-full text-lightGray fontSize[.75rem]`,
 ]);
 
 export {

@@ -58,7 +58,7 @@ export default function Nav() {
               {navItems.map((el) => {
                 return (
                   <ul key={el.name}>
-                    <li tw='text-right text-mildgray font-semibold ml-8'>
+                    <li tw='text-right text-mildGray font-semibold ml-8'>
                       <Link to={el.slug}>{el.name}</Link>
                     </li>
                   </ul>
@@ -106,7 +106,7 @@ const MobileDrawer = ({ isOpen, setIsOpen }) => (
   >
     <MobileNav closeOpen={setIsOpen} />
     <div tw='relative w-3/4 mx-auto text-center top-14'>
-      <ul tw='text-3xl text-mildgray font-semibold'>
+      <ul tw='text-3xl text-mildGray font-semibold'>
         {navItems.map((el) => {
           return (
             <div key={el.name}>

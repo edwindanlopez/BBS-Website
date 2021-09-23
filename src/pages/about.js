@@ -5,6 +5,7 @@ import "twin.macro";
 import PageLayoutWrapper from "../components/layoutWrappers/PageLayoutWrapper";
 import ContentWrapper from "../components/layoutWrappers/ContentWrapper";
 import { StaticImage } from "gatsby-plugin-image";
+import Tile from "../components/ctaTiles/Tile";
 
 const paragraphStyle = {
   margin: "1rem  0 1rem",
@@ -49,9 +50,9 @@ const AboutPage = () => {
               officia deserunt mollit anim id est laborum.
             </p>
           </div>
-          <div tw='w-full h-40 mt-3 bg-mildgray rounded-md flex justify-center items-center'>
+          <Tile link={`/contact/`} tileColor='orangeAmber' tw='mt-8 mb-8'>
             <h3 tw='text-white'>Contact Us</h3>
-          </div>
+          </Tile>
         </ContentWrapper>
       </PageLayoutWrapper>
     </Layout>

@@ -10,7 +10,7 @@ export default function Tags({ tags }) {
             key={i}
             tw='border borderColor[#d7d8de] pl-3 pr-2 ml-2 rounded-sm'
           >
-            <p tw='fontSize[10px] uppercase tracking-wider text-ltgray'>
+            <p tw='fontSize[10px] uppercase tracking-wider text-lightGray'>
               {tag}
             </p>
           </div>

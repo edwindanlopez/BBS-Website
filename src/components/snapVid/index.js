@@ -12,16 +12,16 @@ export default function Snapavid() {
         <div className='video-wrapper' tw='hidden md:block'>
           <div
             className='top-section'
-            tw='relative h-full flex bg-ltgray flex-wrap justify-center items-center overflow-hidden 2xl:(rounded-tl-md rounded-bl-md)'
+            tw='relative h-full flex bg-dark flex-wrap justify-center items-center overflow-hidden 2xl:(rounded-tl-md rounded-bl-md)'
           >
             <div
               className='vid-color-overlay'
-              tw='absolute z-10 h-full w-full opacity-75 backgroundColor[#d4cdc8] mix-blend-hard-light'
+              tw='absolute z-10 h-full w-full opacity-75 backgroundColor[#d4cdc8] mix-blend-multiply'
             />
             <video
               autoPlay
               loop
-              tw='w-full h-full opacity-90 object-cover object-center hidden md:block md:height[29rem]'
+              tw='w-full h-full opacity-50 object-cover object-center hidden md:block md:height[29rem]'
             >
               <source src={backgroundVid} type='video/mp4' />
               <p>Your browser doesn't support HTML5 video.</p>
@@ -64,7 +64,7 @@ export default function Snapavid() {
                     <g
                       data-name='Group 5'
                       transform='translate(-3 -16)'
-                      fill={theme`colors.mildgray`}
+                      fill={theme`colors.mildGray`}
                     >
                       <rect
                         data-name='Rectangle 34'

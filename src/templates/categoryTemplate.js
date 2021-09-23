@@ -25,12 +25,12 @@ const categoryTemplate = ({ data, pageContext }) => {
                 <WorkTiles node={node} />
               </div>
               <div tw='flex justify-between items-center'>
-                <h3 tw='text-mildgray mt-4 mb-2'>
+                <h3 tw='text-mildGray mt-4 mb-2'>
                   {node.frontmatter.location}
                 </h3>
                 <Tags tags={node.frontmatter.tags} />
               </div>
-              <p tw='text-ltgray'>{node.excerpt}</p>
+              <p tw='text-lightGray'>{node.excerpt}</p>
               <Link to={`/work/${node.slug}`} tw='h-96'>
                 <p tw='text-sm font-semibold text-orangeAmber mt-2'>
                   Learn more

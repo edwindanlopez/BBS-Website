@@ -112,12 +112,12 @@ const ContactForm = () => {
       </div>
       <PageLayoutWrapper>
         <ContentWrapper>
-          <div tw='mt-8'>
+          <div tw='mt-8 mb-14'>
             <h3 tw='text-dark text-xl w-11/12 mb-4'>
               Wether you’re looking for a secondary reference, or want to level
               up your space, we guarantee transparency.
             </h3>
-            <p tw='text-mildgray font-semibold w-11/12 mb-4'>
+            <p tw='text-mildGray font-semibold w-11/12 mb-4'>
               Fill out the form below and we’ll get back to you within 24 hours
             </p>
             <Formik

@@ -19,18 +19,18 @@ const Work = ({ data, pageContext }) => {
         <CategoryFilter allCategories={allCategories} category={category} />
         {nodes.map((node) => {
           return (
-            <div className='work-collection' key={node.id} tw='mt-10'>
+            <div className='work-collection' key={node.id} tw='mt-10 mb-14'>
               <div>
                 <h2 tw='mt-4 mb-4'>{node.frontmatter.title}</h2>
                 <WorkTiles node={node} />
               </div>
               <div tw='flex justify-between items-center'>
-                <h3 tw='text-mildgray mt-4 mb-2'>
+                <h3 tw='text-mildGray mt-4 mb-2'>
                   {node.frontmatter.location}
                 </h3>
                 <Tags tags={node.frontmatter.tags} />
               </div>
-              <p tw='text-ltgray'>{node.excerpt}</p>
+              <p tw='text-lightGray'>{node.excerpt}</p>
               <Link to={`/work/${node.slug}`} tw='h-96'>
                 <p tw='text-sm font-semibold text-orangeAmber mt-2'>
                   Learn more
