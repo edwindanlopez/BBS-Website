@@ -92,6 +92,9 @@ typings/
 .env
 .env.test
 .env\*
+.env.*
+.env.development
+.env.production
 
 # parcel-bundler cache (https://parceljs.org/)
 
@@ -135,3 +138,6 @@ public
 # TernJS port file
 
 .tern-port
+
+#videos
+src/videos/*.mp4
