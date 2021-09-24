@@ -9,11 +9,11 @@ import GlobalStyles from "../styles/GlobalStyles";
 
 export default function Layout({ children, seoTitle, ...props }) {
   return (
-    <div {...props}>
+    <div {...props} tw='flex flex-col min-h-screen'>
       <Seo title={seoTitle} />
       <GlobalStyles />
       <Nav />
-      <main tw='mx-auto sm:mx-auto'>{children}</main>
+      <main tw='w-full mx-auto flex flex-col flex-auto'>{children}</main>
       <Footer />
     </div>
   );

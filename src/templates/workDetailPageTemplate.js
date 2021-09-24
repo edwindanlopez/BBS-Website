@@ -5,13 +5,9 @@ import tw from "twin.macro";
 
 import Layout from "../components/Layout";
 import WorkDetailPageWrapper from "../components/layoutWrappers/WorkDetailPageWrapper";
-import InfoCard from "../components/detailPageCard";
+import InfoCard from "../components/detailPageInfoCard";
 import Lightbox from "../components/Lightbox/Index";
 import { DialogContext } from "../components/Lightbox/DialogContext";
-
-const GridWrapper = tw.div`
-  md:grid grid-cols-2 gap-3
-`;
 
 const WorkDetailPageTemplate = ({ data }) => {
   const [imageSlides, setImageSlides] = useState(null);
@@ -36,10 +32,6 @@ const WorkDetailPageTemplate = ({ data }) => {
     [showDialog, imgNode, imageSlides]
   );
 
-  const PreviewButton = tw.button`
-    bg-transparent border-0
-  `;
-
   const fetchList = async () => {
     const images = [];
     nodes.map((node) => {
@@ -56,7 +48,7 @@ const WorkDetailPageTemplate = ({ data }) => {
 
   return (
     <Layout seoTitle={data.mdx.frontmatter.title} tw='bg-dark'>
-      <WorkDetailPageWrapper>
+      <WorkDetailPageWrapper tw='md:(mt-3 self-start)'>
         <GridWrapper>
           <DialogContext.Provider value={providerVal}>
             <Lightbox />
@@ -65,7 +57,7 @@ const WorkDetailPageTemplate = ({ data }) => {
             const imageFromNode = node.childImageSharp;
             return (
               <div
-                tw='flex aspect-w-4 aspect-h-3 justify-center items-center mb-2'
+                tw='flex aspect-w-4 aspect-h-3 justify-center items-center mb-3 md:mb-0'
                 key={node.childImageSharp.id}
               >
                 <PreviewButton onClick={() => handleOpen(imageFromNode)}>
@@ -79,11 +71,19 @@ const WorkDetailPageTemplate = ({ data }) => {
             );
           })}
         </GridWrapper>
-        <InfoCard {...data.mdx} />
       </WorkDetailPageWrapper>
+      <InfoCard {...data.mdx} />
     </Layout>
   );
 };
+
+const GridWrapper = tw.div`
+  w-full md:(grid grid-cols-2 gap-3) xl:(grid grid-cols-3 gap-3 mb-3)
+`;
+
+const PreviewButton = tw.button`
+  bg-transparent border-0
+`;
 
 export const getWork = graphql`
   query workDetailPage($slug: String!, $absolutePathSlug: String!) {
@@ -109,6 +109,7 @@ export const getWork = graphql`
           gatsbyImageData(
             backgroundColor: "#E3E1DF"
             placeholder: DOMINANT_COLOR
+            layout: FULL_WIDTH
           )
           id
         }

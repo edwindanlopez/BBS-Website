@@ -15,22 +15,24 @@ const sectionStyles = {
 const IndexPage = () => {
   return (
     <Layout seoTitle={"Home"}>
-      <TopHero />
-      <section style={sectionStyles}>
-        <FeaturedCategories />
-      </section>
-      <section style={sectionStyles}>
-        <Featuredwork />
-      </section>
-      <section style={sectionStyles}>
-        <Snapavid />
-      </section>
-      <section style={sectionStyles}>
-        <Otherprojects />
-      </section>
-      <section style={sectionStyles}>
-        <CtaTiles />
-      </section>
+      <div tw='block'>
+        <TopHero />
+        <section style={sectionStyles}>
+          <FeaturedCategories />
+        </section>
+        <section style={sectionStyles}>
+          <Featuredwork />
+        </section>
+        <section style={sectionStyles}>
+          <Snapavid />
+        </section>
+        <section style={sectionStyles}>
+          <Otherprojects />
+        </section>
+        <section style={sectionStyles}>
+          <CtaTiles />
+        </section>
+      </div>
     </Layout>
   );
 };
