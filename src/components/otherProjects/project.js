@@ -8,7 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 
-export default function Project({ data }) {
+const Project = ({ data }) => {
   const nodes = data.allMdx.nodes;
 
   return (
@@ -50,4 +50,6 @@ export default function Project({ data }) {
       })}
     </Swiper>
   );
-}
+};
+
+export default Project;

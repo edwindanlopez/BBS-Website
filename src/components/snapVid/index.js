@@ -3,7 +3,6 @@ import { theme } from "twin.macro";
 
 import Button from "../lib/Button";
 import PageLayoutWrapper from "../layoutWrappers/PageLayoutWrapper";
-// import backgroundVid from "../../videos/fixing-wall-bg-video.mp4";
 
 export default function Snapavid() {
   return (

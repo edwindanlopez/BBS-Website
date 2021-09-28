@@ -1,7 +1,7 @@
 import React from "react";
 import "twin.macro";
 
-import ActivityMap from "../ActivityMap/index";
+import ActivityMap from "../activityMap/index";
 import Tile from "./Tile";
 import PageLayoutWrapper from "../layoutWrappers/PageLayoutWrapper";
 

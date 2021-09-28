@@ -32,7 +32,7 @@ const locations = {
   WinterPark: { lat: 28.59877, lng: -81.339132 },
 };
 
-export default function ActivityMap() {
+const ActivityMap = () => {
   const mapWrapper = useRef();
 
   function addMarkers(map, google) {
@@ -73,4 +73,6 @@ export default function ActivityMap() {
       />
     </div>
   );
-}
+};
+
+export default ActivityMap;
