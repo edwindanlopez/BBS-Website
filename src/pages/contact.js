@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import axios from "axios";
 import { StaticImage } from "gatsby-plugin-image";
 
@@ -15,9 +15,23 @@ import {
   Dropdown,
   TextArea,
   DisplayFormErrors,
+  RadioGroup,
 } from "../components/lib/FormFieldComponents";
 import validationSchema from "../components/lib/FormValidationSchema";
 import Modal from "../components/lib/Modal";
+
+const parseFormData = (vals) => {
+  let newValues = JSON.parse(JSON.stringify(vals));
+  // parse file to data url if user attaches file
+  if (vals.file) {
+    let reader = new FileReader();
+    reader.onload = () => {
+      newValues.file = reader.result;
+    };
+    reader.readAsDataURL(vals.file);
+  }
+  return newValues;
+};
 
 const ContactForm = () => {
   const [modalStatus, setModalStatus] = useState({
@@ -27,36 +41,24 @@ const ContactForm = () => {
     err: null,
   });
 
-  const handleSubmit = async (values, resetForm) => {
-    console.log("Values: ", values);
-    let formData = new FormData();
+  const fileUploadComponentRef = useRef();
 
-    // append fields to form data
-    for (const [key, value] of Object.entries(values)) {
-      formData.append(key, value);
-    }
+  const handleSubmit = async (values, resetForm) => {
+    const formValues = await parseFormData(values);
+    console.log("new form data: ", formValues);
 
     await new Promise(async (resolve, reject) => {
-      setTimeout(() => {
-        // log form values
-        for (var key of formData.keys()) {
-          console.log(key);
-        }
-        for (var value of formData.values()) {
-          console.log(value);
-        }
+      const fileUpload = fileUploadComponentRef.current;
 
+      setTimeout(() => {
         axios({
           method: "post",
-          url: "https://usebasin.com/f/691b1e9cedd7.json",
-          headers: {
-            accept: "application/json",
-            contentType: "form-data",
-          },
-          data: formData,
+          url: "https://bbs-form-submission-serverless.vercel.app/api/sendgrid",
+          data: formValues,
         })
           .then((res) => {
             console.log("Resolved: ", res);
+            fileUpload.value = "";
             resolve(
               setModalStatus({
                 isOpen: true,
@@ -69,6 +71,8 @@ const ContactForm = () => {
           })
           .catch((error) => {
             console.log("There was an error: ", error);
+            // remove dom node file input value
+            fileUpload.value = "";
             reject(
               setModalStatus({
                 isOpen: true,
@@ -80,16 +84,19 @@ const ContactForm = () => {
             resetForm();
           });
       }, 500);
+    }).catch((err) => {
+      console.log("Logging the parent promise error: ", err);
     });
   };
 
   const initialValues = {
     firstName: "",
     lastName: "",
-    select: "",
+    "method-of-contact": "",
+    subject: "",
     phone: "",
     email: "",
-    textArea: "",
+    message: "",
     city: "",
     file: null,
   };
@@ -114,7 +121,7 @@ const ContactForm = () => {
         <ContentWrapper>
           <div tw='mt-8 mb-14'>
             <h3 tw='text-dark text-xl w-11/12 mb-4'>
-              Wether you’re looking for a secondary reference, or want to level
+              Whether you’re looking for a secondary reference, or want to level
               up your space, we guarantee transparency.
             </h3>
             <p tw='text-mildGray font-semibold w-11/12 mb-4'>
@@ -129,9 +136,9 @@ const ContactForm = () => {
             >
               {(formProps) => (
                 <Form
+                  method='post'
                   acceptCharset='UTF-8'
                   tw='grid grid-cols-2 gap-7 mt-12'
-                  encType='multipart/form-data'
                 >
                   <TextInput
                     colSpan='1'
@@ -147,10 +154,15 @@ const ContactForm = () => {
                     type='text'
                     placeholder=''
                   />
-                  <Dropdown label='Prefered method of Contact' name='select'>
+                  <RadioGroup
+                    label='Prefered method of Contact'
+                    name='method-of-contact'
+                  />
+                  <Dropdown label='Subject Inquiry' name='subject'>
                     <option value=''></option>
-                    <option value='email'>Email</option>
-                    <option value='phone'>Phone</option>
+                    <option value='general-contact'>General Contact</option>
+                    <option value='estimate'>Estimate</option>
+                    <option value='question-other'>Question/Other</option>
                   </Dropdown>
                   <TextInput
                     colSpan='1'
@@ -168,7 +180,7 @@ const ContactForm = () => {
                   />
                   <TextArea
                     label='Description'
-                    name='textArea'
+                    name='message'
                     type='textArea'
                     placeholder='Tell us about your project...'
                   />
@@ -180,6 +192,7 @@ const ContactForm = () => {
                     placeholder=''
                   />
                   <FileUploadInput
+                    ref={fileUploadComponentRef}
                     colSpan='2'
                     label='Attach Photo'
                     name='file'
@@ -190,7 +203,7 @@ const ContactForm = () => {
                     setFieldError={formProps.setFieldError}
                     values={formProps.values}
                   />
-                  <input type='hidden' name='you_shall_not_pass_bot'></input>
+                  <input type='hidden' name='you_shall_not_pass_bot' />
                   <Button type='submit' variant='primary' tw='col-span-2'>
                     Submit
                   </Button>
