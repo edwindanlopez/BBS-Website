@@ -3,7 +3,7 @@ import { theme } from "twin.macro";
 
 import Button from "../lib/Button";
 import PageLayoutWrapper from "../layoutWrappers/PageLayoutWrapper";
-import backgroundVid from "../../videos/fixing-wall-bg-video.mp4";
+// import backgroundVid from "../../videos/fixing-wall-bg-video.mp4";
 
 export default function Snapavid() {
   return (
@@ -23,7 +23,10 @@ export default function Snapavid() {
               loop
               tw='w-full h-full opacity-50 object-cover object-center hidden md:block md:height[29rem]'
             >
-              <source src={backgroundVid} type='video/mp4' />
+              <source
+                src='https://daniellopezdesign.nyc3.digitaloceanspaces.com/BBS/videos/fixing-wall-bg-video.mp4'
+                type='video/mp4'
+              />
               <p>Your browser doesn't support HTML5 video.</p>
             </video>
           </div>

@@ -144,3 +144,5 @@ src/videos/*.mp4
 
 #typescript declaration
 .d.ts
+
+.vercel
