@@ -8,7 +8,7 @@ import WorkTiles from "../components/WorkTiles";
 import CategoryFilter from "../components/categories/CategoryFilter";
 import Tags from "../components/Tags";
 
-const Work = ({ data, pageContext }) => {
+const WorkAll = ({ data, pageContext }) => {
   const nodes = data.allMdx.nodes;
 
   const { allCategories, category } = pageContext;
@@ -70,4 +70,4 @@ export const query = graphql`
   }
 `;
 
-export default Work;
+export default WorkAll;
