@@ -25,13 +25,13 @@ module.exports = async (graphql, actions) => {
     }
 
     // pass both the slug and absolute path without trailing slash
-    // to use for querying in the WorkDetailPageTemplate
+    // to use for querying in the workDetailPageTemplate
     result.data.allMdx.edges.forEach((edge) => {
       const removedTrailingSlash = edge.node.slug.replace(/\/$/gm, "");
 
       createPage({
         path: `/work/${edge.node.slug}`,
-        component: path.resolve(`src/templates/WorkDetailPageTemplate.js`),
+        component: path.resolve(`src/templates/workDetailPageTemplate.js`),
         context: {
           slug: `${edge.node.slug}`,
           absolutePathSlug: removedTrailingSlash,
