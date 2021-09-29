@@ -11,7 +11,7 @@ const createPages = async ({ graphql, actions }) => {
   // Work page - display all work
   createPage({
     path: "/work/",
-    component: path.resolve(`src/templates/workAll.js`),
+    component: path.resolve(`src/templates/WorkAll.js`),
     context: { allCategories },
   });
 
