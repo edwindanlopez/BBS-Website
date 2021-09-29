@@ -1,7 +1,7 @@
 import React from "react";
 import "twin.macro";
 
-import footerLogo from "../images/BBS-Footer-Logo.svg";
+import footerLogo from "../images/bbs-footer-logo.svg";
 
 const currentYear = new Date().getFullYear();
 

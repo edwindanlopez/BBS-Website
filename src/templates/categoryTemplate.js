@@ -2,13 +2,13 @@ import React from "react";
 import { Link, graphql } from "gatsby";
 import "twin.macro";
 
-import Layout from "../components/Layout";
+import Layout from "../components/layoutWrappers/Layout";
 import PageLayoutWrapper from "../components/layoutWrappers/PageLayoutWrapper";
 import WorkTiles from "../components/WorkTiles";
 import CategoryFilter from "../components/categories/CategoryFilter";
 import Tags from "../components/Tags";
 
-const categoryTemplate = ({ data, pageContext }) => {
+const CategoryTemplate = ({ data, pageContext }) => {
   const nodes = data.allMdx.nodes;
 
   const { allCategories, category } = pageContext;
@@ -75,4 +75,4 @@ export const query = graphql`
   }
 `;
 
-export default categoryTemplate;
+export default CategoryTemplate;

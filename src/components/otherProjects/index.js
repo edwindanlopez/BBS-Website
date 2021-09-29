@@ -2,7 +2,7 @@ import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import "twin.macro";
 
-import Project from "./project";
+import Project from "./Project";
 import PageLayoutWrapper from "../layoutWrappers/PageLayoutWrapper";
 
 export default function Otherprojects() {

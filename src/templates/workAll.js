@@ -2,7 +2,7 @@ import React from "react";
 import { Link, graphql } from "gatsby";
 import "twin.macro";
 
-import Layout from "../components/Layout";
+import Layout from "../components/layoutWrappers/Layout";
 import PageLayoutWrapper from "../components/layoutWrappers/PageLayoutWrapper";
 import WorkTiles from "../components/WorkTiles";
 import CategoryFilter from "../components/categories/CategoryFilter";

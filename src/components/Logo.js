@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../images/BBS-Logo.svg";
+import logo from "../images/bbs-logo.svg";
 import "twin.macro";
 import { Link } from "gatsby";
 

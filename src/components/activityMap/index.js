@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import "twin.macro";
 import { Loader } from "@googlemaps/js-api-loader";
-import mapPin from "../../images/pinMarker.svg";
+import mapPin from "../../images/pin-marker.svg";
 
 const loader = new Loader({
   apiKey: process.env.GATSBY_GOOGLE_MAP_KEY,

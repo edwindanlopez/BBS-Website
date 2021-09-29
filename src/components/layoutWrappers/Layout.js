@@ -1,11 +1,11 @@
 import React from "react";
-import Seo from "../components/Seo";
+import Seo from "../Seo";
 import "twin.macro";
 
-import Nav from "./Nav";
-import Footer from "./Footer";
+import Nav from "../Nav";
+import Footer from "../Footer";
 
-import GlobalStyles from "../styles/GlobalStyles";
+import GlobalStyles from "../../styles/GlobalStyles";
 
 export default function Layout({ children, seoTitle, ...props }) {
   return (
@@ -13,7 +13,9 @@ export default function Layout({ children, seoTitle, ...props }) {
       <Seo title={seoTitle} />
       <GlobalStyles />
       <Nav />
-      <main tw='w-full mx-auto flex flex-col flex-auto'>{children}</main>
+      <main tw='w-full mx-auto flex flex-col flex-auto justify-between'>
+        {children}
+      </main>
       <Footer />
     </div>
   );

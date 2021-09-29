@@ -1,5 +1,6 @@
 import React from "react";
 import { StaticImage } from "gatsby-plugin-image";
+import { Link } from "gatsby";
 import { theme } from "twin.macro";
 
 import Button from "./lib/Button";
@@ -13,27 +14,29 @@ export default function TopHero() {
           <div id='main-header' tw='w-11/12 mb-4'>
             <h1 tw='text-center'>Bring your space to the next level</h1>
           </div>
-          <Button variant='primary' id='hero-btn' type='button' tw='mt-4'>
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              width='27.163'
-              height='25.41'
-            >
-              <g data-name='Group 9' fill={theme`colors.softGreen`}>
-                <path
-                  data-name='Path 26'
-                  d='M0 10.953l10.32 4.089L25.167 0zm12.17 5.014l10.807 6.669L27.163.73z'
-                />
-                <path
-                  data-name='Path 27'
-                  d='M11.293 25.411l3.8-5.452-3.8-2.337z'
-                />
-              </g>
-            </svg>
-            <span tw='inline-block pl-3 font-sans font-semibold'>
-              Request an estimate
-            </span>
-          </Button>
+          <Link to={`/contact/`}>
+            <Button variant='primary' id='hero-btn' type='button' tw='mt-4'>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                width='27.163'
+                height='25.41'
+              >
+                <g data-name='Group 9' fill={theme`colors.softGreen`}>
+                  <path
+                    data-name='Path 26'
+                    d='M0 10.953l10.32 4.089L25.167 0zm12.17 5.014l10.807 6.669L27.163.73z'
+                  />
+                  <path
+                    data-name='Path 27'
+                    d='M11.293 25.411l3.8-5.452-3.8-2.337z'
+                  />
+                </g>
+              </svg>
+              <span tw='inline-block pl-3 font-sans font-semibold'>
+                Request an estimate
+              </span>
+            </Button>
+          </Link>
         </div>
       </div>
       <div
@@ -43,7 +46,7 @@ export default function TopHero() {
       >
         <StaticImage
           alt='BBS Hero image of beautiful refurnished white kitchen cabinet'
-          src='../images/BBS-Top-Hero-Image.jpg'
+          src='../images/bbs-top-hero-image.jpg'
           tw='w-full h-full object-cover object-center transform scale-150'
         />
       </div>

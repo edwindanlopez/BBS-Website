@@ -1,8 +1,8 @@
 import React from "react";
 import { Global, css } from "@emotion/react";
 import { theme, GlobalStyles as BaseStyles } from "twin.macro";
-import arrowLeft from "../images/arrowLeft.svg";
-import arrowRight from "../images/arrowRight.svg";
+import arrowLeft from "../images/arrow-left.svg";
+import arrowRight from "../images/arrow-right.svg";
 
 const customStyles = css({
   body: {

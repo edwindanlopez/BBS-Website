@@ -1,9 +1,9 @@
 import * as React from "react";
-import Layout from "../components/Layout";
+import Layout from "../components/layoutWrappers/Layout";
 
 import TopHero from "../components/TopHero";
 import FeaturedCategories from "../components/categories/FeaturedCategories";
-import Featuredwork from "../components/featuredwork";
+import FeaturedWork from "../components/featuredWork";
 import Snapavid from "../components/snapVid";
 import Otherprojects from "../components/otherProjects";
 import CtaTiles from "../components/ctaTiles";
@@ -21,7 +21,7 @@ const IndexPage = () => {
           <FeaturedCategories />
         </section>
         <section style={sectionStyles}>
-          <Featuredwork />
+          <FeaturedWork />
         </section>
         <section style={sectionStyles}>
           <Snapavid />

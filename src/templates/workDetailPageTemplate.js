@@ -3,7 +3,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { graphql } from "gatsby";
 import tw from "twin.macro";
 
-import Layout from "../components/Layout";
+import Layout from "../components/layoutWrappers/Layout";
 import WorkDetailPageWrapper from "../components/layoutWrappers/WorkDetailPageWrapper";
 import InfoCard from "../components/detailPageInfoCard";
 import Lightbox from "../components/Lightbox/Index";
