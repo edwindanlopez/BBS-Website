@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useScrollRestoration } from "gatsby";
+import { Link } from "gatsby";
 import tw from "twin.macro";
 
 import AllIcon from "../../images/category-svg-icons/all-icon.svg";
@@ -7,7 +7,6 @@ import drawerIcon from "../../images/category-svg-icons/drawer-icon.svg";
 import closetIcon from "../../images/category-svg-icons/closet-icon.svg";
 import restoreIcon from "../../images/category-svg-icons/restore-icon.svg";
 import showerIcon from "../../images/category-svg-icons/shower-icon.svg";
-import defaultIcon from "../../images/category-svg-icons/all-icon.svg";
 
 export default function CategoryFilter({ allCategories, category }) {
   return (

@@ -29,7 +29,7 @@ const WorkDetailPageTemplate = ({ data }) => {
       setImgNode,
       imageSlides,
     }),
-    [showDialog, imgNode, imageSlides]
+    [showDialog, direction, imgNode, imageSlides]
   );
 
   const fetchList = async () => {

@@ -7,7 +7,7 @@ import "@reach/dialog/styles.css";
 import Button from "./Button";
 
 export default function Modal({ modalStatus, setModalStatus }) {
-  const { isOpen, success, failed } = modalStatus;
+  const { isOpen, success } = modalStatus;
 
   const handleClick = useCallback(
     (e) => {

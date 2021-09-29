@@ -1,6 +1,6 @@
 import React, { useEffect, useState, forwardRef, Fragment } from "react";
 import tw, { styled } from "twin.macro";
-import { useField, Field } from "formik";
+import { useField } from "formik";
 
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -19,7 +19,7 @@ const formatBytes = (bytes, decimals = 2) => {
 const TextInput = ({ label, colSpan, ...props }) => {
   const [field, meta] = useField(props);
   return (
-    <div css={[colSpan == 1 ? tw`col-span-1` : tw`col-span-2`]}>
+    <div css={[colSpan === "1" ? tw`col-span-1` : tw`col-span-2`]}>
       <StyledLabel htmlFor={props.id || props.name}>{label}</StyledLabel>
       <input
         className='text-input'
@@ -37,7 +37,7 @@ const TextInput = ({ label, colSpan, ...props }) => {
 const FileUploadInput = forwardRef(
   ({ label, setFieldValue, values, setFieldError, ...props }, ref) => {
     const [thumb, setThumb] = useState(values.file);
-    const [field, meta, helpers] = useField(props);
+    const [meta, helpers] = useField(props);
 
     const { setTouched } = helpers;
 
@@ -103,6 +103,7 @@ const FileUploadInput = forwardRef(
                   <img
                     src={thumb}
                     tw='w-full rounded-md ml-auto mr-auto shadow-lg'
+                    alt='attached-project-visual'
                   />
                 </div>
                 <div

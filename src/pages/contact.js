@@ -160,11 +160,29 @@ const ContactForm = () => {
                       label='Prefered method of Contact'
                       name='method-of-contact'
                     />
-                    <Dropdown label='Subject Inquiry' name='subject'>
-                      <option value=''></option>
-                      <option value='general-contact'>General Contact</option>
-                      <option value='estimate'>Estimate</option>
-                      <option value='question-other'>Question/Other</option>
+                    <Dropdown
+                      label='Subject Inquiry'
+                      name='subject'
+                      ariaLabel='Inquiry select option'
+                    >
+                      <option
+                        value='general-contact'
+                        ariaLabel='General contact select option'
+                      >
+                        General Contact
+                      </option>
+                      <option
+                        value='estimate'
+                        ariaLabel='Estimate select option'
+                      >
+                        Estimate
+                      </option>
+                      <option
+                        value='question-other'
+                        ariaLabel='Question or other, select option'
+                      >
+                        Question/Other
+                      </option>
                     </Dropdown>
                     <TextInput
                       colSpan='1'
