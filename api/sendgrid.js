@@ -4,24 +4,42 @@ sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
 const fetchSendGrid = (req, res) => {
   sendgrid
     .send({
-      to: req.body.email, // submission sender
-      from: process.env.SENDGRID_VERIFIED_SENDER, // verified sender
-      subject: req.body.subject,
-      message: req.body.message,
-      html: `<div>
-        <h1>You're being contacted by: ${req.body.firstName} ${req.body.lastName}</h1>
-        -------------------------------------------------
-        <h3>Their prefered method of contact is: ${req.body.contactMethod} </h3>
-        -------------------------------------------------
-        <h3>You can reach them at ${req.body.phone}, </h3>
-        <h3>Or through their email ${req.body.email}</h3>
-        -------------------------------------------------
-        <p>They've reached out regarding:</p>
-        <p>${req.body.message}</p>
-        -------------------------------------------------
-        <br/>
-        <p>They live in ${req.body.city}</p>
-      </div>`,
+      personalizations: [
+        {
+          to: [
+            {
+              email: req.body.email,
+            },
+          ],
+          bcc: [
+            {
+              email: process.env.SENDGRID_VERIFIED_SENDER,
+            },
+          ],
+        },
+      ],
+      from: {
+        name: "Build Beautiful Spaces",
+        email: process.env.SENDGRID_VERIFIED_SENDER,
+      },
+      subject: "BBS - Successfully received your message!",
+      templateId: "d-f253696ae1a743a29ffe1b2db6cf8a40",
+      dynamic_template_data: {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        city: req.body.city,
+        message: req.body.message,
+        methodOfContact: req.body.contactMethod,
+        phone: req.body.phone,
+        subject: req.body.subject,
+        attachment: {
+          content: req.body.file.base64Url,
+          filename: req.body.file.filename,
+          size: req.body.file.size,
+          type: req.body.file.type,
+        },
+      },
       attachments: [
         {
           content: req.body.file.base64Url,
