@@ -4,7 +4,7 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    url: `https://www.buildbeautifulspaces.com`, // No trailing slash allowed!
+    url: `https://bbs-website.vercel.app`, // No trailing slash allowed!
     title: "BBS",
     description: "Build Beautiful Spaces - Bring your space to the next level.",
     image: "./src/images/bbs-build-beautiful-spaces.png",
