@@ -12,12 +12,12 @@ const validationSchema = Yup.object({
   lastName: Yup.string()
     .max(20, "Must be 20 characters or less")
     .required("Required"),
-  "method-of-contact": Yup.string().required("Required"),
+  contactMethod: Yup.string().required("Required"),
   subject: Yup.string()
     // specify the set of valid values for job type
     // @see http://bit.ly/yup-mixed-oneOf
     .oneOf(
-      ["general-contact", "estimate", "question-other"],
+      ["General Contact", "Estimate", "Question Other"],
       "Invalid Job Type"
     )
     .required("Required"),

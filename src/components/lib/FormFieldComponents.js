@@ -37,7 +37,7 @@ const TextInput = ({ label, colSpan, ...props }) => {
 const FileUploadInput = forwardRef(
   ({ label, setFieldValue, values, setFieldError, ...props }, ref) => {
     const [thumb, setThumb] = useState(values.file);
-    const [meta, helpers] = useField(props);
+    const [, meta, helpers] = useField(props); //destructured placeholder important
 
     const { setTouched } = helpers;
 

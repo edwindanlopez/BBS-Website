@@ -20,13 +20,31 @@ import {
 import validationSchema from "../components/lib/FormValidationSchema";
 import Modal from "../components/lib/Modal";
 
-const parseFormData = (vals) => {
+const parseImgAttachment = (vals) => {
+  console.log("Original Vals: ", vals);
   let newValues = JSON.parse(JSON.stringify(vals));
+
+  //remove data-url declaration from base64 string
+  const stripBase64Str = (str) => {
+    let base64str = str.replace(
+      /(data:image\/)(gif|jpe?g|png)(;base64,)/gm,
+      ""
+    );
+    return base64str;
+  };
+
   // parse file to data url if user attaches file
   if (vals.file) {
     let reader = new FileReader();
     reader.onload = () => {
-      newValues.file = reader.result;
+      newValues.file = {
+        base64Url: stripBase64Str(reader.result),
+        filename: vals.file.name,
+        type: vals.file.type,
+        size: vals.file.size,
+        lastModifiedDate: vals.file.lastModifiedDate,
+        lastModified: vals.file.lastModified,
+      };
     };
     reader.readAsDataURL(vals.file);
   }
@@ -44,7 +62,7 @@ const ContactForm = () => {
   const fileUploadComponentRef = useRef();
 
   const handleSubmit = async (values, resetForm) => {
-    const formValues = await parseFormData(values);
+    const formValues = await parseImgAttachment(values);
     console.log("new form data: ", formValues);
 
     await new Promise(async (resolve, reject) => {
@@ -53,7 +71,8 @@ const ContactForm = () => {
       setTimeout(() => {
         axios({
           method: "post",
-          url: "https://bbs-form-submission-serverless.vercel.app/api/sendgrid",
+          url: "/api/vercelDevSendgrid",
+          // url: "https://bbs-form-submission-serverless.vercel.app/api/sendgrid",
           data: formValues,
         })
           .then((res) => {
@@ -92,7 +111,7 @@ const ContactForm = () => {
   const initialValues = {
     firstName: "",
     lastName: "",
-    "method-of-contact": "",
+    contactMethod: "",
     subject: "",
     phone: "",
     email: "",
@@ -157,29 +176,30 @@ const ContactForm = () => {
                       placeholder=''
                     />
                     <RadioGroup
-                      label='Prefered method of Contact'
-                      name='method-of-contact'
+                      label='Prefered contact method'
+                      name='contactMethod'
                     />
                     <Dropdown
                       label='Subject Inquiry'
                       name='subject'
-                      ariaLabel='Inquiry select option'
+                      aria-label='Inquiry select option'
                     >
+                      <option value='' label='' aria-label='Select a subject' />
                       <option
-                        value='general-contact'
-                        ariaLabel='General contact select option'
+                        value='General Contact'
+                        aria-label='General contact select option'
                       >
                         General Contact
                       </option>
                       <option
-                        value='estimate'
-                        ariaLabel='Estimate select option'
+                        value='Estimate'
+                        aria-label='Estimate select option'
                       >
                         Estimate
                       </option>
                       <option
-                        value='question-other'
-                        ariaLabel='Question or other, select option'
+                        value='Question/Other'
+                        aria-label='Question or other, select option'
                       >
                         Question/Other
                       </option>

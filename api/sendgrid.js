@@ -11,7 +11,7 @@ const fetchSendGrid = (req, res) => {
       html: `<div>
         <h1>You're being contacted by: ${req.body.firstName} ${req.body.lastName}</h1>
         -------------------------------------------------
-        <h3>Their prefered method of contact is: ${req.body["method-of-contact"]} </h3>
+        <h3>Their prefered method of contact is: ${req.body.contactMethod} </h3>
         -------------------------------------------------
         <h3>You can reach them at ${req.body.phone}, </h3>
         <h3>Or through their email ${req.body.email}</h3>
@@ -24,10 +24,11 @@ const fetchSendGrid = (req, res) => {
       </div>`,
       attachments: [
         {
-          content: attachment,
-          filename: "attachment.pdf",
-          type: "application/pdf",
+          content: req.body.file.base64Url,
+          filename: req.body.file.filename,
+          type: req.body.file.type,
           disposition: "attachment",
+          content_id: "form-image-attachement",
         },
       ],
     })
