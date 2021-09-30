@@ -38,7 +38,7 @@ module.exports = {
         orangeAmber: "#B85F53",
       },
       fontFamily: {
-        sans: "Expressway",
+        sans: ["Expressway", "sans-serif"],
       },
       scale: {
         175: "1.75",
