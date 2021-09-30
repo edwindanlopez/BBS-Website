@@ -4,9 +4,24 @@ sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
 const fetchSendGrid = (req, res) => {
   sendgrid
     .send({
-      to: req.body.email, // submission sender
-      // cc: process.env.SENDGRID_VERIFIED_SENDER,
-      from: process.env.SENDGRID_VERIFIED_SENDER, // verified sender
+      personalizations: [
+        {
+          to: [
+            {
+              email: req.body.email,
+            },
+          ],
+          bcc: [
+            {
+              email: process.env.SENDGRID_VERIFIED_SENDER,
+            },
+          ],
+        },
+      ],
+      from: {
+        name: "Build Beautiful Spaces",
+        email: process.env.SENDGRID_VERIFIED_SENDER,
+      },
       subject: "BBS - Successfully received your message!",
       templateId: "d-f253696ae1a743a29ffe1b2db6cf8a40",
       dynamic_template_data: {

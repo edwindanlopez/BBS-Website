@@ -19,6 +19,7 @@ import {
 } from "../components/lib/FormFieldComponents";
 import validationSchema from "../components/lib/FormValidationSchema";
 import Modal from "../components/lib/Modal";
+import PulseLoader from "react-spinners/PulseLoader";
 
 const parseImgAttachment = (vals) => {
   console.log("Original Vals: ", vals);
@@ -67,7 +68,6 @@ const ContactForm = () => {
 
     await new Promise(async (resolve, reject) => {
       const fileUpload = fileUploadComponentRef.current;
-
       setTimeout(() => {
         axios({
           method: "post",
@@ -156,11 +156,7 @@ const ContactForm = () => {
                 }
               >
                 {(formProps) => (
-                  <Form
-                    method='post'
-                    acceptCharset='UTF-8'
-                    tw='grid grid-cols-2 gap-7 mt-12'
-                  >
+                  <Form acceptCharset='UTF-8' tw='grid grid-cols-2 gap-7 mt-12'>
                     <TextInput
                       colSpan='1'
                       label='First Name'
@@ -245,7 +241,17 @@ const ContactForm = () => {
                     />
                     <input type='hidden' name='you_shall_not_pass_bot' />
                     <Button type='submit' variant='primary' tw='col-span-2'>
-                      Submit
+                      {formProps.isSubmitting ? (
+                        <div tw='flex w-full justify-center'>
+                          <div tw='mr-2 md:mr-6'>
+                            <PulseLoader color='#215130' size={10} />
+                          </div>
+                          {formProps.values.file &&
+                            "Uploading your attachment..."}
+                        </div>
+                      ) : (
+                        "Submit"
+                      )}
                     </Button>
                     <DisplayFormErrors
                       errors={formProps.errors}

@@ -19,7 +19,6 @@ const StyledButton = ({ children, variant, ...rest }) => {
           `,
         variant === "primary" &&
           tw`
-              max-h-14
               bg-white
               border-softGreen
               text-softGreen

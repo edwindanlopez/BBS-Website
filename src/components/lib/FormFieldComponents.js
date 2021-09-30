@@ -1,6 +1,7 @@
 import React, { useEffect, useState, forwardRef, Fragment } from "react";
 import tw, { styled } from "twin.macro";
 import { useField } from "formik";
+import PulseLoader from "react-spinners/PulseLoader";
 
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -36,7 +37,7 @@ const TextInput = ({ label, colSpan, ...props }) => {
 
 const FileUploadInput = forwardRef(
   ({ label, setFieldValue, values, setFieldError, ...props }, ref) => {
-    const [thumb, setThumb] = useState(values.file);
+    const [thumb, setThumb] = useState(null);
     const [, meta, helpers] = useField(props); //destructured placeholder important
 
     const { setTouched } = helpers;
@@ -82,6 +83,7 @@ const FileUploadInput = forwardRef(
               >
                 <div className='img-wrapper' tw='relative w-full'>
                   <button
+                    className='remove-image-upload'
                     tw='absolute top-5 right-5 rounded-full shadow-md'
                     type='button'
                     onClick={(event) => removeUpload(event)}
@@ -100,11 +102,17 @@ const FileUploadInput = forwardRef(
                       </g>
                     </svg>
                   </button>
-                  <img
-                    src={thumb}
-                    tw='w-full rounded-md ml-auto mr-auto shadow-lg'
-                    alt='attached-project-visual'
-                  />
+                  {thumb === null ? (
+                    <div tw='flex w-full justify-center'>
+                      <PulseLoader color='#215130' size={10} />
+                    </div>
+                  ) : (
+                    <img
+                      src={thumb}
+                      tw='w-full rounded-md ml-auto mr-auto shadow-lg'
+                      alt='attached-project-visual'
+                    />
+                  )}
                 </div>
                 <div
                   className='img-details'
