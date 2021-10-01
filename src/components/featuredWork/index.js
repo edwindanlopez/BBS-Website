@@ -18,7 +18,7 @@ const FeaturedWork = () => {
 export default FeaturedWork;
 
 const query = graphql`
-  query queryFeaturedWork {
+  query {
     allMdx(filter: { frontmatter: { featured_type: { eq: "Primary" } } }) {
       nodes {
         id

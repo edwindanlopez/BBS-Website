@@ -45,7 +45,7 @@ const CategoryTemplate = ({ data, pageContext }) => {
 };
 
 export const query = graphql`
-  query CategoryPage($category: String, $postsLimit: Int!, $postsOffset: Int!) {
+  query ($category: String, $postsLimit: Int!, $postsOffset: Int!) {
     allMdx(
       limit: $postsLimit
       skip: $postsOffset

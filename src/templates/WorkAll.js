@@ -45,7 +45,7 @@ const WorkAll = ({ data, pageContext }) => {
 };
 
 export const query = graphql`
-  query queryWork {
+  query {
     allMdx(sort: { order: DESC, fields: frontmatter___date }) {
       nodes {
         frontmatter {

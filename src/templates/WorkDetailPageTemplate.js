@@ -81,7 +81,7 @@ const PreviewButton = tw.button`
 `;
 
 export const getWork = graphql`
-  query workDetailPage($slug: String!, $absolutePathSlug: String!) {
+  query ($slug: String!, $absolutePathSlug: String!) {
     mdx(slug: { eq: $slug }) {
       frontmatter {
         title
