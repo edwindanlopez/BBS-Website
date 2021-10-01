@@ -60,10 +60,17 @@ export default function TopHero() {
               src='https://daniellopezdesign.nyc3.digitaloceanspaces.com/BBS/videos/top-hero-video-empty-room.mp4'
               type='video/mp4'
             />
+            {/*Fallback image if video can't load*/}
+            <StaticImage
+              alt='BBS Hero image of beautiful refurnished white kitchen cabinet'
+              src='../images/bbs-top-hero-image.jpg'
+              tw='w-full h-full object-cover object-center transform scale-150'
+            />
             <p>Your browser doesn't support HTML5 video.</p>
           </video>
         </div>
       </div>
+      {/*Hero image for easy swap between video*/}
       {/* <div
         id='hero-img'
         tw='w-full h-full overflow-hidden'

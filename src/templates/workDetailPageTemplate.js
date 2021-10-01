@@ -32,19 +32,14 @@ const WorkDetailPageTemplate = ({ data }) => {
     [showDialog, direction, imgNode, imageSlides]
   );
 
-  const fetchList = async () => {
-    const images = [];
-    nodes.map((node) => {
-      return images.push(node.childImageSharp);
-    });
-    return images;
-  };
-
   useEffect(() => {
-    fetchList().then((imgCollection) => {
-      setImageSlides(imgCollection);
-    });
-  }, []);
+    let images = [];
+    nodes &&
+      nodes.map((node) => {
+        return images.push(node.childImageSharp);
+      });
+    setImageSlides(images);
+  }, [nodes]);
 
   return (
     <Layout seoTitle={data.mdx.frontmatter.title} tw='bg-dark'>

@@ -19,7 +19,7 @@ export default function Modal({ modalStatus, setModalStatus }) {
         err: null,
       });
     },
-    [isOpen]
+    [modalStatus, setModalStatus]
   );
 
   return (
@@ -53,10 +53,6 @@ export default function Modal({ modalStatus, setModalStatus }) {
     </DialogOverlay>
   );
 }
-
-const wrapperStyles = {
-  textAlign: "center",
-};
 
 const SuccessMessage = ({ onItemClick }) => {
   return (

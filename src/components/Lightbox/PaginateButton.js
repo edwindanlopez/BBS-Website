@@ -7,7 +7,7 @@ export default function PaginateButton({ className, onClick }) {
       <button
         className={className}
         onClick={onClick}
-        tw='text-white ml-4 p-4 rounded-md hover:bg-white hover:bg-opacity-20'
+        tw='text-white m-4 p-4 rounded-md hover:bg-white hover:bg-opacity-20'
       >
         {className === "left-arrow-button" ? (
           <LeftArrowIcon />

@@ -30,8 +30,8 @@ const StyledButton = ({ children, variant, ...rest }) => {
               bg-white
               border-mildGray
               text-mildGray
-              hover:text-gray-50
-              focus:ring-gray-500
+              hover:text-mossGreen
+              focus:ring-mossGreen
             `,
       ]}
       {...rest}
