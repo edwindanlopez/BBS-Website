@@ -1,30 +1,41 @@
-import React, { useEffect, useState, forwardRef, Fragment } from "react";
-import tw, { styled } from "twin.macro";
+import React, {
+  useEffect,
+  useState,
+  useRef,
+  forwardRef,
+  Fragment,
+} from "react";
+import tw, { css, styled } from "twin.macro";
 import { useField } from "formik";
 import PulseLoader from "react-spinners/PulseLoader";
+import closeRemoveIcon from "../../images/close-remove-icon.svg";
 
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
 const characterLimit = 220;
 
-const formatBytes = (bytes, decimals = 2) => {
-  if (bytes === 0) return "0 Bytes";
-  const k = 1000;
-  const dm = decimals < 0 ? 0 : decimals;
-  const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
-  const i = Math.floor(Math.log(bytes) / Math.log(k));
-  return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
-};
-
-const TextInput = ({ label, colSpan, ...props }) => {
+const TextInput = ({ label, colSpan, labelColor, ...props }) => {
   const [field, meta] = useField(props);
   return (
     <div css={[colSpan === "1" ? tw`col-span-1` : tw`col-span-2`]}>
-      <StyledLabel htmlFor={props.id || props.name}>{label}</StyledLabel>
+      {label && (
+        <StyledLabel htmlFor={props.id || props.name} {...{ labelColor }}>
+          {label}
+        </StyledLabel>
+      )}
       <input
         className='text-input'
-        tw='w-full text-lg text-mildGray border-b border-gray-300 focus-visible:outline-none'
+        css={[
+          tw`w-full text-lg text-mildGray border-b border-gray-300 bg-transparent focus-visible:outline-none`,
+          labelColor === "light" &&
+            css`
+              color: white;
+              ::placeholder {
+                color: white;
+              }
+            `,
+        ]}
         {...field}
         {...props}
       />
@@ -35,11 +46,13 @@ const TextInput = ({ label, colSpan, ...props }) => {
   );
 };
 
-const FileUploadInput = forwardRef(
-  ({ label, setFieldValue, values, setFieldError, ...props }, ref) => {
+const ImageFileUploadInput = forwardRef(
+  (
+    { label, setFieldValue, values, setFieldError, labelColor, ...props },
+    ref
+  ) => {
     const [thumb, setThumb] = useState(null);
-    const [, meta, helpers] = useField(props); //destructured placeholder important
-
+    const [field, meta, helpers] = useField(props); //destructured placeholder important
     const { setTouched } = helpers;
 
     useEffect(() => {
@@ -64,78 +77,123 @@ const FileUploadInput = forwardRef(
 
     return (
       <div tw='col-span-2 items-center justify-center'>
-        <StyledLabel htmlFor={props.id || props.name}>{label}</StyledLabel>
+        <StyledLabel htmlFor={props.id || props.name} {...{ labelColor }}>
+          {label}
+        </StyledLabel>
         <input
+          {...field}
           {...props}
+          value={""} // overwrite value being spread in by ...field
           ref={ref}
           onChange={(evt) => handleChange(evt)}
           tw='text-mildGray w-full mt-2'
         />
         {values.file !== null && (
-          <div>
-            <div
-              id='previewArea'
-              tw='rounded-md w-full backgroundColor[#eef0f5] mt-4 p-5'
-            >
-              <div
-                className='upload-container'
-                tw='w-9/12 flex flex-wrap justify-center items-center mr-auto ml-auto'
-              >
-                <div className='img-wrapper' tw='relative w-full'>
-                  <button
-                    className='remove-image-upload'
-                    tw='absolute top-5 right-5 rounded-full shadow-md'
-                    type='button'
-                    onClick={(event) => removeUpload(event)}
-                  >
-                    <svg
-                      xmlns='http://www.w3.org/2000/svg'
-                      width='28'
-                      height='28'
-                    >
-                      <g fill='#fcfcfc'>
-                        <path d='M14.001 27a12.916 12.916 0 0 1-9.193-3.807A12.915 12.915 0 0 1 1 14c0-3.472 1.352-6.737 3.808-9.192A12.915 12.915 0 0 1 14 1c3.473 0 6.737 1.352 9.193 3.808A12.915 12.915 0 0 1 27 14c0 3.472-1.352 6.737-3.807 9.192A12.914 12.914 0 0 1 14 27Z' />
-                        <path
-                          d='M14 2a11.962 11.962 0 0 0-8.485 3.515c-4.686 4.686-4.686 12.284 0 16.97 4.686 4.687 12.284 4.687 16.97 0 4.687-4.686 4.687-12.284 0-16.97A11.963 11.963 0 0 0 14 2m4.242 16.993a.748.748 0 0 1-.53-.22l-3.713-3.712-3.712 3.712a.75.75 0 1 1-1.06-1.06L12.939 14l-3.712-3.712a.75.75 0 0 1 1.06-1.06L14 12.939l3.712-3.712a.75.75 0 1 1 1.06 1.061L15.06 14l3.712 3.713a.75.75 0 0 1-.53 1.28M14 0c3.74 0 7.256 1.456 9.9 4.1A13.909 13.909 0 0 1 28 14c0 3.74-1.456 7.255-4.1 9.9A13.908 13.908 0 0 1 14 28c-3.74 0-7.255-1.456-9.9-4.1A13.908 13.908 0 0 1 0 14c0-3.74 1.456-7.255 4.1-9.9A13.908 13.908 0 0 1 14 0Z'
-                          fill='#818389'
-                        />
-                      </g>
-                    </svg>
-                  </button>
-                  {thumb === null ? (
-                    <div tw='flex w-full justify-center'>
-                      <PulseLoader color='#215130' size={10} />
-                    </div>
-                  ) : (
-                    <img
-                      src={thumb}
-                      tw='w-full rounded-md ml-auto mr-auto shadow-lg'
-                      alt='attached-project-visual'
-                    />
-                  )}
-                </div>
-                <div
-                  className='img-details'
-                  tw='w-full flex flex-wrap mt-2 mb-2 ml-auto mr-auto'
-                >
-                  <p tw='fontSize[.85rem] text-mildGray w-full'>{`Name: ${
-                    values.file && values.file.name
-                  }`}</p>
-                  <p tw='fontSize[.85rem] text-mildGray w-full'>{`Type: ${
-                    values.file && values.file.type
-                  }`}</p>
-                  <p tw='fontSize[.85rem] text-mildGray w-full'>{`Size: ${formatBytes(
-                    values.file && values.file.size,
-                    2
-                  )}`}</p>
-                </div>
-                {meta.touched && meta.error ? (
-                  <StyledErrorMessage>{`${meta.error}. File size must be under 5 MB`}</StyledErrorMessage>
-                ) : null}
-              </div>
-            </div>
-          </div>
+          <ImageUploadPreviewArea
+            thumb={thumb}
+            values={values}
+            meta={meta}
+            removeUpload={removeUpload}
+          />
         )}
+      </div>
+    );
+  }
+);
+
+const ImageUploadPreviewArea = ({ thumb, values, meta, removeUpload }) => {
+  const formatBytes = (bytes, decimals = 2) => {
+    if (bytes === 0) return "0 Bytes";
+    const k = 1000;
+    const dm = decimals < 0 ? 0 : decimals;
+    const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
+  };
+
+  return (
+    <div>
+      <div
+        id='previewArea'
+        tw='rounded-md w-full backgroundColor[#eef0f5] mt-4 p-5'
+      >
+        <div
+          className='upload-container'
+          tw='w-9/12 flex flex-wrap justify-center items-center mr-auto ml-auto'
+        >
+          <div className='img-wrapper' tw='relative w-full'>
+            <button
+              className='remove-image-upload'
+              tw='absolute top-5 right-5 rounded-full shadow-md'
+              type='button'
+              onClick={(event) => removeUpload(event)}
+            >
+              <img src={closeRemoveIcon} alt='close-remove-icon' />
+            </button>
+            {thumb === null ? (
+              <div tw='flex w-full justify-center'>
+                <PulseLoader color='#215130' size={10} />
+              </div>
+            ) : (
+              <img
+                src={thumb}
+                tw='w-full rounded-md ml-auto mr-auto shadow-lg'
+                alt='attached-project-visual'
+              />
+            )}
+          </div>
+          <div
+            className='img-details'
+            tw='w-full flex flex-wrap mt-2 mb-2 ml-auto mr-auto'
+          >
+            <p tw='fontSize[.85rem] text-mildGray w-full'>{`Name: ${
+              values.file && values.file.name
+            }`}</p>
+            <p tw='fontSize[.85rem] text-mildGray w-full'>{`Type: ${
+              values.file && values.file.type
+            }`}</p>
+            <p tw='fontSize[.85rem] text-mildGray w-full'>{`Size: ${formatBytes(
+              values.file && values.file.size,
+              2
+            )}`}</p>
+          </div>
+          {meta.touched && meta.error ? (
+            <StyledErrorMessage>{`${meta.error}. File size must be under 5 MB`}</StyledErrorMessage>
+          ) : null}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const VideoFileUploadInput = forwardRef(
+  (
+    { setFieldValue, values, setFieldError, label, labelColor, ...props },
+    ref
+  ) => {
+    const [field, meta, helpers] = useField(props); //order important
+    const { setTouched } = helpers;
+    const handleChange = (evt) => {
+      console.log("Video file: ", evt.target.files[0]);
+      setTouched(true);
+      setFieldValue("file", evt.target.files[0]);
+    };
+    // TODO: complete video submission - wire with sendgrid
+    return (
+      <div tw='col-span-2 items-center justify-center'>
+        <StyledLabel htmlFor={field.id || field.name} {...{ labelColor }}>
+          {label}
+        </StyledLabel>
+        <input
+          name={field.name}
+          {...props}
+          ref={ref}
+          onChange={(evt) => handleChange(evt)}
+          tw='w-full text-beige'
+        />
+        {meta.touched && meta.error ? (
+          <StyledErrorMessage>{`${meta.error}. File size must be under 40 MB`}</StyledErrorMessage>
+        ) : null}
       </div>
     );
   }
@@ -272,14 +330,16 @@ const StyledErrorMessage = styled.div({
   },
 });
 
-const StyledLabel = styled.label(() => [
+const StyledLabel = styled.label(({ labelColor }) => [
   tw`w-full text-lightGray fontSize[.75rem]`,
+  labelColor === "light" && tw`text-beige`,
 ]);
 
 export {
   TextInput,
   RadioGroup,
-  FileUploadInput,
+  ImageFileUploadInput,
+  VideoFileUploadInput,
   Dropdown,
   TextArea,
   DisplayFormErrors,

@@ -11,13 +11,13 @@ import ContentWrapper from "../components/layoutWrappers/ContentWrapper";
 import Button from "../components/lib/Button";
 import {
   TextInput,
-  FileUploadInput,
+  ImageFileUploadInput,
   Dropdown,
   TextArea,
   DisplayFormErrors,
   RadioGroup,
 } from "../components/lib/FormFieldComponents";
-import validationSchema from "../components/lib/FormValidationSchema";
+import { contactPageValidationSchema } from "../components/lib/validationSchema";
 import Modal from "../components/lib/Modal";
 import PulseLoader from "react-spinners/PulseLoader";
 
@@ -150,7 +150,7 @@ const ContactForm = () => {
               </p>
               <Formik
                 initialValues={initialValues}
-                validationSchema={validationSchema}
+                validationSchema={contactPageValidationSchema}
                 onSubmit={(values, { resetForm }) =>
                   handleSubmit(values, resetForm)
                 }
@@ -227,7 +227,7 @@ const ContactForm = () => {
                       type='text'
                       placeholder=''
                     />
-                    <FileUploadInput
+                    <ImageFileUploadInput
                       ref={fileUploadComponentRef}
                       colSpan='2'
                       label='Attach Photo'
