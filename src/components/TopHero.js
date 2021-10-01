@@ -40,6 +40,31 @@ export default function TopHero() {
         </div>
       </div>
       <div
+        className='video-wrapper'
+        tw='w-full h-full overflow-hidden'
+        style={{ zIndex: "-1" }}
+      >
+        <div
+          className='top-section'
+          tw='relative h-full flex bg-beige flex-wrap justify-center items-center overflow-hidden'
+        >
+          <div
+            className='vid-color-overlay'
+            tw='absolute z-10 h-full w-full opacity-70 backgroundColor[#e5ecff] mix-blend-overlay'
+          />
+          <video
+            autoPlay
+            tw='w-full h-full opacity-100 object-cover object-center hidden md:block md:height[29rem]'
+          >
+            <source
+              src='https://daniellopezdesign.nyc3.digitaloceanspaces.com/BBS/videos/top-hero-video-empty-room.mp4'
+              type='video/mp4'
+            />
+            <p>Your browser doesn't support HTML5 video.</p>
+          </video>
+        </div>
+      </div>
+      {/* <div
         id='hero-img'
         tw='w-full h-full overflow-hidden'
         style={{ zIndex: "-1" }}
@@ -49,7 +74,7 @@ export default function TopHero() {
           src='../images/bbs-top-hero-image.jpg'
           tw='w-full h-full object-cover object-center transform scale-150'
         />
-      </div>
+      </div> */}
     </div>
   );
 }

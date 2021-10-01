@@ -1,33 +1,34 @@
 import React from "react";
 import { theme } from "twin.macro";
+import { StaticImage } from "gatsby-plugin-image";
 
 import Button from "../lib/Button";
 import PageLayoutWrapper from "../layoutWrappers/PageLayoutWrapper";
+import questionMarkTransparent from "../../images/question-mark-transparent.svg";
 
 export default function Snapavid() {
   return (
     <PageLayoutWrapper tw='md:w-full md:max-w-full 2xl:(w-11/12 max-w-screen-2xl)'>
       <div tw='grid grid-cols-1 gap-0 md:grid-cols-2 md:height[26rem]'>
-        <div className='video-wrapper' tw='hidden md:block'>
+        <div className='image-wrapper' tw='hidden md:block'>
           <div
             className='top-section'
             tw='relative h-full flex bg-dark flex-wrap justify-center items-center overflow-hidden 2xl:(rounded-tl-md rounded-bl-md)'
           >
-            <div
-              className='vid-color-overlay'
-              tw='absolute z-10 h-full w-full opacity-75 backgroundColor[#d4cdc8] mix-blend-multiply'
+            <img
+              tw='absolute z-10'
+              src={questionMarkTransparent}
+              alt='question-mark-transparent-icon'
             />
-            <video
-              autoPlay
-              loop
-              tw='w-full h-full opacity-50 object-cover object-center hidden md:block md:height[29rem]'
-            >
-              <source
-                src='https://daniellopezdesign.nyc3.digitaloceanspaces.com/BBS/videos/fixing-wall-bg-video.mp4'
-                type='video/mp4'
-              />
-              <p>Your browser doesn't support HTML5 video.</p>
-            </video>
+            <div
+              className='img-color-overlay'
+              tw='absolute z-10 h-full w-full opacity-80 backgroundColor[#d4cdc8] mix-blend-soft-light'
+            />
+            <StaticImage
+              tw='w-full h-full opacity-80 object-cover object-center hidden md:block md:height[29rem]'
+              alt='wooden-floor-in-need-of-repair'
+              src='../../images/feat-snap-vid-image.jpg'
+            />
           </div>
         </div>
         <PageLayoutWrapper tw='md:w-full md:max-w-full'>
@@ -47,10 +48,9 @@ export default function Snapavid() {
               tw='height[calc(26rem*.75)] bg-softGreen rounded-b-md flex flex-wrap justify-center items-center md:rounded-none p-6 sm:p-8 2xl:rounded-br-md'
             >
               <div tw='h-52 flex flex-wrap justify-center items-center'>
-                <p tw='text-white max-w-sm text-center leading-6'>
+                <p tw='text-white w-3/4 max-w-sm text-center leading-6'>
                   Shoot us a video showing us the space and we’ll help identify
-                  a couple of possibilities to help get you started, regardless
-                  of who you decide to go with.
+                  a couple of possibilities to help get you started.
                 </p>
                 <Button
                   id='hero-btn'
