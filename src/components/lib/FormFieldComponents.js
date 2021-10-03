@@ -174,7 +174,7 @@ const VideoFileUploadInput = forwardRef(
     const [field, meta, helpers] = useField(props); //order important
     const { setTouched } = helpers;
     const handleChange = (evt) => {
-      console.log("Video file: ", evt.target.files[0]);
+      // console.log("Video file: ", evt.target.files[0]);
       setTouched(true);
       setFieldValue("file", evt.target.files[0]);
     };

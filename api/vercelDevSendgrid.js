@@ -2,6 +2,7 @@ const sendgrid = require("@sendgrid/mail");
 sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
 
 const fetchSendGrid = (req, res) => {
+  console.log("Logging video size: ", req.body.file.size);
   sendgrid
     .send({
       personalizations: [
@@ -46,7 +47,7 @@ const fetchSendGrid = (req, res) => {
           filename: req.body.file.filename,
           type: req.body.file.type,
           disposition: "attachment",
-          content_id: "form-image-attachement",
+          content_id: "form-attachement",
         },
       ],
     })

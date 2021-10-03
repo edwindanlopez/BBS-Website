@@ -30,7 +30,7 @@ const parseAttachment = (vals) => {
     return base64str;
   };
 
-  // parse file to data url if user attaches file
+  // parse file to dataUrl if user attaches file
   if (vals.file) {
     let reader = new FileReader();
     reader.onload = () => {
@@ -60,54 +60,56 @@ export default function Snapavid() {
 
   const handleSubmit = async (values, resetForm) => {
     const formValues = await parseAttachment(values);
+
     await new Promise(async (resolve, reject) => {
+      console.log("Form Values: ", formValues);
+      const fileUpload = fileUploadComponentRef.current;
       setTimeout(() => {
-        resolve(console.log("form values: ", formValues));
+        axios({
+          method: "post",
+          url: "/api/vercelDevSendgrid",
+          data: formValues,
+        })
+          .then((res) => {
+            console.log("Resolved: ", res);
+            fileUpload.value = "";
+            resolve(
+              setModalStatus({
+                isOpen: true,
+                success: true,
+                failed: false,
+                err: null,
+              })
+            );
+            resetForm();
+          })
+          .catch((error) => {
+            console.log("There was an error: ", error);
+            if (error.response) {
+              // Extract error msg
+              const { message, code, response } = error;
+
+              // Extract response msg
+              const { headers, body } = response;
+
+              console.error(body);
+            }
+            // remove dom node file input value
+            fileUpload.value = "";
+            reject(
+              setModalStatus({
+                isOpen: true,
+                success: false,
+                failed: false,
+                err: error.message,
+              })
+            );
+            resetForm();
+          });
       }, 500);
     }).catch((err) => {
       console.log("Logging the parent promise error: ", err);
     });
-
-    // await new Promise(async (resolve, reject) => {
-    //   const fileUpload = fileUploadComponentRef.current;
-    //   setTimeout(() => {
-    //     axios({
-    //       method: "post",
-    //       url: "/api/vercelDevSendgrid",
-    //       // url: "https://bbs-form-submission-serverless.vercel.app/api/sendgrid",
-    //       data: formValues,
-    //     })
-    //       .then((res) => {
-    //         console.log("Resolved: ", res);
-    //         fileUpload.value = "";
-    //         resolve(
-    //           setModalStatus({
-    //             isOpen: true,
-    //             success: true,
-    //             failed: false,
-    //             err: null,
-    //           })
-    //         );
-    //         resetForm();
-    //       })
-    //       .catch((error) => {
-    //         console.log("There was an error: ", error);
-    //         // remove dom node file input value
-    //         fileUpload.value = "";
-    //         reject(
-    //           setModalStatus({
-    //             isOpen: true,
-    //             success: false,
-    //             failed: false,
-    //             err: error.message,
-    //           })
-    //         );
-    //         resetForm();
-    //       });
-    //   }, 500);
-    // }).catch((err) => {
-    //   console.log("Logging the parent promise error: ", err);
-    // });
   };
 
   const initialValues = {

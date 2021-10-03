@@ -71,8 +71,7 @@ const ContactForm = () => {
       setTimeout(() => {
         axios({
           method: "post",
-          url: "/api/vercelDevSendgrid",
-          // url: "https://bbs-form-submission-serverless.vercel.app/api/sendgrid",
+          url: process.env.FORM_SUBMISSION_URL,
           data: formValues,
         })
           .then((res) => {
