@@ -3,10 +3,10 @@ import { Link } from "gatsby";
 import tw from "twin.macro";
 
 import AllIcon from "../../images/category-svg-icons/all-icon.svg";
-import drawerIcon from "../../images/category-svg-icons/drawer-icon.svg";
+import customIcon from "../../images/category-svg-icons/custom-icon.svg";
 import closetIcon from "../../images/category-svg-icons/closet-icon.svg";
-import restoreIcon from "../../images/category-svg-icons/restore-icon.svg";
-import showerIcon from "../../images/category-svg-icons/shower-icon.svg";
+import restorationIcon from "../../images/category-svg-icons/restoration-icon.svg";
+import bathroomIcon from "../../images/category-svg-icons/bathroom-icon.svg";
 
 export default function CategoryFilter({ allCategories, category }) {
   return (
@@ -42,25 +42,25 @@ export default function CategoryFilter({ allCategories, category }) {
                 ]}
               >
                 {(() => {
-                  if (cat.fieldValue === "cabinets") {
+                  if (cat.fieldValue === "custom") {
                     return (
-                      <img src={drawerIcon} alt='cabinet-icon' tw='w-3/4' />
+                      <img src={customIcon} alt='custom-icon' tw='w-3/4' />
                     );
                   } else if (cat.fieldValue === "closet") {
                     return (
-                      <img src={closetIcon} alt='drawer-icon' tw='w-3/4' />
+                      <img src={closetIcon} alt='closet-icon' tw='w-3/4' />
                     );
                   } else if (cat.fieldValue === "restoration") {
                     return (
                       <img
-                        src={restoreIcon}
+                        src={restorationIcon}
                         alt='restoration-icon'
                         tw='w-4/5'
                       />
                     );
-                  } else if (cat.fieldValue === "shower") {
+                  } else if (cat.fieldValue === "bathroom") {
                     return (
-                      <img src={showerIcon} alt='shower-icon' tw='w-3/4' />
+                      <img src={bathroomIcon} alt='bathroom-icon' tw='w-3/4' />
                     );
                   }
                 })()}
