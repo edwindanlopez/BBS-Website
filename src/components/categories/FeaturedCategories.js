@@ -9,14 +9,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import PageLayoutWrapper from "../layoutWrappers/PageLayoutWrapper";
 
-const categories = [
-  "closet",
-  "floor",
-  "illustration",
-  "mural",
-  "restoration",
-  "shower",
-];
+const categories = ["bathroom", "closet", "custom", "restoration"];
 
 export default function Categories() {
   return (
@@ -37,11 +30,11 @@ export default function Categories() {
             },
             480: {
               slidesPerView: "4",
-              spaceBetween: 10,
+              spaceBetween: 50,
             },
             640: {
-              slidesPerView: "5",
-              spaceBetween: 10,
+              slidesPerView: "4",
+              spaceBetween: 20,
             },
           }}
         >
@@ -62,13 +55,11 @@ export default function Categories() {
                         tw`bg-closet-ptrn flex justify-center items-center after:block after:w-14 after:opacity-100 `,
                       el === "floor" &&
                         tw`bg-floor-ptrn flex justify-center items-center after:block after:w-12 after:opacity-100 `,
-                      el === "illustration" &&
+                      el === "custom" &&
                         tw`bg-illus-ptrn flex justify-center items-center after:block after:w-8 after:opacity-100 `,
-                      el === "mural" &&
-                        tw`bg-mural-ptrn flex justify-center items-center after:block after:w-16 after:opacity-100 `,
                       el === "restoration" &&
                         tw`bg-woodrpr-ptrn flex justify-center items-center after:block after:w-11 after:opacity-100 `,
-                      el === "shower" &&
+                      el === "bathroom" &&
                         tw`bg-shower-ptrn flex justify-center items-center after:block after:w-12 after:opacity-100 `,
                     ]}
                   >
