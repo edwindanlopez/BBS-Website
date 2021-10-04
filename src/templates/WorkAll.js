@@ -7,6 +7,7 @@ import PageLayoutWrapper from "../components/layoutWrappers/PageLayoutWrapper";
 import WorkTiles from "../components/WorkTiles";
 import CategoryFilter from "../components/categories/CategoryFilter";
 import Tags from "../components/Tags";
+import carrotArrow from "../images/carrot-arrow.svg";
 
 const WorkAll = ({ data, pageContext }) => {
   const nodes = data.allMdx.nodes;
@@ -32,9 +33,14 @@ const WorkAll = ({ data, pageContext }) => {
               </div>
               <p tw='text-lightGray'>{node.excerpt}</p>
               <Link to={`/work/${node.slug}`} tw='h-96'>
-                <p tw='text-sm font-semibold text-orangeAmber mt-2'>
-                  Learn more
-                </p>
+                <span tw='flex items-center mt-2'>
+                  <p tw='text-sm font-semibold text-orangeAmber'>View more</p>
+                  <img
+                    src={carrotArrow}
+                    alt='carrot-arrow'
+                    tw='ml-2 height[7px] transform[rotateZ(-90deg)]'
+                  />
+                </span>
               </Link>
             </div>
           );

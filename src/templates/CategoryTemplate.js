@@ -19,7 +19,7 @@ const CategoryTemplate = ({ data, pageContext }) => {
         <CategoryFilter allCategories={allCategories} category={category} />
         {nodes.map((node) => {
           return (
-            <div className='work-collection' key={node.id} tw='mt-10'>
+            <div className='work-collection' key={node.id} tw='mt-10 mb-10'>
               <div>
                 <h2 tw='mt-4 mb-4'>{node.frontmatter.title}</h2>
                 <WorkTiles node={node} />

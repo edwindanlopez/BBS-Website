@@ -88,7 +88,6 @@ export const getWork = graphql`
         subhead
         location
         date
-        client
       }
       body
     }
