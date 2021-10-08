@@ -56,7 +56,7 @@ export default function TopHero() {
           />
           <video
             autoPlay
-            tw='w-full h-full opacity-100 object-cover object-center hidden md:block md:height[29rem]'
+            tw='w-full h-full opacity-100 object-cover object-center md:block md:height[29rem]'
           >
             <source
               src='https://daniellopezdesign.nyc3.digitaloceanspaces.com/BBS/videos/top-hero-video-empty-room.mp4'

@@ -42,6 +42,22 @@ const customStyles = css({
     flexBasis: "100%",
     height: "0",
   },
+  ".visually-hidden": {
+    clip: "rect(0 0 0 0)",
+    clipPath: "inset(50%)",
+    height: "1px",
+    overflow: "hidden",
+    position: "absolute",
+    whiteSpace: "nowrap",
+    width: "1px",
+  },
+  // /* Separate rule for compatibility, :focus-within is required on modern Firefox and Chrome */
+  // "input.visually-hidden:focus + label": {
+  //   outline: "thin dotted",
+  // },
+  // "input.visually-hidden:focus-within + label": {
+  //   outline: "thin dotted",
+  // },
   /*Swiper------------------------- */
   ".swiper-scrollbar": {
     background: "#f7f7f7",

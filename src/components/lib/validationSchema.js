@@ -14,7 +14,7 @@ const supportedVideoFormats = [
   "video/mov",
 ];
 
-const ImageMaxFileSize = 5000000;
+const ImageMaxFileSize = 7000000;
 const maxVideoFileSize = 40000000;
 
 const contactPageValidationSchema = Yup.object({
@@ -57,7 +57,7 @@ const contactPageValidationSchema = Yup.object({
     ),
 });
 
-const snapValidationSchema = Yup.object({
+const multipleAttachmentFormSchema = Yup.object({
   fullName: Yup.string()
     .max(20, "Must be 20 characters or less")
     .required("Required"),
@@ -67,13 +67,16 @@ const snapValidationSchema = Yup.object({
       "fileFormat",
       "Unsupported file type",
       (value) =>
-        value === null || (value && supportedVideoFormats.includes(value.type))
+        value === null || (value && ImageSupportedFormats.includes(value.type))
     )
     .test(
       "fileSize",
       "File too large",
       (value) => value === null || (value && value.size <= maxVideoFileSize)
     ),
+  message: Yup.string()
+    .max(characterLimit, `Must be ${characterLimit} characters or less`)
+    .required("Required"),
 });
 
-export { contactPageValidationSchema, snapValidationSchema };
+export { contactPageValidationSchema, multipleAttachmentFormSchema };

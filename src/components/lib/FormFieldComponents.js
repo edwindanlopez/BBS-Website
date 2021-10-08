@@ -9,6 +9,7 @@ import tw, { css, styled } from "twin.macro";
 import { useField } from "formik";
 import PulseLoader from "react-spinners/PulseLoader";
 import closeRemoveIcon from "../../images/close-remove-icon.svg";
+import cloudUploadIcon from "../../images/cloud-upload-icon.svg";
 
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -166,7 +167,7 @@ const ImageUploadPreviewArea = ({ thumb, values, meta, removeUpload }) => {
   );
 };
 
-const VideoFileUploadInput = forwardRef(
+const MultipleFileUploadInput = forwardRef(
   (
     { setFieldValue, values, setFieldError, label, labelColor, ...props },
     ref
@@ -178,14 +179,18 @@ const VideoFileUploadInput = forwardRef(
       setTouched(true);
       setFieldValue("file", evt.target.files[0]);
     };
-    // TODO: complete video submission - wire with sendgrid
     return (
       <div tw='col-span-2 items-center justify-center'>
-        <StyledLabel htmlFor={field.id || field.name} {...{ labelColor }}>
-          {label}
-        </StyledLabel>
+        <label htmlFor='uploadAttachment' {...{ labelColor }} tw='w-4 h-4'>
+          {/* {label} */}
+          <img
+            src={cloudUploadIcon}
+            alt='Attach file'
+            tw='w-24 p-3 mx-auto mt-4 bg-mossGreen bg-opacity-20 rounded-md hover:(bg-beige bg-opacity-20 rounded-md)'
+          />
+        </label>
         <input
-          name={field.name}
+          multiple
           {...props}
           ref={ref}
           onChange={(evt) => handleChange(evt)}
@@ -333,7 +338,7 @@ const StyledErrorMessage = styled.div({
 });
 
 const StyledLabel = styled.label(({ labelColor }) => [
-  tw`w-full text-lightGray fontSize[.75rem]`,
+  tw`w-full text-lightGray bg-dark fontSize[.75rem]`,
   labelColor === "light" && tw`text-beige`,
 ]);
 
@@ -341,7 +346,7 @@ export {
   TextInput,
   RadioGroup,
   ImageFileUploadInput,
-  VideoFileUploadInput,
+  MultipleFileUploadInput,
   Dropdown,
   TextArea,
   DisplayFormErrors,

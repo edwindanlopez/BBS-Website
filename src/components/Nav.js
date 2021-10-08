@@ -42,7 +42,7 @@ export default function Nav() {
   }, []);
 
   return (
-    <header tw='sticky top-0 z-20'>
+    <header tw='sticky top-0 z-30'>
       <MobileDrawer isOpen={isOpen} setIsOpen={setIsOpen} />
       <nav tw='h-24 pt-4 backgroundColor[rgb(255 255 255 / 90%)]'>
         <PageLayoutWrapper>
@@ -101,7 +101,7 @@ const MobileDrawer = ({ isOpen, setIsOpen }) => (
     css={[
       tw`hidden`,
       isOpen &&
-        tw`block fixed z-20 w-full min-h-screen bg-white opacity-90 p-4`,
+        tw`block fixed z-30 w-full min-h-screen bg-white opacity-90 p-4`,
     ]}
   >
     <MobileNav closeOpen={setIsOpen} />

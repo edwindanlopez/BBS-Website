@@ -4,7 +4,7 @@ import Layout from "../components/layoutWrappers/Layout";
 import TopHero from "../components/TopHero";
 import FeaturedCategories from "../components/categories/FeaturedCategories";
 import FeaturedWork from "../components/featuredWork";
-import Snapavid from "../components/snapVid";
+import ImgUploadSection from "../components/imgUploadSection";
 import Otherprojects from "../components/otherProjects";
 import CtaTiles from "../components/ctaTiles";
 
@@ -24,7 +24,7 @@ const IndexPage = () => {
           <FeaturedWork />
         </section>
         <section style={sectionStyles}>
-          <Snapavid />
+          <ImgUploadSection />
         </section>
         <section style={sectionStyles}>
           <Otherprojects />
