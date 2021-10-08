@@ -17,6 +17,7 @@ export default function Lightbox() {
         display: "flex",
       }}
       isOpen={showDialog}
+      allowPinchZoom={true}
       onDismiss={() => setShowDialog(false)}
       aria-label='image in lightbox mode'
       allowPinchZoom={true}

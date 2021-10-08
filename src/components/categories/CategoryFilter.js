@@ -2,17 +2,18 @@ import React from "react";
 import { Link } from "gatsby";
 import tw from "twin.macro";
 
-import AllIcon from "../../images/category-svg-icons/all-icon.svg";
+import allIcon from "../../images/category-svg-icons/all-icon.svg";
 import customIcon from "../../images/category-svg-icons/custom-icon.svg";
 import closetIcon from "../../images/category-svg-icons/closet-icon.svg";
 import restorationIcon from "../../images/category-svg-icons/restoration-icon.svg";
 import bathroomIcon from "../../images/category-svg-icons/bathroom-icon.svg";
+import artisticIcon from "../../images/category-svg-icons/artistic-icon.svg";
 
 export default function CategoryFilter({ allCategories, category }) {
   return (
     <div
       className='category-filter'
-      tw=' grid grid-cols-3 mt-8 place-items-center gap-6 sm:grid-cols-5 sm:w-11/12 sm:mx-auto lg:w-9/12 '
+      tw=' grid grid-cols-3 mt-8 place-items-center gap-6 sm:grid-cols-6 sm:w-11/12 sm:mx-auto lg:w-9/12 '
     >
       <span>
         <Link to={`/work/`}>
@@ -23,7 +24,7 @@ export default function CategoryFilter({ allCategories, category }) {
               category === undefined && tw`border-2 border-orangeAmber`,
             ]}
           >
-            <img src={AllIcon} alt='select-all-icon' tw='w-3/4' />
+            <img src={allIcon} alt='select-all-icon' tw='w-3/4' />
           </div>
           <p tw='text-center uppercase tracking-widest self-center fontSize[0.65rem]'>
             All
@@ -44,23 +45,35 @@ export default function CategoryFilter({ allCategories, category }) {
                 {(() => {
                   if (cat.fieldValue === "custom") {
                     return (
-                      <img src={customIcon} alt='custom-icon' tw='w-3/4' />
+                      <img
+                        src={customIcon}
+                        alt='Custom drawer icon'
+                        tw='w-3/4'
+                      />
                     );
                   } else if (cat.fieldValue === "closet") {
                     return (
-                      <img src={closetIcon} alt='closet-icon' tw='w-3/4' />
+                      <img src={closetIcon} alt='Closet icon' tw='w-3/4' />
                     );
                   } else if (cat.fieldValue === "restoration") {
                     return (
                       <img
                         src={restorationIcon}
-                        alt='restoration-icon'
+                        alt='Forever symbol icon'
                         tw='w-4/5'
                       />
                     );
                   } else if (cat.fieldValue === "bathroom") {
                     return (
-                      <img src={bathroomIcon} alt='bathroom-icon' tw='w-3/4' />
+                      <img src={bathroomIcon} alt='Bathroom icon' tw='w-3/4' />
+                    );
+                  } else if (cat.fieldValue === "artistic") {
+                    return (
+                      <img
+                        src={artisticIcon}
+                        alt='Art paint brush icon'
+                        tw='w-3/4'
+                      />
                     );
                   }
                 })()}

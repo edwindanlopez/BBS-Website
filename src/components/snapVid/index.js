@@ -11,42 +11,11 @@ import questionMarkTransparent from "../../images/question-mark-transparent.svg"
 import videoIcon from "../../images/video-icon.svg";
 import { snapValidationSchema } from "../lib/validationSchema";
 import Modal from "../../components/lib/Modal";
-
+import ParseAttachmentAsBase64 from "../lib/ParseAttachmentAsBase64";
 import {
   TextInput,
   VideoFileUploadInput,
 } from "../../components/lib/FormFieldComponents";
-
-const parseAttachment = (vals) => {
-  console.log("Original Vals: ", vals);
-  let newValues = JSON.parse(JSON.stringify(vals));
-
-  //remove data-url declaration from base64 string
-  const stripBase64Str = (str) => {
-    let base64str = str.replace(
-      /(data:image\/)(gif|jpe?g|png)(;base64,)/gm,
-      ""
-    );
-    return base64str;
-  };
-
-  // parse file to dataUrl if user attaches file
-  if (vals.file) {
-    let reader = new FileReader();
-    reader.onload = () => {
-      newValues.file = {
-        base64Url: stripBase64Str(reader.result),
-        filename: vals.file.name,
-        type: vals.file.type,
-        size: vals.file.size,
-        lastModifiedDate: vals.file.lastModifiedDate,
-        lastModified: vals.file.lastModified,
-      };
-    };
-    reader.readAsDataURL(vals.file);
-  }
-  return newValues;
-};
 
 export default function Snapavid() {
   const [modalStatus, setModalStatus] = useState({
@@ -55,67 +24,86 @@ export default function Snapavid() {
     failed: null,
     err: null,
   });
+  const [fieldValues, setFieldValues] = useState("");
 
   const fileUploadComponentRef = useRef();
 
   const handleSubmit = async (values, resetForm) => {
-    const formValues = await parseAttachment(values);
+    const fileUpload = fileUploadComponentRef.current;
+    const fileData = await ParseAttachmentAsBase64(values);
+    let formData = new FormData();
 
-    await new Promise(async (resolve, reject) => {
-      console.log("Form Values: ", formValues);
-      const fileUpload = fileUploadComponentRef.current;
-      setTimeout(() => {
-        axios({
-          method: "post",
-          url: "/api/vercelDevSendgrid",
-          data: formValues,
+    const uploadToDrive = new Promise(async (resolve, reject) => {
+      console.log("Logging available values: ", values);
+      formData.append("file", values.file);
+
+      axios({
+        method: "post",
+        url: "/api/googleDriveUpload",
+        data: formData,
+        headers: {
+          "content-type": "multipart/form-data",
+        },
+      })
+        .then((res) => {
+          resolve(console.log("Resolved drive upload: ", res));
         })
-          .then((res) => {
-            console.log("Resolved: ", res);
-            fileUpload.value = "";
-            resolve(
-              setModalStatus({
-                isOpen: true,
-                success: true,
-                failed: false,
-                err: null,
-              })
-            );
-            resetForm();
-          })
-          .catch((error) => {
-            console.log("There was an error: ", error);
-            if (error.response) {
-              // Extract error msg
-              const { message, code, response } = error;
+        .catch((error) => {
+          reject(console.log("Error in uploading to drive: ", error));
+        });
 
-              // Extract response msg
-              const { headers, body } = response;
-
-              console.error(body);
-            }
-            // remove dom node file input value
-            fileUpload.value = "";
-            reject(
-              setModalStatus({
-                isOpen: true,
-                success: false,
-                failed: false,
-                err: error.message,
-              })
-            );
-            resetForm();
-          });
-      }, 500);
-    }).catch((err) => {
-      console.log("Logging the parent promise error: ", err);
+      resolve();
     });
+
+    //TODO:create thumbnail of video attachment
+
+    // use sendGrid for email confirmation
+    const handleResolved = async (value) => {
+      console.log("Resolved");
+      // setTimeout(() => {
+      //   axios({
+      //     method: "post",
+      //     url: "/api/vercelDevSendgrid",
+      //     data: base64Values,
+      //   }).then((res) => {
+      //     console.log("Sendgrid Resolved: ", res);
+      //     fileUpload.value = "";
+      //     setModalStatus({
+      //       isOpen: true,
+      //       success: true,
+      //       failed: false,
+      //       err: null,
+      //     });
+      //     resetForm();
+      //   });
+      // }, 500);
+    };
+
+    const handleRejected = (error) => {
+      console.log("Handle rejected, error encountered: ", error);
+      // if (error.response) {
+      //   const { message, code, response } = error;
+      //   const { headers, body } = response;
+      //   console.error(body);
+      // }
+      // // remove dom node file input value
+      // fileUpload.value = "";
+      // setModalStatus({
+      //   isOpen: true,
+      //   success: false,
+      //   failed: false,
+      //   err: error.message,
+      // });
+      // resetForm();
+    };
+
+    uploadToDrive.then(handleResolved, handleRejected);
   };
 
   const initialValues = {
     fullName: "",
     email: "",
-    video: null,
+    file: null,
   };
 
   return (
@@ -172,7 +160,7 @@ export default function Snapavid() {
                       colSpan='2'
                       label='Attach Video'
                       labelColor='light'
-                      name='video'
+                      name='file'
                       type='file'
                       capture='environment'
                       accept='accept="video/quicktime, video/mp4,video/x-m4v,video/mov"'

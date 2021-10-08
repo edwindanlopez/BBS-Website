@@ -9,7 +9,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import PageLayoutWrapper from "../layoutWrappers/PageLayoutWrapper";
 
-const categories = ["bathroom", "closet", "custom", "restoration"];
+const categories = ["artistic", "bathroom", "closet", "custom", "restoration"];
 
 export default function Categories() {
   return (
@@ -51,16 +51,18 @@ export default function Categories() {
                       // base styles
                       tw`h-24 w-24 sm:h-28 sm:w-28 bg-contain flex justify-center items-center rounded-full bg-gradient-to-r from-beige to-tan hover:(border-4 border-orangeAmber)`,
                       // conditional styles
-                      el === "closet" &&
-                        tw`bg-closet-ptrn flex justify-center items-center after:block after:w-14 after:opacity-100 `,
-                      el === "floor" &&
-                        tw`bg-floor-ptrn flex justify-center items-center after:block after:w-12 after:opacity-100 `,
-                      el === "custom" &&
-                        tw`bg-illus-ptrn flex justify-center items-center after:block after:w-8 after:opacity-100 `,
-                      el === "restoration" &&
-                        tw`bg-woodrpr-ptrn flex justify-center items-center after:block after:w-11 after:opacity-100 `,
+                      el === "artistic" &&
+                        tw`bg-illus-ptrn flex justify-center items-center after:block after:w-12 after:opacity-100 `,
                       el === "bathroom" &&
                         tw`bg-shower-ptrn flex justify-center items-center after:block after:w-12 after:opacity-100 `,
+                      el === "closet" &&
+                        tw`bg-closet-ptrn flex justify-center items-center after:block after:w-14 after:opacity-100 `,
+                      el === "custom" &&
+                        tw`bg-custom-ptrn flex justify-center items-center after:block after:w-8 after:opacity-100 `,
+                      el === "floor" &&
+                        tw`bg-floor-ptrn flex justify-center items-center after:block after:w-12 after:opacity-100 `,
+                      el === "restoration" &&
+                        tw`bg-woodrpr-ptrn flex justify-center items-center after:block after:w-11 after:opacity-100 `,
                     ]}
                   >
                     <p tw='absolute text-center font-bold text-sm text-lightGray'>

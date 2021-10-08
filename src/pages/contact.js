@@ -9,6 +9,7 @@ import Layout from "../components/layoutWrappers/Layout";
 import PageLayoutWrapper from "../components/layoutWrappers/PageLayoutWrapper";
 import ContentWrapper from "../components/layoutWrappers/ContentWrapper";
 import Button from "../components/lib/Button";
+import ParseAttachmentAsBase64 from "../components/lib/ParseAttachmentAsBase64";
 import {
   TextInput,
   ImageFileUploadInput,
@@ -21,37 +22,6 @@ import { contactPageValidationSchema } from "../components/lib/validationSchema"
 import Modal from "../components/lib/Modal";
 import PulseLoader from "react-spinners/PulseLoader";
 
-const parseImgAttachment = (vals) => {
-  console.log("Original Vals: ", vals);
-  let newValues = JSON.parse(JSON.stringify(vals));
-
-  //remove data-url declaration from base64 string
-  const stripBase64Str = (str) => {
-    let base64str = str.replace(
-      /(data:image\/)(gif|jpe?g|png)(;base64,)/gm,
-      ""
-    );
-    return base64str;
-  };
-
-  // parse file to data url if user attaches file
-  if (vals.file) {
-    let reader = new FileReader();
-    reader.onload = () => {
-      newValues.file = {
-        base64Url: stripBase64Str(reader.result),
-        filename: vals.file.name,
-        type: vals.file.type,
-        size: vals.file.size,
-        lastModifiedDate: vals.file.lastModifiedDate,
-        lastModified: vals.file.lastModified,
-      };
-    };
-    reader.readAsDataURL(vals.file);
-  }
-  return newValues;
-};
-
 const ContactForm = () => {
   const [modalStatus, setModalStatus] = useState({
     isOpen: false,
@@ -63,7 +33,7 @@ const ContactForm = () => {
   const fileUploadComponentRef = useRef();
 
   const handleSubmit = async (values, resetForm) => {
-    const formValues = await parseImgAttachment(values);
+    const formValues = await ParseAttachmentAsBase64(values);
     console.log("new form data: ", formValues);
 
     await new Promise(async (resolve, reject) => {
@@ -121,9 +91,9 @@ const ContactForm = () => {
 
   return (
     <Layout seoTitle={"Contact"}>
-      <div>
+      <div className='contact-page-container' tw='mb-20'>
         <Modal modalStatus={modalStatus} setModalStatus={setModalStatus} />
-        <div id='top-hero' tw='h-56' style={{ zIndex: "-1" }}>
+        <div id='top-hero' tw='flex items-center h-96' style={{ zIndex: "-1" }}>
           <div
             id='hero-img'
             tw='w-full h-full overflow-hidden'
@@ -137,16 +107,18 @@ const ContactForm = () => {
           </div>
         </div>
         <PageLayoutWrapper>
-          <ContentWrapper>
-            <div tw='mt-8 mb-14'>
-              <h3 tw='text-dark text-xl w-11/12 mb-4'>
+          <div tw='mt-8 w-full 2xl:(w-3/4 mx-auto)'>
+            <div>
+              <h1 tw='text-dark mb-6 lg:(mt-14 fontSize[2.15rem] lineHeight[3.15rem])'>
                 Whether you’re looking for a secondary reference, or want to
                 level up your space, we guarantee transparency.
-              </h3>
-              <p tw='text-mildGray font-semibold w-11/12 mb-4'>
+              </h1>
+              <h2 tw='mb-8 lg:(fontSize[1.75rem] lineHeight[2rem] mt-14 mb-14)'>
                 Fill out the form below and we’ll get back to you within 24
                 hours
-              </p>
+              </h2>
+            </div>
+            <div>
               <Formik
                 initialValues={initialValues}
                 validationSchema={contactPageValidationSchema}
@@ -260,7 +232,7 @@ const ContactForm = () => {
                 )}
               </Formik>
             </div>
-          </ContentWrapper>
+          </div>
         </PageLayoutWrapper>
       </div>
     </Layout>

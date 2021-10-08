@@ -209,7 +209,7 @@ const radioOptions = [
     radioValue: "email",
   },
   {
-    radioKey: "Text Message",
+    radioKey: "Text SMS",
     radioValue: "text-message",
   },
 ];
@@ -220,22 +220,24 @@ const RadioGroup = ({ label, ...props }) => {
   return (
     <div tw='col-span-1'>
       <StyledLabel htmlFor={props.id || props.name}>{label}</StyledLabel>
-      <div name={field.name} {...props}>
+      <div name={field.name} {...props} tw='flex flex-wrap'>
         {radioOptions.map((el, i) => {
           return (
             <Fragment key={el.radioKey}>
-              <input
-                type='radio'
-                id={el.radioValue}
-                {...field}
-                // override the value property from ...field, since this is the individual
-                // radio btn value, and not the value of the entire field
-                value={el.radioValue}
-                checked={field.value === el.radioValue}
-              ></input>
-              <label htmlFor={el.radioValue} tw='ml-1 mr-6'>
-                {el.radioKey}
-              </label>
+              <div>
+                <input
+                  type='radio'
+                  id={el.radioValue}
+                  {...field}
+                  // override the value property from ...field, since this is the individual
+                  // radio btn value, and not the value of the entire field
+                  value={el.radioValue}
+                  checked={field.value === el.radioValue}
+                ></input>
+                <label htmlFor={el.radioValue} tw='ml-1 mr-6'>
+                  {el.radioKey}
+                </label>
+              </div>
             </Fragment>
           );
         })}

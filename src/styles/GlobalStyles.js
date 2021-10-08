@@ -13,7 +13,7 @@ const customStyles = css({
     fontFamily: theme`fontFamily.sans`,
     fontWeight: "600", //semibold
     fontSize: "1.5rem", //24px
-    lineHeight: "1.625rem", //26px
+    lineHeight: "2.15rem", //26px
     color: theme`colors.orangeAmber`,
   },
   h2: {

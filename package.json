@@ -8,7 +8,7 @@
     "gatsby"
   ],
   "scripts": {
-    "develop": "gatsby develop",
+    "dev": "gatsby develop -p $PORT",
     "start": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
@@ -36,6 +36,9 @@
     "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-source-filesystem": "^3.12.0",
     "gatsby-transformer-sharp": "^3.12.0",
+    "gaxios": "^4.3.2",
+    "googleapis": "^88.2.0",
+    "multiparty": "^4.2.2",
     "popmotion": "^9.4.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",

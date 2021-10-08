@@ -62,7 +62,7 @@ const snapValidationSchema = Yup.object({
     .max(20, "Must be 20 characters or less")
     .required("Required"),
   email: Yup.string().email("Invalid email addresss").required("Required"),
-  video: Yup.mixed()
+  file: Yup.mixed()
     .test(
       "fileFormat",
       "Unsupported file type",

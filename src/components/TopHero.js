@@ -12,7 +12,9 @@ export default function TopHero() {
         {/* <div classNmae='break'></div> */}
         <div tw='flex flex-wrap justify-center w-full max-w-md mx-auto mt-20'>
           <div id='main-header' tw='w-11/12 mb-4'>
-            <h1 tw='text-center'>Bring your space to the next level</h1>
+            <h1 tw='text-center text-dark lg:(fontSize[2.15rem] lineHeight[3.15rem])'>
+              Bring your space to the next level
+            </h1>
           </div>
           <Link to={`/contact/`}>
             <Button variant='primary' id='hero-btn' type='button' tw='mt-4'>

@@ -9,20 +9,22 @@ module.exports = {
         16: "4rem",
       },
       backgroundImage: (theme) => ({
-        "shower-ptrn":
-          "url('https://daniellopezdesign.nyc3.digitaloceanspaces.com/BBS/category-texture-tiles/shower-tile-texture.jpg')",
-        "floor-ptrn":
-          "url('https://daniellopezdesign.nyc3.digitaloceanspaces.com/BBS/category-texture-tiles/floor-tile-texture.jpg')",
         "cbnt-ptrn":
           "url('https://daniellopezdesign.nyc3.digitaloceanspaces.com/BBS/category-texture-tiles/cabinets-tile-texture.jpg')",
-        "mural-ptrn":
-          "url('https://daniellopezdesign.nyc3.digitaloceanspaces.com/BBS/category-texture-tiles/mural-tile-texture.jpg')",
         "closet-ptrn":
           "url('https://daniellopezdesign.nyc3.digitaloceanspaces.com/BBS/category-texture-tiles/closets-tile-texture.jpg')",
-        "woodrpr-ptrn":
-          "url('https://daniellopezdesign.nyc3.digitaloceanspaces.com/BBS/category-texture-tiles/wood-repairs-tile-texture.jpg')",
+        "custom-ptrn":
+          "url('https://daniellopezdesign.nyc3.digitaloceanspaces.com/BBS/category-texture-tiles/custom-tile-texture.jpg')",
+        "floor-ptrn":
+          "url('https://daniellopezdesign.nyc3.digitaloceanspaces.com/BBS/category-texture-tiles/floor-tile-texture.jpg')",
         "illus-ptrn":
           "url('https://daniellopezdesign.nyc3.digitaloceanspaces.com/BBS/category-texture-tiles/illustrations-tile-texture.jpg')",
+        "mural-ptrn":
+          "url('https://daniellopezdesign.nyc3.digitaloceanspaces.com/BBS/category-texture-tiles/mural-tile-texture.jpg')",
+        "shower-ptrn":
+          "url('https://daniellopezdesign.nyc3.digitaloceanspaces.com/BBS/category-texture-tiles/shower-tile-texture.jpg')",
+        "woodrpr-ptrn":
+          "url('https://daniellopezdesign.nyc3.digitaloceanspaces.com/BBS/category-texture-tiles/wood-repairs-tile-texture.jpg')",
       }),
       colors: {
         dark: "#232323",
