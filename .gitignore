@@ -142,6 +142,7 @@ public
 
 #videos
 src/videos/*.mp4
+workPortfolio/*.mp4
 
 #typescript declaration
 .d.ts

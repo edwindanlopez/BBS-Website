@@ -8,18 +8,22 @@ import { DialogContext } from "./DialogContext";
 import PaginateButton from "./PaginateButton";
 import { DialogContent as ReachDialogContent } from "@reach/dialog";
 import "@reach/dialog/styles.css";
+import Video from "../../components/Video";
 
 export default function DialogContent() {
   // pull in dialog and image slide values from react context
   const { imgNode, direction, setImgNode, setShowDialog, imageSlides } =
     useContext(DialogContext);
 
-  const page = imageSlides.indexOf(imgNode);
+  const page = imageSlides.findIndex((el) => el.name === imgNode.name);
 
   const paginate = (newDirection) => {
     // cycle images indefinitely by wrapping array index back at the beginning
     const newImageIndex = wrap(0, imageSlides.length, page + newDirection);
     const newImageNode = imageSlides[newImageIndex];
+    console.log("New direction: ", newDirection);
+    console.log("newImageIndex: ", newImageIndex);
+    console.log("newImageNode: ", newImageNode);
     setImgNode([newImageNode, newDirection]);
   };
 
@@ -117,20 +121,29 @@ export default function DialogContent() {
             }}
             tw='w-screen h-screen md:height[75vh]'
           >
-            <GatsbyImage
-              image={imageSlides[page].gatsbyImageData}
-              alt='Temp Alt tag'
-              // style - Spread into the default styles of the wrapper element
-              style={{
-                height: "100%",
-                width: "100%",
-              }}
-              // imgStyle- Spread into the default styles of the actual img element
-              imgStyle={{
-                objectFit: "contain",
-                objectPosition: "center",
-              }}
-            />
+            {imgNode.childImageSharp ? (
+              <GatsbyImage
+                image={imageSlides[page].childImageSharp.gatsbyImageData}
+                alt={imageSlides[page].name}
+                // style - Spread into the default styles of the wrapper element
+                style={{
+                  height: "100%",
+                  width: "100%",
+                }}
+                // imgStyle- Spread into the default styles of the actual img element
+                imgStyle={{
+                  objectFit: "contain",
+                  objectPosition: "center",
+                }}
+              />
+            ) : (
+              <Video
+                videoSrcURL={imgNode.video}
+                controls
+                autoPlay
+                tw='h-screen mx-auto md:height[75vh]'
+              />
+            )}
           </motion.div>
         </AnimatePresence>
       </div>

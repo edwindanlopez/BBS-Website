@@ -27,6 +27,9 @@ module.exports = async (graphql, actions) => {
     // pass both the slug and absolute path without trailing slash
     // to use for querying in the WorkDetailPageTemplate
     result.data.allMdx.edges.forEach((edge) => {
+      // for some reason when filtering allMdx with a fileAbsolutePath, gatsby includes the trailing slash which can
+      // cause problems when querying with parameters. This is the reason for manually removing the trailing slash here
+      // to then pass down to the page template
       const removedTrailingSlash = edge.node.slug.replace(/\/$/gm, "");
 
       createPage({

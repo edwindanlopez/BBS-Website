@@ -8,12 +8,15 @@ import WorkDetailPageWrapper from "../components/layoutWrappers/WorkDetailPageWr
 import InfoCard from "../components/detailPageInfoCard";
 import Lightbox from "../components/Lightbox/Index";
 import { DialogContext } from "../components/Lightbox/DialogContext";
+import Video from "../components/Video";
 
 const WorkDetailPageTemplate = ({ data }) => {
-  const [imageSlides, setImageSlides] = useState(null);
+  const [imageSlides, setImageSlides] = useState(null); // array of objects
   const [[imgNode, direction], setImgNode] = React.useState([false, 0]);
   const [showDialog, setShowDialog] = React.useState(false);
-  const nodes = data.allFile.nodes;
+  const frontMatter = data.mdx.frontmatter;
+  const incomingImages = data.allFile.nodes;
+  const incomingVideos = frontMatter.videos;
 
   const handleOpen = (imageFromNode) => {
     setShowDialog(true);
@@ -33,13 +36,29 @@ const WorkDetailPageTemplate = ({ data }) => {
   );
 
   useEffect(() => {
-    let images = [];
-    nodes &&
-      nodes.map((node) => {
-        return images.push(node.childImageSharp);
-      });
-    setImageSlides(images);
-  }, [nodes]);
+    async function compileWork(images, videos) {
+      let compiledWork = [];
+      await new Promise((resolve, reject) => {
+        resolve(images.map((node) => compiledWork.push(node)));
+      })
+        .then((result) => {
+          videos.map((vidUrl) => {
+            const vidName = vidUrl
+              .substring(vidUrl.lastIndexOf("/") + 1)
+              .replace(".MOV", "");
+            return compiledWork.push({ video: vidUrl, name: vidName });
+          });
+          console.log("Logging compiled work: ", compiledWork);
+        })
+        .then(() => {
+          return setImageSlides(compiledWork);
+        })
+        .catch((error) => {
+          console.log("Promise error: ", error);
+        });
+    }
+    compileWork(incomingImages, incomingVideos);
+  }, [incomingImages, incomingVideos]);
 
   return (
     <Layout seoTitle={data.mdx.frontmatter.title} tw='bg-dark'>
@@ -48,23 +67,37 @@ const WorkDetailPageTemplate = ({ data }) => {
           <DialogContext.Provider value={providerVal}>
             <Lightbox />
           </DialogContext.Provider>
-          {nodes.map((node) => {
-            const imageFromNode = node.childImageSharp;
-            return (
-              <div
-                tw='flex aspect-w-4 aspect-h-3 justify-center items-center mb-3 md:mb-0'
-                key={node.childImageSharp.id}
-              >
-                <PreviewButton onClick={() => handleOpen(imageFromNode)}>
-                  <GatsbyImage
-                    image={getImage(imageFromNode)}
-                    alt={node.name}
-                    tw='h-full w-full object-center object-cover'
-                  />
-                </PreviewButton>
-              </div>
-            );
-          })}
+          {imageSlides &&
+            // node will be an object either containing gatsbyImageData & name, OR, video url
+            imageSlides.map((node) => {
+              if (node.childImageSharp) {
+                return (
+                  <div
+                    tw='flex aspect-w-4 aspect-h-3 justify-center items-center mb-3 md:mb-0'
+                    key={node.childImageSharp.id}
+                  >
+                    <PreviewButton onClick={() => handleOpen(node)}>
+                      <GatsbyImage
+                        image={getImage(node.childImageSharp.gatsbyImageData)}
+                        alt={node.name}
+                        tw='h-full w-full object-center object-cover'
+                      />
+                    </PreviewButton>
+                  </div>
+                );
+              } else {
+                return (
+                  <div
+                    tw='flex aspect-w-4 aspect-h-3 justify-center items-center mb-3 object-cover object-center overflow-hidden md:mb-0'
+                    key={node.video}
+                  >
+                    <PreviewButton onClick={() => handleOpen(node)}>
+                      <Video videoSrcURL={node.video} tw='w-full h-full' />
+                    </PreviewButton>
+                  </div>
+                );
+              }
+            })}
         </GridWrapper>
       </WorkDetailPageWrapper>
       <InfoCard {...data.mdx} />
@@ -88,6 +121,7 @@ export const getWork = graphql`
         subhead
         location
         date
+        videos
       }
       body
     }
