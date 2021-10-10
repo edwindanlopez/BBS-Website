@@ -59,7 +59,7 @@ export default function TopHero() {
             tw='w-full h-full opacity-100 object-cover object-center md:block md:height[29rem]'
           >
             <source
-              src='https://daniellopezdesign.nyc3.digitaloceanspaces.com/BBS/videos/top-hero-video-empty-room.mp4'
+              src='https://res.cloudinary.com/bldrscove/video/upload/v1633839226/BBS/top-hero-video-empty-room-sm_kpkhvy.mp4'
               type='video/mp4'
             />
             {/*Fallback image if video can't load*/}

@@ -42,12 +42,13 @@ const WorkDetailPageTemplate = ({ data }) => {
         resolve(images.map((node) => compiledWork.push(node)));
       })
         .then((result) => {
-          videos.map((vidUrl) => {
-            const vidName = vidUrl
-              .substring(vidUrl.lastIndexOf("/") + 1)
-              .replace(".MOV", "");
-            return compiledWork.push({ video: vidUrl, name: vidName });
-          });
+          videos &&
+            videos.map((vidUrl) => {
+              const vidName = vidUrl
+                .substring(vidUrl.lastIndexOf("/") + 1)
+                .replace(".MOV", "");
+              return compiledWork.push({ video: vidUrl, name: vidName });
+            });
           console.log("Logging compiled work: ", compiledWork);
         })
         .then(() => {
@@ -92,13 +93,7 @@ const WorkDetailPageTemplate = ({ data }) => {
                     key={node.video}
                   >
                     <PreviewButton onClick={() => handleOpen(node)}>
-                      <Video
-                        videoSrcURL={node.video}
-                        videoTitle={node.name}
-                        autoPlay
-                        controls
-                        tw='w-full h-full'
-                      />
+                      <Video videoSrcURL={node.video} tw='w-full h-full' />
                     </PreviewButton>
                   </div>
                 );

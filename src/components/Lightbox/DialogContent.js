@@ -21,9 +21,6 @@ export default function DialogContent() {
     // cycle images indefinitely by wrapping array index back at the beginning
     const newImageIndex = wrap(0, imageSlides.length, page + newDirection);
     const newImageNode = imageSlides[newImageIndex];
-    console.log("New direction: ", newDirection);
-    console.log("newImageIndex: ", newImageIndex);
-    console.log("newImageNode: ", newImageNode);
     setImgNode([newImageNode, newDirection]);
   };
 
@@ -119,7 +116,7 @@ export default function DialogContent() {
                 paginate(-1);
               }
             }}
-            tw='w-screen h-screen md:height[75vh]'
+            tw='w-screen h-screen lg:height[75vh]'
           >
             {imgNode.childImageSharp ? (
               <GatsbyImage
@@ -141,7 +138,7 @@ export default function DialogContent() {
                 videoSrcURL={imgNode.video}
                 controls
                 autoPlay
-                tw='h-screen mx-auto md:height[75vh]'
+                tw='h-screen mx-auto lg:height[75vh]'
               />
             )}
           </motion.div>
