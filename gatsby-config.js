@@ -44,7 +44,7 @@ module.exports = {
             resolve: "gatsby-remark-embed-video",
             options: {
               noIframeBorder: true, //Optional: Disable insertion of <style> border: 0
-              // loadingStrategy: "lazy", //Optional: Enable support for lazy-load offscreen iframes. Default is disabled.
+              loadingStrategy: "lazy", //Optional: Enable support for lazy-load offscreen iframes. Default is disabled.
               //Optional: Override URL of a service provider, e.g to enable youtube-nocookie support
               // urlOverrides: [
               //   {

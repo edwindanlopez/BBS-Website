@@ -181,7 +181,7 @@ const MultipleFileUploadInput = forwardRef(
     };
     return (
       <div tw='col-span-2 items-center justify-center'>
-        <label htmlFor='uploadAttachment' {...{ labelColor }} tw='w-4 h-4'>
+        <label htmlFor='uploadAttachment' tw='w-4 h-4'>
           {/* {label} */}
           <img
             src={cloudUploadIcon}

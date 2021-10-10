@@ -145,7 +145,6 @@ export default function Snapavid() {
                       ref={fileUploadComponentRef}
                       colSpan='2'
                       label='Click to Attach'
-                      labelColor='light'
                       name='file'
                       id='uploadAttachment'
                       type='file'

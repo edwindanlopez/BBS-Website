@@ -92,7 +92,13 @@ const WorkDetailPageTemplate = ({ data }) => {
                     key={node.video}
                   >
                     <PreviewButton onClick={() => handleOpen(node)}>
-                      <Video videoSrcURL={node.video} tw='w-full h-full' />
+                      <Video
+                        videoSrcURL={node.video}
+                        videoTitle={node.name}
+                        autoPlay
+                        controls
+                        tw='w-full h-full'
+                      />
                     </PreviewButton>
                   </div>
                 );
