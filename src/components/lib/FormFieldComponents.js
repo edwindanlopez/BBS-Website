@@ -338,7 +338,7 @@ const StyledErrorMessage = styled.div({
 });
 
 const StyledLabel = styled.label(({ labelColor }) => [
-  tw`w-full text-lightGray bg-dark fontSize[.75rem]`,
+  tw`w-full text-lightGray fontSize[.75rem]`,
   labelColor === "light" && tw`text-beige`,
 ]);
 
