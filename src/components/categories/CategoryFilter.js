@@ -19,9 +19,8 @@ export default function CategoryFilter({ allCategories, category }) {
         <Link to={`/work/`}>
           <div
             css={[
-              // style the "all" category as selected
               tw`w-12 h-12 rounded-full bg-pasteleGreen m-auto p-2 flex justify-center items-center`,
-              category === undefined && tw`border-2 border-orangeAmber`,
+              category === "all" && tw`border-2 border-orangeAmber`,
             ]}
           >
             <img src={allIcon} alt='select-all-icon' tw='w-3/4' />

@@ -49,7 +49,6 @@ const WorkDetailPageTemplate = ({ data }) => {
                 .replace(".MOV", "");
               return compiledWork.push({ video: vidUrl, name: vidName });
             });
-          console.log("Logging compiled work: ", compiledWork);
         })
         .then(() => {
           return setImageSlides(compiledWork);
