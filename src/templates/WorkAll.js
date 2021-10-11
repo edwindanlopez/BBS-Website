@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, graphql } from "gatsby";
+import { Link } from "gatsby";
 import "twin.macro";
 
 import Layout from "../components/layoutWrappers/Layout";
@@ -13,8 +13,6 @@ import Pagination from "../components/Pagination";
 const WorkAll = ({
   pageContext: { edges, category, allCategories, numPages, ...rest },
 }) => {
-  console.log("Edges: ", edges);
-  console.log("Edges length: ", edges.length);
   return (
     <Layout seoTitle='Work'>
       <PageLayoutWrapper>

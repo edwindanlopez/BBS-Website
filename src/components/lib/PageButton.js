@@ -3,15 +3,11 @@ import tw from "twin.macro";
 import { Link } from "gatsby";
 
 function PageButton({ qty, pageSlug, ...rest }) {
-  console.log("Rest of properties", { ...rest });
-  console.log("Page slug", pageSlug);
-  console.log("Qty: ", qty);
   return (
     <div tw='flex justify-center items-center'>
       {qty.map((num) => {
         const active = Boolean(num === rest.currentPage);
         const pageLink = num === 0 ? pageSlug : `${pageSlug}page/${num}/`;
-        console.log("Num: ", num);
         return (
           <Link to={pageLink} key={num}>
             <div

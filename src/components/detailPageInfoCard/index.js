@@ -51,18 +51,22 @@ export default function DetailPageCard(mdx) {
               <h1 tw='text-mossGreen mt-2 mb-2'>{mdx.frontmatter.title}</h1>
               <h3 tw='mt-2 mb-4'>{mdx.frontmatter.subhead}</h3>
               <Collapse isOpen={isOpen}>
-                <span tw='block'>
-                  <h3 tw='inline-block'>Area / Location:</h3>
-                  <h3 tw='inline-block ml-2 text-softGreen'>
-                    {mdx.frontmatter.location}
-                  </h3>
-                </span>
-                <span tw='block mb-4'>
-                  <h3 tw='inline-block pt-2 pb-2'>Date:</h3>
-                  <h3 tw='inline-block ml-2 pt-2 pb-2 text-softGreen'>
-                    {mdx.frontmatter.date}
-                  </h3>
-                </span>
+                {mdx.frontmatter.location && mdx.frontmatter.date && (
+                  <div>
+                    <span tw='block'>
+                      <h3 tw='inline-block'>Area / Location:</h3>
+                      <h3 tw='inline-block ml-2 text-softGreen'>
+                        {mdx.frontmatter.location}
+                      </h3>
+                    </span>
+                    <span tw='block mb-4'>
+                      <h3 tw='inline-block pt-2 pb-2'>Date:</h3>
+                      <h3 tw='inline-block ml-2 pt-2 pb-2 text-softGreen'>
+                        {mdx.frontmatter.date}
+                      </h3>
+                    </span>
+                  </div>
+                )}
                 <div tw='mb-4'>
                   <MDXRenderer>{mdx.body}</MDXRenderer>
                 </div>

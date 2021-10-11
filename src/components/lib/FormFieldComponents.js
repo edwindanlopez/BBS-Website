@@ -274,7 +274,7 @@ const TextArea = ({ label, ...props }) => {
       <div tw='relative'>
         <textarea
           className='text-area'
-          tw='w-full h-32 border text-lg text-mildGray rounded-md border-gray-300 p-4 mt-4'
+          tw='w-full h-32 border text-lg text-mildGray rounded-md border-gray-300 p-4 mt-4 resize-none'
           {...field}
           {...props}
         />
