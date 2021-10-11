@@ -18,7 +18,7 @@ import {
   TextArea,
 } from "../lib/FormFieldComponents";
 
-export default function Snapavid() {
+export default function ImageUploadSection() {
   const [modalStatus, setModalStatus] = useState({
     isOpen: false,
     success: null,
