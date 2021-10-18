@@ -11,15 +11,17 @@ export default function Modal({ modalStatus, setModalStatus }) {
 
   const handleClick = useCallback(
     (e) => {
-      setModalStatus({
-        ...modalStatus,
-        isOpen: false,
-        success: null,
-        failed: null,
-        err: null,
+      setModalStatus((prevModalStatus) => {
+        return {
+          ...prevModalStatus,
+          isOpen: false,
+          success: null,
+          failed: null,
+          err: null,
+        };
       });
     },
-    [modalStatus, setModalStatus]
+    [setModalStatus]
   );
 
   return (
@@ -32,9 +34,11 @@ export default function Modal({ modalStatus, setModalStatus }) {
       }}
       isOpen={isOpen}
       onDismiss={() =>
-        setModalStatus({
-          ...modalStatus,
-          isOpen: true,
+        setModalStatus((prevStatus) => {
+          return {
+            ...prevStatus,
+            isOpen: true,
+          };
         })
       }
       aria-label='image in lightbox mode'
@@ -60,7 +64,7 @@ const SuccessMessage = ({ onItemClick }) => {
       className='modal-wrapper'
       tw='border rounded-md border-lightGray shadow-2xl pl-16 pr-16 pt-16 pb-14 bg-white text-center'
     >
-      <h1>Thank you for contacting us!</h1>
+      <h1>Success! Thanks for contacting us.</h1>
       <div tw='w-96'>
         <p tw='mt-4 text-lightGray'>
           Your message has been successfully submitted.

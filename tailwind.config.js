@@ -1,8 +1,14 @@
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 module.exports = {
   mode: "jit",
   purge: ["./public/**/*.html", "./src/**/*.{js,jsx,ts,tsx,vue}", "swiper/"],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    screens: {
+      xs: "415px",
+      ...defaultTheme.screens,
+    },
     extend: {
       backgroundSize: {
         "50%": "50%",

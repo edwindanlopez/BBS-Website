@@ -148,3 +148,6 @@ workPortfolio/*.mp4
 .d.ts
 
 .vercel
+
+# Local Netlify folder
+.netlify

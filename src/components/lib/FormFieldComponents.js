@@ -6,14 +6,16 @@ import React, {
   Fragment,
 } from "react";
 import tw, { css, styled } from "twin.macro";
+import * as Yup from "yup";
 import { useField } from "formik";
+
 import PulseLoader from "react-spinners/PulseLoader";
 import closeRemoveIcon from "../../images/close-remove-icon.svg";
-import cloudUploadIcon from "../../images/cloud-upload-icon.svg";
+import cloudUploadIconLight from "../../images/cloud-upload-icon-light.svg";
+import cloudUploadIconDark from "../../images/cloud-upload-icon-dark.svg";
 
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
-
 const characterLimit = 220;
 
 const TextInput = ({ label, colSpan, labelColor, ...props }) => {
@@ -48,69 +50,102 @@ const TextInput = ({ label, colSpan, labelColor, ...props }) => {
 };
 
 const ImageFileUploadInput = forwardRef(
-  (
-    { label, setFieldValue, values, setFieldError, labelColor, ...props },
-    ref
-  ) => {
-    const [thumb, setThumb] = useState(null);
-    const [field, meta, helpers] = useField(props); //destructured placeholder important
-    const { setTouched } = helpers;
+  ({ label, labelColor, values, setFieldValue, ...props }, ref) => {
+    const [thumb, setThumb] = useState("");
+    const [updatingThumbnail, setUpdatingThumbnail] = useState(false);
+    const [field, meta, helpers] = useField(props); //destructured argument order matters
+    const { error } = meta;
+    const { setValue } = helpers;
+    const removeUpload = () => {
+      setValue("file", "");
+    };
+    const imageDetails = {
+      name: values.file.name,
+      type: values.file.type,
+      size: values.file.size,
+    };
 
     useEffect(() => {
-      if (values.file && values.file !== null) {
+      console.log("Field Values: ", values);
+      if (values.file.size > 1) {
+        setUpdatingThumbnail(true);
         let reader = new FileReader();
         reader.onload = () => {
-          setThumb(reader.result);
+          // convert to base64 data url
+          setTimeout(() => {
+            setThumb(reader.result);
+            setUpdatingThumbnail(false);
+          }, 1500);
         };
         reader.readAsDataURL(values.file);
       }
     }, [values.file]);
 
-    const handleChange = (evt) => {
-      setTouched(true);
-      setFieldValue("file", evt.target.files[0]);
-    };
-
-    const removeUpload = (evt) => {
-      // remove formik's fieldValue instance
-      setFieldValue("file", null);
-    };
-
     return (
       <div tw='col-span-2 items-center justify-center'>
-        <StyledLabel htmlFor={props.id || props.name} {...{ labelColor }}>
-          {label}
+        <StyledLabel htmlFor={props.id} {...{ labelColor }}>
+          <div tw='flex flex-wrap justify-center items-center'>
+            <span tw='flex items-center p-6 rounded-md hover:backgroundColor[#f3f3f5] cursor-pointer'>
+              <img
+                src={cloudUploadIconDark}
+                alt='Image upload icon'
+                tw='w-12 mr-2'
+              />
+              {label}
+            </span>
+          </div>
         </StyledLabel>
         <input
+          ref={ref} // passed to parent to clear values after form submission
+          className='visually-hidden'
+          tw='text-mildGray w-full mt-2'
           {...field}
           {...props}
-          value={""} // overwrite value being spread in by ...field
-          ref={ref}
-          onChange={(evt) => handleChange(evt)}
-          tw='text-mildGray w-full mt-2'
+          value='' // override value from ...field in order to setFieldValue onChange
+          onChange={(event) => {
+            setFieldValue("file", event.currentTarget.files[0]);
+          }}
         />
-        {values.file !== null && (
+        {values.file.size > 1 && (
           <ImageUploadPreviewArea
             thumb={thumb}
-            values={values}
+            updatingThumbnail={updatingThumbnail}
             meta={meta}
+            imageDetails={imageDetails}
             removeUpload={removeUpload}
           />
         )}
+        {meta.touched && meta.error ? (
+          <StyledErrorMessage>{error}</StyledErrorMessage>
+        ) : null}
       </div>
     );
   }
 );
 
-const ImageUploadPreviewArea = ({ thumb, values, meta, removeUpload }) => {
-  const formatBytes = (bytes, decimals = 2) => {
-    if (bytes === 0) return "0 Bytes";
+const ImageUploadPreviewArea = ({
+  thumb,
+  updatingThumbnail,
+  meta,
+  imageDetails,
+  removeUpload,
+}) => {
+  const [bytes, setBytes] = useState(0);
+
+  console.log("Incoming bytes: ", imageDetails.size);
+
+  useEffect(() => {
+    const decimals = 2;
     const k = 1000;
     const dm = decimals < 0 ? 0 : decimals;
     const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
-  };
+    const i = Math.floor(Math.log(imageDetails.size) / Math.log(k));
+    const formatedBytes =
+      parseFloat((imageDetails.size / Math.pow(k, i)).toFixed(dm)) +
+      " " +
+      sizes[i];
+    setBytes(formatedBytes);
+  }, [imageDetails.size]);
 
   return (
     <div>
@@ -123,43 +158,51 @@ const ImageUploadPreviewArea = ({ thumb, values, meta, removeUpload }) => {
           tw='w-9/12 flex flex-wrap justify-center items-center mr-auto ml-auto'
         >
           <div className='img-wrapper' tw='relative w-full'>
-            <button
-              className='remove-image-upload'
-              tw='absolute top-5 right-5 rounded-full shadow-md'
-              type='button'
-              onClick={(event) => removeUpload(event)}
-            >
-              <img src={closeRemoveIcon} alt='close-remove-icon' />
-            </button>
-            {thumb === null ? (
+            {thumb === "" ? (
               <div tw='flex w-full justify-center'>
                 <PulseLoader color='#215130' size={10} />
               </div>
             ) : (
-              <img
-                src={thumb}
-                tw='w-full rounded-md ml-auto mr-auto shadow-lg'
-                alt='attached-project-visual'
-              />
+              <div tw='relative flex flex-wrap'>
+                <div tw='relative flex flex-wrap justify-center items-center'>
+                  <div tw='relative flex flex-wrap justify-center items-center'>
+                    {!updatingThumbnail && (
+                      <button
+                        className='remove-image-upload'
+                        tw='absolute z-10 top-5 right-5 rounded-full shadow-md'
+                        type='button'
+                        onClick={(event) => removeUpload(event)}
+                      >
+                        <img src={closeRemoveIcon} alt='close-remove-icon' />
+                      </button>
+                    )}
+                    {updatingThumbnail && (
+                      <div tw='absolute'>
+                        <PulseLoader color='#fefefe' size={10} />
+                      </div>
+                    )}
+                    <img
+                      src={thumb}
+                      tw='w-full rounded-md ml-auto mr-auto shadow-lg'
+                      alt='attached-project-visual'
+                    />
+                  </div>
+                  {!updatingThumbnail && (
+                    <div
+                      className='img-details'
+                      tw='w-full flex flex-wrap mt-2 mb-2 ml-auto mr-auto'
+                    >
+                      <p tw='fontSize[.85rem] text-mildGray w-full'>{`Name: ${imageDetails.name}`}</p>
+                      <p tw='fontSize[.85rem] text-mildGray w-full'>{`Type: ${imageDetails.type}`}</p>
+                      <p tw='fontSize[.85rem] text-mildGray w-full'>{`Size: ${bytes}`}</p>
+                    </div>
+                  )}
+                </div>
+              </div>
             )}
           </div>
-          <div
-            className='img-details'
-            tw='w-full flex flex-wrap mt-2 mb-2 ml-auto mr-auto'
-          >
-            <p tw='fontSize[.85rem] text-mildGray w-full'>{`Name: ${
-              values.file && values.file.name
-            }`}</p>
-            <p tw='fontSize[.85rem] text-mildGray w-full'>{`Type: ${
-              values.file && values.file.type
-            }`}</p>
-            <p tw='fontSize[.85rem] text-mildGray w-full'>{`Size: ${formatBytes(
-              values.file && values.file.size,
-              2
-            )}`}</p>
-          </div>
           {meta.touched && meta.error ? (
-            <StyledErrorMessage>{`${meta.error}. File size must be under 5 MB`}</StyledErrorMessage>
+            <StyledErrorMessage>{`${meta.error}. File size must be under 6 MB`}</StyledErrorMessage>
           ) : null}
         </div>
       </div>
@@ -181,10 +224,10 @@ const MultipleFileUploadInput = forwardRef(
     };
     return (
       <div tw='col-span-2 items-center justify-center'>
-        <label htmlFor='uploadAttachment' tw='w-4 h-4'>
+        <label htmlFor='uploadAttachments' tw='w-4 h-4'>
           {/* {label} */}
           <img
-            src={cloudUploadIcon}
+            src={cloudUploadIconLight}
             alt='Attach file'
             tw='w-24 p-3 mx-auto mt-4 bg-mossGreen bg-opacity-20 rounded-md hover:(bg-beige bg-opacity-20 rounded-md)'
           />
@@ -346,7 +389,7 @@ export {
   TextInput,
   RadioGroup,
   ImageFileUploadInput,
-  MultipleFileUploadInput,
+  // MultipleFileUploadInput,
   Dropdown,
   TextArea,
   DisplayFormErrors,

@@ -7,7 +7,6 @@ import { Formik, Form } from "formik";
 
 import Layout from "../components/layoutWrappers/Layout";
 import PageLayoutWrapper from "../components/layoutWrappers/PageLayoutWrapper";
-import ContentWrapper from "../components/layoutWrappers/ContentWrapper";
 import Button from "../components/lib/Button";
 import ParseAttachmentAsBase64 from "../components/lib/ParseAttachmentAsBase64";
 import {
@@ -41,7 +40,7 @@ const ContactForm = () => {
       setTimeout(() => {
         axios({
           method: "post",
-          url: process.env.FORM_SUBMISSION_URL,
+          url: process.env.CONTACT_FORM_SUBMISSION_URL,
           data: formValues,
         })
           .then((res) => {
@@ -86,7 +85,7 @@ const ContactForm = () => {
     email: "",
     message: "",
     city: "",
-    file: null,
+    file: "",
   };
 
   return (
@@ -202,13 +201,13 @@ const ContactForm = () => {
                       ref={fileUploadComponentRef}
                       colSpan='2'
                       label='Attach Photo'
+                      id='file'
                       name='file'
                       type='file'
                       capture='environment'
                       accept='image/*'
-                      setFieldValue={formProps.setFieldValue}
-                      setFieldError={formProps.setFieldError}
                       values={formProps.values}
+                      setFieldValue={formProps.setFieldValue}
                     />
                     <input type='hidden' name='you_shall_not_pass_bot' />
                     <Button type='submit' variant='primary' tw='col-span-2'>
