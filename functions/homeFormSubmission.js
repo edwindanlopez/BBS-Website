@@ -26,7 +26,7 @@ exports.handler = async (event, context) => {
           email: process.env.SENDGRID_VERIFIED_SENDER,
         },
         subject: "BBS - Thanks for reaching out!",
-        templateId: "d-4218e77a4dbc4d5eb91da6d35411c0ad",
+        templateId: process.env.TEMPLATE_ID_HOME_PAGE,
         dynamic_template_data: {
           subject: "Project Inquiry",
           fullName: fullName,
