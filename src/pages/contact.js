@@ -40,7 +40,7 @@ const ContactForm = () => {
       setTimeout(() => {
         axios({
           method: "post",
-          url: "/.netlify/functions/contactFormSubmission",
+          url: process.env.GATSBY_CONTACT_FORM_SUBMISSION_URL,
           data: formValues,
         })
           .then((res) => {
