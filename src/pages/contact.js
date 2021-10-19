@@ -40,7 +40,7 @@ const ContactForm = () => {
       setTimeout(() => {
         axios({
           method: "post",
-          url: process.env.CONTACT_FORM_SUBMISSION_URL,
+          url: process.env.GATSBY_CONTACT_FORM_SUBMISSION_URL,
           data: formValues,
         })
           .then((res) => {
