@@ -30,7 +30,7 @@ export default function ImageUploadSection() {
     const deleteToken = e.currentTarget.getAttribute("data-delete-token");
     axios({
       method: "post",
-      url: `https://api.cloudinary.com/v1_1/bldrscove/delete_by_token`,
+      url: `${process.env.GATSBY_CLOUDINARY_DELETE_URL}`,
       headers: { "Content-Type": "application/json" },
       data: {
         token: `${deleteToken}`,

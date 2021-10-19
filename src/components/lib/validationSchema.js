@@ -3,7 +3,7 @@ import { phoneRegExp, characterLimit } from "./FormFieldComponents";
 
 const supportedFormats = ["image/jpg", "image/jpeg", "image/png"];
 
-const ImageMaxFileSize = 6000000;
+const ImageMaxFileSize = 5000000;
 const maxVideoFileSize = 40000000;
 
 const checkFileType = (val) => {

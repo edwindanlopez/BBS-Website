@@ -196,7 +196,7 @@ const ImageUploadPreviewArea = ({
             )}
           </div>
           {meta.touched && meta.error ? (
-            <StyledErrorMessage>{`${meta.error}. File size must be under 6 MB`}</StyledErrorMessage>
+            <StyledErrorMessage>{`${meta.error}. File size must be under 5 MB`}</StyledErrorMessage>
           ) : null}
         </div>
       </div>
