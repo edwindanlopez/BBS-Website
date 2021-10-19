@@ -84,7 +84,7 @@ export default function ImageUploadSection() {
 
     await axios({
       method: "post",
-      url: process.env.GATSBY_HOME_FORM_SUBMISSION_URL,
+      url: "/.netlify/functions/homeFormSubmission",
       data: formData,
       headers: {
         "Content-Type": "application/json",
