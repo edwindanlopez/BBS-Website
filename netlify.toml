@@ -3,6 +3,5 @@
   functions = "functions"
   publish = "public"
 
-[functions]
-included_files = ["utils/**"]
+
 

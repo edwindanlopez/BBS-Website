@@ -1,3 +1,4 @@
+require("dotenv").config();
 const sendgrid = require("@sendgrid/mail");
 sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
 
@@ -26,7 +27,7 @@ exports.handler = async (event, context) => {
           email: process.env.SENDGRID_VERIFIED_SENDER,
         },
         subject: "BBS - Thanks for reaching out!",
-        templateId: process.env.TEMPLATE_ID_HOME_PAGE,
+        templateId: process.env.GATSBY_TEMPLATE_ID_HOME_PAGE,
         dynamic_template_data: {
           subject: "Project Inquiry",
           fullName: fullName,
@@ -37,19 +38,24 @@ exports.handler = async (event, context) => {
       })
       .then((res) => {
         console.log("Successful Result: ", res);
-        resolve({
-          statusCode: 202,
-          message: "Your inquiry was successfully sent!",
-        });
+        resolve(
+          JSON.stringify({
+            statusCode: 202,
+            response: res,
+            message: "Your inquiry was successfully sent!",
+          })
+        );
       })
       .catch((error) => {
         console.log("Error in homeFormSubmission: ", error);
-        reject({
-          statusCode: 500,
-          success: false,
-          error: error,
-          message: "There was a problem with your request",
-        });
+        reject(
+          JSON.stringify({
+            statusCode: 500,
+            success: false,
+            error: error,
+            message: "There was a problem with your request",
+          })
+        );
       });
   });
 

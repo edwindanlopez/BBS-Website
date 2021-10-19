@@ -102,7 +102,7 @@ export default function ImageUploadSection() {
         resetForm();
       })
       .catch((err) => {
-        console.log("Error in uploading to drive: ", err);
+        console.log("Error in submitting form: ", err);
         setUploads([]); //needs to come first
         setModalStatus({
           isOpen: true,

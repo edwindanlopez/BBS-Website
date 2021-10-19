@@ -151,3 +151,6 @@ workPortfolio/*.mp4
 
 # Local Netlify folder
 .netlify
+# @netlify/plugin-gatsby ignores start
+functions/gatsby
+# @netlify/plugin-gatsby ignores end
