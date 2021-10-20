@@ -1,11 +1,9 @@
 import React, { useEffect, useState, forwardRef, Fragment } from "react";
 import tw, { css, styled } from "twin.macro";
-import * as Yup from "yup";
 import { useField } from "formik";
 
 import PulseLoader from "react-spinners/PulseLoader";
 import closeRemoveIcon from "../../images/close-remove-icon.svg";
-import cloudUploadIconLight from "../../images/cloud-upload-icon-light.svg";
 import cloudUploadIconDark from "../../images/cloud-upload-icon-dark.svg";
 
 const phoneRegExp =
@@ -73,18 +71,14 @@ const ImageFileUploadInput = forwardRef(
         };
         reader.readAsDataURL(values.file);
       }
-    }, [values.file]);
+    }, [values]);
 
     return (
       <div tw='col-span-2 items-center justify-center'>
         <StyledLabel htmlFor={props.id} {...{ labelColor }}>
           <div tw='flex flex-wrap justify-center items-center'>
             <span tw='flex items-center p-6 rounded-md hover:backgroundColor[#f3f3f5] cursor-pointer'>
-              <img
-                src={cloudUploadIconDark}
-                alt='Image upload icon'
-                tw='w-12 mr-2'
-              />
+              <img src={cloudUploadIconDark} alt='Upload icon' tw='w-12 mr-2' />
               {label}
             </span>
           </div>
@@ -203,43 +197,6 @@ const ImageUploadPreviewArea = ({
     </div>
   );
 };
-
-const MultipleFileUploadInput = forwardRef(
-  (
-    { setFieldValue, values, setFieldError, label, labelColor, ...props },
-    ref
-  ) => {
-    const [field, meta, helpers] = useField(props); //order important
-    const { setTouched } = helpers;
-    const handleChange = (evt) => {
-      // console.log("Video file: ", evt.target.files[0]);
-      setTouched(true);
-      setFieldValue("file", evt.target.files[0]);
-    };
-    return (
-      <div tw='col-span-2 items-center justify-center'>
-        <label htmlFor='uploadAttachments' tw='w-4 h-4'>
-          {/* {label} */}
-          <img
-            src={cloudUploadIconLight}
-            alt='Attach file'
-            tw='w-24 p-3 mx-auto mt-4 bg-mossGreen bg-opacity-20 rounded-md hover:(bg-beige bg-opacity-20 rounded-md)'
-          />
-        </label>
-        <input
-          multiple
-          {...props}
-          ref={ref}
-          onChange={(evt) => handleChange(evt)}
-          tw='w-full text-beige'
-        />
-        {meta.touched && meta.error ? (
-          <StyledErrorMessage>{`${meta.error}. File size must be under 40 MB`}</StyledErrorMessage>
-        ) : null}
-      </div>
-    );
-  }
-);
 
 const radioOptions = [
   {
@@ -383,7 +340,6 @@ export {
   TextInput,
   RadioGroup,
   ImageFileUploadInput,
-  // MultipleFileUploadInput,
   Dropdown,
   TextArea,
   DisplayFormErrors,

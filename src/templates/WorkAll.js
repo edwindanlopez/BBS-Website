@@ -46,6 +46,7 @@ const WorkAll = ({
               </div>
             );
           }
+          return "";
         })}
         <div tw='sticky bottom-6 z-10 mb-12'>
           <Pagination pages={numPages} {...rest} />

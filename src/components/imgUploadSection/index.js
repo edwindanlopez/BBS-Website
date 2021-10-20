@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import tw from "twin.macro";
 import { StaticImage } from "gatsby-plugin-image";
 import { Formik, Form } from "formik";
@@ -12,7 +12,6 @@ import PageLayoutWrapper from "../layoutWrappers/PageLayoutWrapper";
 import questionMarkTransparent from "../../images/question-mark-transparent.svg";
 import { homePageFormSchema } from "../lib/validationSchema";
 import Modal from "../lib/Modal";
-import ParseAttachmentAsBase64 from "../lib/ParseAttachmentAsBase64";
 import { TextInput, TextArea } from "../lib/FormFieldComponents";
 import CloudinaryUpload from "../CloudinaryUploadButton";
 
@@ -44,6 +43,7 @@ export default function ImageUploadSection() {
               currentState.splice(i, 1);
               setUploads(currentState);
             }
+            return "";
           });
         }
       })
@@ -66,7 +66,7 @@ export default function ImageUploadSection() {
     uploads.map((el, e, arr) => {
       const pathName = el.path;
       const filename = pathName.substring(pathName.lastIndexOf("/") + 1);
-      files.push({
+      return files.push({
         publicUrl: el.secure_url,
         fileName: filename,
         fileType: el.resource_type,

@@ -2,11 +2,6 @@ import React from "react";
 import { Link } from "gatsby";
 import "twin.macro";
 
-const paragraphStyle = {
-  margin: ".5rem  0 2rem",
-  width: "75%",
-};
-
 const ImageCard = ({ title, paragraph, categoryLink, children }) => {
   return (
     <div>

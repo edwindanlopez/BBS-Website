@@ -55,6 +55,7 @@ export default function TopHero() {
             tw='absolute z-10 h-full w-full opacity-70 backgroundColor[#e5ecff] mix-blend-overlay'
           />
           <video
+            muted
             autoPlay
             tw='w-full h-full opacity-100 object-cover object-center md:block md:height[29rem]'
           >

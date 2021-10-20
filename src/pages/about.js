@@ -4,19 +4,8 @@ import { StaticImage } from "gatsby-plugin-image";
 import "twin.macro";
 
 import PageLayoutWrapper from "../components/layoutWrappers/PageLayoutWrapper";
-import ContentWrapper from "../components/layoutWrappers/ContentWrapper";
 import Tile from "../components/ctaTiles/Tile";
 import ImageCard from "../components/lib/ImageCard";
-
-const paragraphStyle = {
-  margin: ".5rem  0 2rem",
-  width: "75%",
-};
-
-const specializationTile = {
-  backgroundColor: "#f1ece6",
-  borderRadius: "15px",
-};
 
 const AboutPage = () => {
   return (

@@ -20,7 +20,6 @@ export default function Lightbox() {
       allowPinchZoom={true}
       onDismiss={() => setShowDialog(false)}
       aria-label='image in lightbox mode'
-      allowPinchZoom={true}
     >
       <DialogContent />
     </DialogOverlay>
