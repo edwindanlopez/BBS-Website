@@ -4,8 +4,11 @@ import { Link } from "gatsby";
 import { theme } from "twin.macro";
 
 import Button from "./lib/Button";
+import useWindowDimensions from "../components/lib/useWindowDimensions";
 
 export default function TopHero() {
+  const { width } = useWindowDimensions();
+
   return (
     <div id='top-hero' tw='flex items-center h-96' style={{ zIndex: "-1" }}>
       <div className='cta-items' tw='absolute w-full'>
@@ -41,50 +44,53 @@ export default function TopHero() {
           </Link>
         </div>
       </div>
-      <div
-        className='video-wrapper'
-        tw='w-full h-full overflow-hidden'
-        style={{ zIndex: "-1" }}
-      >
+      {width >= 992 ? (
         <div
-          className='top-section'
-          tw='relative h-full flex bg-beige flex-wrap justify-center items-center overflow-hidden'
+          className='video-wrapper'
+          tw='w-full h-full overflow-hidden'
+          style={{ zIndex: "-1" }}
         >
           <div
-            className='vid-color-overlay'
-            tw='absolute z-10 h-full w-full opacity-70 backgroundColor[#e5ecff] mix-blend-overlay'
-          />
-          <video
-            muted
-            autoPlay
-            tw='w-full h-full opacity-100 object-cover object-center md:block md:height[29rem]'
+            className='top-section'
+            tw='relative h-full flex bg-beige flex-wrap justify-center items-center overflow-hidden'
           >
-            <source
-              src='https://res.cloudinary.com/bldrscove/video/upload/v1634328885/BBS/Website-Assets/top-hero-video-empty-room-sm_w2lqqy.mp4'
-              type='video/mp4'
+            <div
+              className='vid-color-overlay'
+              tw='absolute z-10 h-full w-full opacity-70 backgroundColor[#e5ecff] mix-blend-overlay'
             />
-            {/*Fallback image if video can't load*/}
-            <StaticImage
-              alt='BBS Hero image of beautiful refurnished white kitchen cabinet'
-              src='../images/bbs-top-hero-image.jpg'
-              tw='w-full h-full object-cover object-center transform scale-150'
-            />
-            <p>Your browser doesn't support HTML5 video.</p>
-          </video>
+            <video
+              muted
+              autoPlay
+              playsInline
+              tw='w-full h-full opacity-100 object-cover object-center md:block md:height[29rem]'
+            >
+              <source
+                src='https://res.cloudinary.com/bldrscove/video/upload/v1634328885/BBS/Website-Assets/top-hero-video-empty-room-sm_w2lqqy.mp4'
+                type='video/mp4'
+              />
+              {/* Fallback image if video can't load */}
+              <StaticImage
+                alt='BBS Hero image of modern open space with wooden floor'
+                src='../images/top-hero-mobile-fallback.jpg'
+                tw='w-full h-full object-cover object-center transform'
+              />
+              <p>Your browser doesn't support HTML5 video.</p>
+            </video>
+          </div>
         </div>
-      </div>
-      {/*Hero image for easy swap between video*/}
-      {/* <div
-        id='hero-img'
-        tw='w-full h-full overflow-hidden'
-        style={{ zIndex: "-1" }}
-      >
-        <StaticImage
-          alt='BBS Hero image of beautiful refurnished white kitchen cabinet'
-          src='../images/bbs-top-hero-image.jpg'
-          tw='w-full h-full object-cover object-center transform scale-150'
-        />
-      </div> */}
+      ) : (
+        <div
+          id='hero-img'
+          tw='w-full h-full overflow-hidden'
+          style={{ zIndex: "-1" }}
+        >
+          <StaticImage
+            alt='BBS Hero image of beautiful refurnished white kitchen cabinet'
+            src='../images/top-hero-mobile-fallback.jpg'
+            tw='w-full h-full object-cover object-center transform'
+          />
+        </div>
+      )}
     </div>
   );
 }

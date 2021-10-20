@@ -6,7 +6,7 @@ const ImageCard = ({ title, paragraph, categoryLink, children }) => {
   return (
     <div>
       <Link to={categoryLink}>
-        <div tw='flex flex-wrap mb-8 rounded-md hover:(ring ring-offset-0 ring-softGreen ring-opacity-30)'>
+        <div tw='flex flex-wrap mb-8 rounded-md'>
           <div
             className='image-wrapper'
             tw='w-full rounded-t-md object-cover overflow-hidden'

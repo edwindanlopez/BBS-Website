@@ -16,7 +16,7 @@ export default function Categories() {
     <PageLayoutWrapper>
       <div tw=' md:width[90%] mx-auto'>
         <Swiper
-          tw='h-32'
+          tw='h-36'
           modules={[Pagination, Navigation, Scrollbar]}
           scrollbar={{ draggable: true }}
           pagination={{
@@ -42,14 +42,18 @@ export default function Categories() {
             {categories.map((el) => (
               <SwiperSlide
                 key={el}
-                style={{ display: "flex", justifyContent: "center" }}
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
               >
                 <Link to={`/category/${el}/`}>
                   <div
                     className={`${el}-tile-texture`}
                     css={[
                       // base styles
-                      tw`h-24 w-24 sm:h-28 sm:w-28 bg-contain flex justify-center items-center rounded-full bg-gradient-to-r from-beige to-tan hover:(border-4 border-orangeAmber)`,
+                      tw`h-24 w-24 sm:h-28 sm:w-28 bg-contain flex justify-center items-center rounded-full bg-gradient-to-r from-beige to-tan hover:(ring-4 ring-offset-0 ring-orangeAmber )`,
                       // conditional styles
                       el === "artistic" &&
                         tw`bg-illus-ptrn flex justify-center items-center after:block after:w-12 after:opacity-100 `,
