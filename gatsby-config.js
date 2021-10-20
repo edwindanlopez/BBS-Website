@@ -24,6 +24,18 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Build Beautiful Spaces`,
+        short_name: `BBS`,
+        start_url: `/`,
+        background_color: `#fefefe`,
+        theme_color: `#505050`,
+        display: `standalone`,
+        icon: `src/images/icon.png`,
+      },
+    },
+    {
       resolve: "gatsby-plugin-web-font-loader",
       options: {
         typekit: {
