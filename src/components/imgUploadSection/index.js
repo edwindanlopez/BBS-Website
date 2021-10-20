@@ -148,14 +148,14 @@ export default function ImageUploadSection() {
                       labelColor='light'
                       name='fullName'
                       type='text'
-                      placeholder='Enter full name'
+                      placeholder='Enter full name *'
                     />
                     <TextInput
                       colSpan='1'
                       labelColor='light'
                       name='email'
                       type='email'
-                      placeholder='Enter Email'
+                      placeholder='Enter Email *'
                     />
                     {uploads && (
                       <CloudinaryUpload
@@ -169,7 +169,7 @@ export default function ImageUploadSection() {
                       label='Description'
                       name='message'
                       type='textArea'
-                      placeholder='Tell us about your project...'
+                      placeholder='Tell us about your project... *'
                     />
                     <Button type='submit' variant='primary' tw='col-span-2'>
                       {formProps.isSubmitting ? (

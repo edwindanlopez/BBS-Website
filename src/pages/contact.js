@@ -129,24 +129,24 @@ const ContactForm = () => {
                   <Form acceptCharset='UTF-8' tw='grid grid-cols-2 gap-7 mt-12'>
                     <TextInput
                       colSpan='1'
-                      label='First Name'
+                      label='First Name *'
                       name='firstName'
                       type='text'
                       placeholder=''
                     />
                     <TextInput
                       colSpan='1'
-                      label='Last Name'
+                      label='Last Name *'
                       name='lastName'
                       type='text'
                       placeholder=''
                     />
                     <RadioGroup
-                      label='Prefered contact method'
+                      label='Prefered contact method *'
                       name='contactMethod'
                     />
                     <Dropdown
-                      label='Subject Inquiry'
+                      label='Subject Inquiry *'
                       name='subject'
                       aria-label='Inquiry select option'
                     >
@@ -172,27 +172,27 @@ const ContactForm = () => {
                     </Dropdown>
                     <TextInput
                       colSpan='1'
-                      label='Phone'
+                      label='Phone *'
                       name='phone'
                       type='phone'
                       placeholder=''
                     />
                     <TextInput
                       colSpan='1'
-                      label='Email'
+                      label='Email *'
                       name='email'
                       type='email'
                       placeholder=''
                     />
                     <TextArea
-                      label='Description'
+                      label='Description *'
                       name='message'
                       type='textArea'
                       placeholder='Tell us about your project...'
                     />
                     <TextInput
                       colSpan='2'
-                      label='City'
+                      label='City *'
                       name='city'
                       type='text'
                       placeholder=''

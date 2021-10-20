@@ -33,7 +33,7 @@ const CategoryTemplate = ({ data, pageContext }) => {
               <p tw='text-lightGray'>{node.excerpt}</p>
               <Link to={`/work/${node.slug}`} tw='h-96'>
                 <p tw='text-sm font-semibold text-orangeAmber mt-2'>
-                  Learn more
+                  View more
                 </p>
               </Link>
             </div>

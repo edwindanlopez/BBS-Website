@@ -266,6 +266,7 @@ const TextArea = ({ label, ...props }) => {
   return (
     <div tw='col-span-2'>
       <div tw='relative'>
+        <StyledLabel htmlFor={props.id || props.name}>{label}</StyledLabel>
         <textarea
           className='text-area'
           tw='w-full h-32 border text-lg text-mildGray rounded-md border-gray-300 p-4 mt-4 resize-none'

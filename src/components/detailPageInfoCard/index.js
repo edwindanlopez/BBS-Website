@@ -16,7 +16,8 @@ export default function DetailPageCard(mdx) {
   const ReadBtn = ({ isOpen, children }) => {
     return (
       <button onClick={toggle}>
-        <PageLayoutWrapper tw='text-left'>
+        <div tw='text-left'>{children}</div>
+        <PageLayoutWrapper tw='text-left mb-4'>
           <span>
             <p tw='inline text-orangeAmber font-semibold'>
               {isOpen ? "Read less" : "Read more"}
@@ -31,7 +32,6 @@ export default function DetailPageCard(mdx) {
             />
           </span>
         </PageLayoutWrapper>
-        <div tw='text-left'>{children}</div>
       </button>
     );
   };
@@ -49,7 +49,7 @@ export default function DetailPageCard(mdx) {
           <ReadBtn isOpen={isOpen}>
             <PageLayoutWrapper>
               <h1 tw='text-mossGreen mt-2 mb-2'>{mdx.frontmatter.title}</h1>
-              <h3 tw='mt-2 mb-4'>{mdx.frontmatter.subhead}</h3>
+              <h3 tw='mt-2 mb-2'>{mdx.frontmatter.subhead}</h3>
               <Collapse isOpen={isOpen}>
                 {mdx.frontmatter.location && mdx.frontmatter.date && (
                   <div>

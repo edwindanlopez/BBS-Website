@@ -136,7 +136,6 @@ export default function DialogContent() {
             ) : (
               <Video
                 videoSrcURL={imgNode.video}
-                controls
                 autoPlay
                 tw='h-screen mx-auto lg:height[75vh]'
               />

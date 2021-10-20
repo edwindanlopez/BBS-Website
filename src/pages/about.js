@@ -28,7 +28,7 @@ const AboutPage = () => {
           <div tw='mt-8 w-full 2xl:(w-3/4 mx-auto)'>
             <div>
               <h1 tw='text-dark mb-8 lg:(mt-14 fontSize[2.15rem] lineHeight[3.15rem])'>
-                BBS exists with the purpose of creating and/or transforming
+                BBS exists with the purpose of creating and transforming
                 interior spaces that will add value, functionality and beauty to
                 your home.
               </h1>
@@ -45,7 +45,7 @@ const AboutPage = () => {
               >
                 <StaticImage
                   src='https://daniellopezdesign.nyc3.digitaloceanspaces.com/BBS/about-images/bbs-tiling.jpg'
-                  alt='Professional putting white backsplash tile in white room'
+                  alt='Beautiful gray slate shower tile'
                 />
               </ImageCard>
               <ImageCard
@@ -78,8 +78,8 @@ const AboutPage = () => {
                 paragraph='As in murals or artistic artwork on walls or furniture.'
               >
                 <StaticImage
-                  src='https://daniellopezdesign.nyc3.digitaloceanspaces.com/BBS/about-images/bbs-portrait-painting.jpg'
-                  alt='Original portrait painting of young graduate wearing his graduation capOriginal portrait painting of young graduate wearing his graduation cap'
+                  src='https://daniellopezdesign.nyc3.digitaloceanspaces.com/BBS/about-images/bbs-artistic-touchups.png'
+                  alt='Artistic wall decore texture'
                 />
               </ImageCard>
             </div>
