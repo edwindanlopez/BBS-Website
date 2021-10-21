@@ -120,6 +120,10 @@ const customStyles = css({
   ".cloudinary-thumbnail img": {
     border: "#424442",
   },
+  /*Recaptcha------------------------- */
+  ".grecaptcha-badge": {
+    visibility: "hidden",
+  },
 });
 
 const GlobalStyles = () => (

@@ -3,7 +3,6 @@ import tw from "twin.macro";
 import { StaticImage } from "gatsby-plugin-image";
 import { Formik, Form } from "formik";
 import axios from "axios";
-// import { Cloudinary } from "@cloudinary/url-gen";
 
 import PulseLoader from "react-spinners/PulseLoader";
 import closeRemoveIcon from "../../images/close-remove-icon.svg";
@@ -14,8 +13,9 @@ import { homePageFormSchema } from "../lib/validationSchema";
 import Modal from "../lib/Modal";
 import { TextInput, TextArea } from "../lib/FormFieldComponents";
 import CloudinaryUpload from "../CloudinaryUploadButton";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
-export default function ImageUploadSection() {
+const ImageUploadSection = () => {
   const [modalStatus, setModalStatus] = useState({
     isOpen: false,
     success: null,
@@ -75,23 +75,34 @@ export default function ImageUploadSection() {
     return files;
   };
 
+  const { executeRecaptcha } = useGoogleReCaptcha();
+
   const handleSubmit = async (values, resetForm) => {
+    // Check if the captcha was skipped or not
+    if (!executeRecaptcha) {
+      return;
+    }
+
+    const recaptchaRes = await executeRecaptcha("homepage");
     const getAttachmentData = await getAttachments();
-    const formData = {
+    const fieldValues = {
       ...values,
       files: getAttachmentData,
+      token: recaptchaRes,
     };
+
+    // console.log("fieldValues with recaptcha token: ", fieldValues);
 
     await axios({
       method: "post",
       url: `${process.env.GATSBY_HOME_FORM_SUBMISSION_URL}`,
-      data: formData,
+      data: fieldValues,
       headers: {
         "Content-Type": "application/json",
       },
     })
       .then((res) => {
-        console.log("Resolved drive upload: ", res);
+        // console.log("Resolved drive upload: ", res);
         setUploads([]); //needs to come first
         setModalStatus({
           isOpen: true,
@@ -102,7 +113,7 @@ export default function ImageUploadSection() {
         resetForm();
       })
       .catch((err) => {
-        console.log("Error in submitting form: ", err);
+        // console.log("Error in submitting form: ", err);
         setUploads([]); //needs to come first
         setModalStatus({
           isOpen: true,
@@ -143,6 +154,15 @@ export default function ImageUploadSection() {
                     acceptCharset='UTF-8'
                     tw='grid grid-cols-2 gap-5'
                   >
+                    {uploads && (
+                      <CloudinaryUpload
+                        type='button'
+                        colSpan='2'
+                        uploads={uploads}
+                        setUploads={setUploads}
+                        variant={"featured"}
+                      />
+                    )}
                     <TextInput
                       colSpan='1'
                       labelColor='light'
@@ -157,16 +177,7 @@ export default function ImageUploadSection() {
                       type='email'
                       placeholder='Enter Email *'
                     />
-                    {uploads && (
-                      <CloudinaryUpload
-                        type='button'
-                        colSpan='2'
-                        uploads={uploads}
-                        setUploads={setUploads}
-                      />
-                    )}
                     <TextArea
-                      label='Description'
                       name='message'
                       type='textArea'
                       placeholder='Tell us about your project... *'
@@ -272,6 +283,21 @@ export default function ImageUploadSection() {
           </div>
         </div>
       </div>
+      <div tw='w-full flex justify-center items-center mt-4'>
+        <p tw='fontSize[0.65rem] text-lightGray'>
+          This site is protected by reCAPTCHA and the Google
+          <a tw='underline' href='https://policies.google.com/privacy'>
+            Privacy Policy
+          </a>{" "}
+          and
+          <a tw='underline' href='https://policies.google.com/terms'>
+            Terms of Service
+          </a>{" "}
+          apply.
+        </p>
+      </div>
     </PageLayoutWrapper>
   );
-}
+};
+
+export default ImageUploadSection;

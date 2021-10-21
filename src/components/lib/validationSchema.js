@@ -29,7 +29,7 @@ const contactPageValidationSchema = Yup.object().shape({
     // specify the set of valid values for job type
     // @see http://bit.ly/yup-mixed-oneOf
     .oneOf(
-      ["General Contact", "Estimate", "Question Other"],
+      ["General Contact", "Estimate", "Question/Other"],
       "Invalid Job Type"
     )
     .required("Required"),
@@ -43,19 +43,6 @@ const contactPageValidationSchema = Yup.object().shape({
   city: Yup.string()
     .max(20, "Must be 20 characters or less")
     .required("Required"),
-  file: Yup.mixed()
-    .test(
-      "fileFormat",
-      "Unsupported file type",
-      (value) =>
-        value === "" || value === undefined || (value && checkFileType(value))
-    )
-    .test(
-      "fileSize",
-      "File too large",
-      (value) =>
-        value === "" || value === undefined || (value && checkFileSize(value))
-    ),
 });
 
 const homePageFormSchema = Yup.object({

@@ -101,7 +101,7 @@ const MobileDrawer = ({ isOpen, setIsOpen }) => (
     css={[
       tw`hidden`,
       isOpen &&
-        tw`block fixed z-30 w-full min-h-screen bg-white opacity-90 p-4`,
+        tw`inline-block absolute top-0 z-30 w-full min-h-screen bg-white opacity-90 p-4`,
     ]}
   >
     <MobileNav closeOpen={setIsOpen} />

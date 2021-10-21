@@ -5,9 +5,16 @@ require("dotenv").config({
 module.exports = {
   siteMetadata: {
     url: `https://www.buildbeautifulspaces.com`, // No trailing slash allowed!
-    title: "BBS",
-    description: "Build Beautiful Spaces - Bring your space to the next level.",
-    image: "./src/images/bbs-build-beautiful-spaces.jpg",
+    title: "BBS - Build Beautiful Spaces",
+    titleAlt: "Build Beautiful Spaces",
+    headline: "Bring your space to the next level.",
+    description:
+      "BBS helps create and transform spaces, adding value and beauty to your home.",
+    image: "/bbs-build-beautiful-spaces.jpg",
+    logo: "/bbs-logo.svg",
+    siteLanguage: "en",
+    ogLanguage: "en_US",
+    facebook: "build-beautiful-spaces",
   },
   plugins: [
     "gatsby-plugin-emotion",
@@ -24,7 +31,7 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: "gatsby-plugin-manifest",
       options: {
         name: `Build Beautiful Spaces`,
         short_name: `BBS`,
@@ -70,6 +77,20 @@ module.exports = {
             },
           },
         ],
+      },
+    },
+    {
+      resolve: "gatsby-plugin-google-analytics",
+      options: {
+        // The property ID; the tracking code won't be generated without it
+        trackingId: "G-L2QVVR23HE",
+        // Defines where to place the tracking script - `true` in the head and `false` in the body
+        head: false,
+        anonymize: true,
+        respectDNT: true,
+        // Any additional optional fields
+        cookieDomain: "buildbeautifulspaces.com",
+        enableWebVitalsTracking: true,
       },
     },
   ],

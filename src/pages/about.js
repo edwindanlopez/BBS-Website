@@ -19,8 +19,8 @@ const AboutPage = () => {
           >
             <StaticImage
               alt='BBS Hero image of beautiful refurnished white kitchen cabinet'
-              src='../images/bbs-top-hero-image.jpg'
-              tw='w-full h-full object-cover object-center transform scale-150'
+              src='../images/bbs-about-us-top-hero-image.jpg'
+              tw='w-full h-full object-cover object-center transform'
             />
           </div>
         </div>
@@ -44,7 +44,7 @@ const AboutPage = () => {
                     remodeling (we don’t do full tile-flooring).'
               >
                 <StaticImage
-                  src='https://daniellopezdesign.nyc3.digitaloceanspaces.com/BBS/about-images/bbs-tiling.jpg'
+                  src='https://res.cloudinary.com/bldrscove/image/upload/v1634746458/BBS/Website-Assets/about-images/bbs-tiling_ymsu0g.webp'
                   alt='Beautiful gray slate shower tile'
                 />
               </ImageCard>
@@ -57,7 +57,7 @@ const AboutPage = () => {
                   in the house.'
               >
                 <StaticImage
-                  src='https://daniellopezdesign.nyc3.digitaloceanspaces.com/BBS/about-images/bbs-carpentry.jpg'
+                  src='https://res.cloudinary.com/bldrscove/image/upload/v1634746458/BBS/Website-Assets/about-images/bbs-carpentry_d4eqxt.webp'
                   alt='Sawdust flying out of a hand router being used by a carpenter'
                 />
               </ImageCard>
@@ -68,7 +68,7 @@ const AboutPage = () => {
                   that need to be refinished.'
               >
                 <StaticImage
-                  src='https://daniellopezdesign.nyc3.digitaloceanspaces.com/BBS/about-images/bbs-wood-restoration.jpg'
+                  src='https://res.cloudinary.com/bldrscove/image/upload/v1634746458/BBS/Website-Assets/about-images/bbs-wood-restoration_irp7kr.webp'
                   alt='Faded chair in the process of being sanded during restoration'
                 />
               </ImageCard>
@@ -78,7 +78,7 @@ const AboutPage = () => {
                 paragraph='As in murals or artistic artwork on walls or furniture.'
               >
                 <StaticImage
-                  src='https://daniellopezdesign.nyc3.digitaloceanspaces.com/BBS/about-images/bbs-artistic-touchups.png'
+                  src='https://res.cloudinary.com/bldrscove/image/upload/v1634746458/BBS/Website-Assets/about-images/bbs-artistic-touchups_koz3uu.webp'
                   alt='Artistic wall decore texture'
                 />
               </ImageCard>

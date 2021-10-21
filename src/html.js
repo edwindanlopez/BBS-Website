@@ -15,6 +15,7 @@ export default function HTML(props) {
           src='https://upload-widget.cloudinary.com/global/all.js'
           type='text/javascript'
         ></script>
+        <script src='https://www.google.com/recaptcha/api.js'></script>
         {props.headComponents}
       </head>
       <body {...props.bodyAttributes}>

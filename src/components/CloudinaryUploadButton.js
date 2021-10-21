@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import cloudUploadIcon from "../images/cloud-upload-icon-light.svg";
+import cloudUploadIconLight from "../images/cloud-upload-icon-light.svg";
+import cloudUploadIconDark from "../images/cloud-upload-icon-dark.svg";
 import tw from "twin.macro";
 
-const CloudinaryUpload = ({ type, colSpan, uploads, setUploads }) => {
+const CloudinaryUpload = ({ type, colSpan, uploads, setUploads, variant }) => {
   const [uploadWidget, setUploadWidget] = useState(null);
 
   useEffect(() => {
@@ -42,8 +43,7 @@ const CloudinaryUpload = ({ type, colSpan, uploads, setUploads }) => {
       },
       (error, result) => {
         if (!error && result && result.event === "success") {
-          console.log("Done! Here is the image info: ", result.info);
-
+          // console.log("Done! Here is the image info: ", result.info);
           setUploads((prevState) => {
             return [...prevState, result.info];
           });
@@ -68,12 +68,20 @@ const CloudinaryUpload = ({ type, colSpan, uploads, setUploads }) => {
           onClick={() => uploadWidget.open()}
         >
           <img
-            src={cloudUploadIcon}
+            src={
+              variant === "featured"
+                ? cloudUploadIconLight
+                : cloudUploadIconDark
+            }
             alt='Upload files icon'
             css={[
-              tw`w-24 p-3 mx-auto mt-4 bg-mossGreen bg-opacity-20 rounded-md hover:(bg-beige bg-opacity-20 rounded-md)`,
+              tw`w-24 p-3 mx-auto mt-4 rounded-md`,
               uploads.length >= 3 &&
                 tw`opacity-20 hover:(bg-none bg-opacity-0 rounded-md)`,
+              variant === "featured" &&
+                tw`bg-mossGreen bg-opacity-20 hover:(bg-beige bg-opacity-20 rounded-md)`,
+              variant === "standard" &&
+                tw`ring-2 ring-beige ring-opacity-50 hover:(bg-beige bg-opacity-20 rounded-md)`,
             ]}
           />
         </button>
