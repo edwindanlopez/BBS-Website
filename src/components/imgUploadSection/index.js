@@ -78,11 +78,6 @@ const ImageUploadSection = () => {
   const { executeRecaptcha } = useGoogleReCaptcha();
 
   const handleSubmit = async (values, resetForm) => {
-    // Check if the captcha was skipped or not
-    if (!executeRecaptcha) {
-      return;
-    }
-
     const recaptchaRes = await executeRecaptcha("homepage");
     const getAttachmentData = await getAttachments();
     const fieldValues = {
@@ -91,7 +86,7 @@ const ImageUploadSection = () => {
       token: recaptchaRes,
     };
 
-    // console.log("fieldValues with recaptcha token: ", fieldValues);
+    console.log("fieldValues with recaptcha token: ", fieldValues);
 
     await axios({
       method: "post",

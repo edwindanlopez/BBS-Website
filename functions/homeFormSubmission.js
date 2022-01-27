@@ -15,7 +15,7 @@ exports.handler = async (event, context) => {
     // parse incoming req data
     const { fullName, email, message, files, token } = JSON.parse(event.body);
 
-    const verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${token}`;
+    // console.log("SendtoSendGrid Eventbody: ", JSON.parse(event.body));
 
     if (!token) {
       return {
@@ -31,6 +31,8 @@ exports.handler = async (event, context) => {
         }),
       };
     }
+
+    const verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${token}`;
 
     const captchaRes = await axios.post(verificationUrl);
     const captcha = captchaRes.data;
@@ -74,6 +76,7 @@ exports.handler = async (event, context) => {
           reject(error);
         });
     } else {
+      console.log("Encountered error with captcha test: ", captcha["error-codes"][0])
       reject(captcha["error-codes"][0]);
     }
   });
@@ -99,6 +102,7 @@ exports.handler = async (event, context) => {
         };
       })
       .catch((error) => {
+        console.log("Error: ", error);
         return {
           statusCode: error.code,
           body: JSON.stringify({

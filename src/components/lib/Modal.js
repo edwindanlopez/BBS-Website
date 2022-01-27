@@ -47,6 +47,9 @@ export default function Modal({ modalStatus, setModalStatus }) {
       <DialogContent
         aria-label='Modal displaying contact form submission status'
         tw='flex flex-wrap justify-center items-center'
+        style={{
+        background: "none",
+      }}
       >
         {success ? (
           <SuccessMessage onItemClick={handleClick} />
