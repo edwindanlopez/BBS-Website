@@ -34,7 +34,11 @@ export default function Nav() {
   let lastPosition = 0;
   
   const handleScroll = () => {
-    if(window.scrollY > 250 && window.scrollY > lastPosition){
+    if( 
+        window.screen.width <= 638 
+          && window.scrollY > 250 
+          && window.scrollY > lastPosition
+      ){
       // hide nav
       setNav({
         opacity:0,
@@ -78,7 +82,11 @@ export default function Nav() {
 
   return (
     <header tw='sticky top-0 z-30'>
-      <MobileDrawer isOpen={isOpen} toggleMobileDrawer={toggleMobileDrawer} navigateMobileLink={navigateMobileLink} />
+      <MobileDrawer 
+        isOpen={isOpen} 
+        toggleMobileDrawer={toggleMobileDrawer} 
+        navigateMobileLink={navigateMobileLink} 
+      />
       <motion.nav 
         initial="visible"
         animate="hidden"
@@ -90,7 +98,7 @@ export default function Nav() {
       >
           <div
             className='nav-wrapper'
-            tw='relative w-full p-6 flex justify-between items-center'
+            tw='relative w-full p-4 flex justify-between items-center'
           >
             <Logo />
             <div

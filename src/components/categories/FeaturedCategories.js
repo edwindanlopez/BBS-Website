@@ -14,9 +14,9 @@ const categories = ["artistic", "bathroom", "closet", "custom", "restoration"];
 export default function Categories() {
   return (
     <PageLayoutWrapper>
-      <div tw=' md:width[90%] mx-auto'>
+      <div tw=' md:width[90%] mx-auto mt-[-5.5rem]'>
         <Swiper
-          tw='h-36'
+          tw='h-[12rem]'
           modules={[Pagination, Navigation, Scrollbar]}
           scrollbar={{ draggable: true }}
           pagination={{
@@ -29,7 +29,7 @@ export default function Categories() {
               spaceBetween: 10,
             },
             480: {
-              slidesPerView: "4",
+              slidesPerView: "3",
               spaceBetween: 50,
             },
             640: {
@@ -53,7 +53,7 @@ export default function Categories() {
                     className={`${el}-tile-texture`}
                     css={[
                       // base styles
-                      tw`h-24 w-24 sm:h-28 sm:w-28 bg-contain flex justify-center items-center rounded-full bg-gradient-to-r from-beige to-tan hover:(ring-4 ring-offset-0 ring-orangeAmber )`,
+                      tw`h-24 w-24 sm:h-28 sm:w-28 bg-contain flex justify-center items-center rounded-full bg-gradient-to-r from-beige to-tan ring-4 shadow-2xl ring-offset-0 ring-lightGray hover:(ring-orangeAmber)`,
                       // conditional styles
                       el === "artistic" &&
                         tw`bg-illus-ptrn flex justify-center items-center after:block after:w-12 after:opacity-100 `,

@@ -17,7 +17,7 @@ const IndexPage = () => {
     <Layout seoTitle={"Home"}>
       <div tw='block'>
         <TopHero />
-        <section style={sectionStyles}>
+        <section>
           <FeaturedCategories />
         </section>
         <section style={sectionStyles}>

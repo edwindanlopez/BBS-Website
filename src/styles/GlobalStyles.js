@@ -51,6 +51,12 @@ const customStyles = css({
     whiteSpace: "nowrap",
     width: "1px",
   },
+  ".freeze-body": {
+  height: "100vh",
+  overflow: "hidden",
+  touchAction: "none",
+  msTouchAction: "none",
+  },
   // /* Separate rule for compatibility, :focus-within is required on modern Firefox and Chrome */
   // "input.visually-hidden:focus + label": {
   //   outline: "thin dotted",
@@ -67,15 +73,29 @@ const customStyles = css({
   },
   ".swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet":
     {
-      backgroundColor: "white",
+      backgroundColor: "gray",
     },
+  "@media only screen and (max-width: 995px) ": {
+    ".swiper-button-next": {
+      display: "none",
+    },
+    ".swiper-button-prev": {
+      display: "none",
+    }
+  },
   ".swiper-button-next": {
+    height: "27px",
+    borderRadius: "100px",
+    backgroundColor: "rgba(255, 255, 255, 0.75)",
     backgroundImage: `url(${arrowRight})`,
     backgroundRepeat: "no-repeat",
     backgroundSize: "100% auto",
     backgroundPosition: "center",
   },
   ".swiper-button-prev": {
+    height: "27px",
+    borderRadius: "100px",
+    backgroundColor: "rgba(255, 255, 255, 0.75)",
     backgroundImage: `url(${arrowLeft})`,
     backgroundRepeat: "no-repeat",
     backgroundSize: "100% auto",
@@ -83,12 +103,6 @@ const customStyles = css({
   },
   ".swiper-button-next::after, .swiper-button-prev::after": {
     display: "none",
-  },
-  ".freeze-body": {
-    height: "100vh",
-    overflow: "hidden",
-    touchAction: "none",
-	  msTouchAction: "none",
   },
   /* Scrollbars ------------------------- */
   /* width */

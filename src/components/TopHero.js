@@ -10,12 +10,12 @@ export default function TopHero() {
   const { width } = useWindowDimensions();
 
   return (
-    <div id='top-hero' tw='flex items-center h-96' style={{ zIndex: "-1" }}>
-      <div className='cta-items' tw='absolute w-full'>
+    <div id='top-hero' tw='flex items-center h-[27rem]' style={{ zIndex: "-1" }}>
+      <div className='cta-items' tw='absolute w-full mt-[-7rem]'>
         {/* <div classNmae='break'></div> */}
         <div tw='flex flex-wrap justify-center w-full max-w-md mx-auto mt-20'>
           <div id='main-header' tw='w-11/12 mb-4'>
-            <h1 tw='text-center text-dark lg:(fontSize[2.15rem] lineHeight[3.15rem])'>
+            <h1 tw='text-center text-dark text-[2.5rem] leading-[3rem] lg:(fontSize[2.15rem] lineHeight[3.15rem])'>
               Bring your space to the next level
             </h1>
           </div>
