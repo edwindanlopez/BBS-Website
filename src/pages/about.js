@@ -5,7 +5,7 @@ import "twin.macro";
 
 import PageLayoutWrapper from "../components/layoutWrappers/PageLayoutWrapper";
 import Tile from "../components/ctaTiles/Tile";
-import ImageCard from "../components/lib/ImageCard";
+import ImageCard from "../components/shared/ImageCard";
 
 const AboutPage = () => {
   return (

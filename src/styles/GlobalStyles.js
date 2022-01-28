@@ -84,7 +84,13 @@ const customStyles = css({
   ".swiper-button-next::after, .swiper-button-prev::after": {
     display: "none",
   },
-  /*Scrolling------------------------- */
+  ".freeze-body": {
+    height: "100vh",
+    overflow: "hidden",
+    touchAction: "none",
+	  msTouchAction: "none",
+  },
+  /* Scrollbars ------------------------- */
   /* width */
   "::-webkit-scrollbar": {
     width: "10px",

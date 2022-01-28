@@ -6,7 +6,7 @@ import { Formik, Form } from "formik";
 
 import Layout from "../components/layoutWrappers/Layout";
 import PageLayoutWrapper from "../components/layoutWrappers/PageLayoutWrapper";
-import Button from "../components/lib/Button";
+import Button from "../components/shared/Button";
 import CloudinaryUpload from "../components/CloudinaryUploadButton";
 import {
   TextInput,
@@ -14,9 +14,9 @@ import {
   TextArea,
   DisplayFormErrors,
   RadioGroup,
-} from "../components/lib/FormFieldComponents";
-import { contactPageValidationSchema } from "../components/lib/validationSchema";
-import Modal from "../components/lib/Modal";
+} from "../components/shared/FormFieldComponents";
+import { contactPageValidationSchema } from "../components/shared/validationSchema";
+import Modal from "../components/shared/Modal";
 import closeRemoveIcon from "../images/close-remove-icon.svg";
 import PulseLoader from "react-spinners/PulseLoader";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";

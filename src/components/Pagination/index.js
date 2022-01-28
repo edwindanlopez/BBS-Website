@@ -1,6 +1,6 @@
 import React from "react";
 import "twin.macro";
-import PageButton from "../lib/PageButton";
+import PageButton from "../shared/PageButton";
 import carrotArrow from "../../images/carrot-arrow.svg";
 import { Link } from "gatsby";
 

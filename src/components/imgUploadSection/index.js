@@ -6,12 +6,12 @@ import axios from "axios";
 
 import PulseLoader from "react-spinners/PulseLoader";
 import closeRemoveIcon from "../../images/close-remove-icon.svg";
-import Button from "../lib/Button";
+import Button from "../shared/Button";
 import PageLayoutWrapper from "../layoutWrappers/PageLayoutWrapper";
 import questionMarkTransparent from "../../images/question-mark-transparent.svg";
-import { homePageFormSchema } from "../lib/validationSchema";
-import Modal from "../lib/Modal";
-import { TextInput, TextArea } from "../lib/FormFieldComponents";
+import { homePageFormSchema } from "../shared/validationSchema";
+import Modal from "../shared/Modal";
+import { TextInput, TextArea } from "../shared/FormFieldComponents";
 import CloudinaryUpload from "../CloudinaryUploadButton";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 

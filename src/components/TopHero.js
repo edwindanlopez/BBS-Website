@@ -3,8 +3,8 @@ import { StaticImage } from "gatsby-plugin-image";
 import { Link } from "gatsby";
 import { theme } from "twin.macro";
 
-import Button from "./lib/Button";
-import useWindowDimensions from "../components/lib/useWindowDimensions";
+import Button from "./shared/Button";
+import useWindowDimensions from "../components/shared/useWindowDimensions";
 
 export default function TopHero() {
   const { width } = useWindowDimensions();

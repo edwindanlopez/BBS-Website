@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "gatsby";
+import { Link, navigate } from "gatsby";
 import tw from "twin.macro";
+import { motion } from 'framer-motion';
 
 import Logo from "../components/Logo";
-import PageLayoutWrapper from "./layoutWrappers/PageLayoutWrapper";
 
 const navItems = [
   {
@@ -26,14 +26,38 @@ const navItems = [
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrollPosition, setScrollPosition] = useState(0);
-
+  const [nav, setNav] = useState({
+    opacity: 1,
+    y: 0,
+  });
+  
+  let lastPosition = 0;
+  
   const handleScroll = () => {
-    const position = window.pageYOffset;
-    setScrollPosition(position);
+    if(window.scrollY > 250 && window.scrollY > lastPosition){
+      // hide nav
+      setNav({
+        opacity:0,
+        y: -150,
+      });
+    }else {
+      setNav({
+        opacity:1,
+        y: 0,
+      });
+    }
+    lastPosition = window.scrollY;
   };
+  
+  const toggleMobileDrawer = () => {
+    setIsOpen((prevState) => !prevState);
+  }
 
-  useEffect((event) => {
+  const navigateMobileLink = (elSlug) => {
+    navigate(`${elSlug}`)
+  }
+
+  useEffect(() => {
     window.addEventListener("scroll", handleScroll);
 
     return () => {
@@ -41,14 +65,32 @@ export default function Nav() {
     };
   }, []);
 
+  const variants = {
+    hidden: {
+      opacity: nav.opacity,
+      y: nav.y,
+    },
+    visible: {
+      opacity: nav.opacity,
+      y: nav.y,
+    },
+  }
+
   return (
     <header tw='sticky top-0 z-30'>
-      <MobileDrawer isOpen={isOpen} setIsOpen={setIsOpen} />
-      <nav tw='h-24 pt-4 backgroundColor[rgb(255 255 255 / 90%)]'>
-        <PageLayoutWrapper>
+      <MobileDrawer isOpen={isOpen} toggleMobileDrawer={toggleMobileDrawer} navigateMobileLink={navigateMobileLink} />
+      <motion.nav 
+        initial="visible"
+        animate="hidden"
+        transition={{ ease: "easeOut", duration: 0.25 }}
+        variants={variants}
+        css={[
+          tw`flex items-center bg-[rgba(255, 255, 255, 0.90)]`
+        ]}
+      >
           <div
             className='nav-wrapper'
-            tw='h-full flex justify-between items-center'
+            tw='relative w-full p-6 flex justify-between items-center'
           >
             <Logo />
             <div
@@ -65,16 +107,13 @@ export default function Nav() {
                 );
               })}
             </div>
-
-            {/* Responsive mobile nav Icon - shows only sm and below */}
             <div
-              className='mobile-icon'
+              className='mobile-nav-icon'
               css={[
-                tw`absolute right-0 m-6 sm:hidden`,
-                scrollPosition >= 100 && tw`mt-0`,
+                tw`absolute right-0 mr-6 sm:hidden`,
               ]}
             >
-              <button onClick={() => setIsOpen(true)}>
+              <button onClick={() => toggleMobileDrawer()}>
                 <svg xmlns='http://www.w3.org/2000/svg' width='25' height='12'>
                   <g
                     data-name='Group 11'
@@ -89,14 +128,22 @@ export default function Nav() {
               </button>
             </div>
           </div>
-        </PageLayoutWrapper>
-      </nav>
+      </motion.nav>
     </header>
   );
 }
 
-const MobileDrawer = ({ isOpen, setIsOpen }) => (
-  <div
+const MobileDrawer = ({ isOpen, toggleMobileDrawer, navigateMobileLink }) => {
+  useEffect(()=>{
+    if(isOpen && document.body.className !== "freeze-body"){
+      console.log("Freeze body");
+      document.body.classList.add("freeze-body");
+    }
+    
+    return () => document.body.removeAttribute("class");
+  })
+  return (
+    <div
     className='mobile-drawer'
     css={[
       tw`hidden`,
@@ -104,14 +151,19 @@ const MobileDrawer = ({ isOpen, setIsOpen }) => (
         tw`inline-block absolute top-0 z-30 w-full min-h-screen bg-white opacity-90 p-4`,
     ]}
   >
-    <MobileNav closeOpen={setIsOpen} />
+    <CloseMobileNavIcon toggleMobileDrawer={toggleMobileDrawer} />
     <div tw='relative w-3/4 mx-auto text-center top-14'>
-      <ul tw='text-3xl text-mildGray font-semibold'>
+      <ul>
         {navItems.map((el) => {
           return (
             <div key={el.name}>
               <li tw='mt-8 mb-8'>
-                <Link to={el.slug}>{el.name}</Link>
+                <p
+                  onClick={() => navigateMobileLink(el.slug)}
+                  tw='text-3xl text-mildGray font-semibold'
+                >
+                  {el.name}
+                </p>
               </li>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
@@ -136,13 +188,14 @@ const MobileDrawer = ({ isOpen, setIsOpen }) => (
       </ul>
     </div>
   </div>
-);
+  )
+}
 
-const MobileNav = ({ closeOpen }) => (
+const CloseMobileNavIcon = ({ toggleMobileDrawer }) => (
   <div>
-    <div className='icon-holder' tw='absolute right-0 mr-4'>
+    <div className='icon-holder' tw='absolute right-0 mr-5 mt-6'>
       <button
-        onClick={() => closeOpen(false)}
+        onClick={() => toggleMobileDrawer()}
         tw='p-1.5 hover:bg-gray-200 hover:rounded-md'
       >
         <svg

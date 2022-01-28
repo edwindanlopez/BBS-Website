@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 
 export default function HTML(props) {
@@ -9,13 +8,15 @@ export default function HTML(props) {
         <meta httpEquiv='x-ua-compatible' content='ie=edge' />
         <meta
           name='viewport'
-          content='width=device-width, initial-scale=1, shrink-to-fit=no'
+          content='width=device-width, initial-scale=1, viewport-fit=cover'
         />
         <script
+          async
+          defer
           src='https://upload-widget.cloudinary.com/global/all.js'
           type='text/javascript'
         ></script>
-        <script src='https://www.google.com/recaptcha/api.js'></script>
+        <script async defer src='https://www.google.com/recaptcha/api.js'></script>
         {props.headComponents}
       </head>
       <body {...props.bodyAttributes}>
