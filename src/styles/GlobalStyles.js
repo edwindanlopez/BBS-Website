@@ -18,9 +18,9 @@ const customStyles = css({
   },
   h2: {
     fontFamily: theme`fontFamily.sans`,
-    fontWeight: "600", //semibold
-    fontSize: "1.25rem", //20px
-    lineHeight: "1.5rem", //24px
+    fontWeight: "700", //bold
+    fontSize: "2rem", //20px
+    lineHeight: "2.4rem", //24px
     characterSpacing: "-8px",
     color: theme`colors.mildGray`,
   },
@@ -64,6 +64,10 @@ const customStyles = css({
   // "input.visually-hidden:focus-within + label": {
   //   outline: "thin dotted",
   // },
+  /*Gatsby image border radius for safari------------ */
+  ".gatsby-image-wrapper picture img" : {
+    borderRadius: "0.375rem",
+  },
   /*Swiper------------------------- */
   ".swiper-scrollbar": {
     background: "#f7f7f7",
@@ -73,7 +77,7 @@ const customStyles = css({
   },
   ".swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet":
     {
-      backgroundColor: "gray",
+      backgroundColor: "white",
     },
   "@media only screen and (max-width: 995px) ": {
     ".swiper-button-next": {

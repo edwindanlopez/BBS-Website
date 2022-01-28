@@ -43,7 +43,7 @@ export default function FeatWorkTiles({ data }) {
           <h3 tw='mt-2 mb-2'>{node.frontmatter.title}</h3>
           <Link to={`/work/${node.slug}`}>
             <GatsbyImage
-              tw='relative w-full h-96 object-cover object-center rounded-md 2xl:height[35rem]'
+              tw='relative w-full h-[30rem] object-cover object-center rounded-md 2xl:height[35rem]'
               image={getImage(node.frontmatter.hero_image)}
               alt={node.frontmatter.hero_image_alt}
             />

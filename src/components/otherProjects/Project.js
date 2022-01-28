@@ -40,7 +40,7 @@ const Project = ({ data }) => {
             <h3 tw='mt-2 mb-2'>{node.frontmatter.title}</h3>
             <Link to={`/work/${node.slug}`}>
               <GatsbyImage
-                tw='relative w-full h-72 rounded-md object-cover object-center 2xl:h-96'
+                tw='relative w-full h-[30rem] rounded-md object-cover object-center 2xl:h-96'
                 image={getImage(node.frontmatter.secondary_hero_image)}
                 alt={node.frontmatter.secondary_hero_image_alt}
               />

@@ -86,7 +86,7 @@ const ImageUploadSection = () => {
       token: recaptchaRes,
     };
 
-    console.log("fieldValues with recaptcha token: ", fieldValues);
+    // console.log("fieldValues with recaptcha token: ", fieldValues);
 
     await axios({
       method: "post",
@@ -260,7 +260,7 @@ const ImageUploadSection = () => {
                 src={questionMarkTransparent}
                 alt='question-mark-transparent-icon'
               />
-              <h2 tw='w-3/4 mx-auto lg:w-full mb-4 text-center text-white mb-6'>
+              <h2 tw='w-[85%] mx-auto lg:w-[65%] mb-4 text-center text-white mb-6'>
                 Know the problem, but not sure of the fix?
               </h2>
 

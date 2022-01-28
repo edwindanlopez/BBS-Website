@@ -46,7 +46,7 @@ export default function WorkTiles({ node }) {
             <SwiperSlide key={img.id}>
               <Link to={`/work/${node.slug}`}>
                 <GatsbyImage
-                  tw='relative w-full h-96 object-cover object-center rounded-md md:height[30rem]'
+                  tw='relative w-full h-[30rem] object-cover object-center rounded-md'
                   image={getImage(img.childImageSharp.gatsbyImageData)}
                   alt={img.id}
                 />
