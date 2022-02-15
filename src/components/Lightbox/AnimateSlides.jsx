@@ -12,7 +12,7 @@ export default function AnimateSlides({
   // framer motion variants
   const variants = {
     enter: (direct) => ({
-      x: direct > 0 ? 1000 : -1000,
+      x: direct > 0 ? 500 : -500,
       opacity: 0,
     }),
     center: {
@@ -21,7 +21,7 @@ export default function AnimateSlides({
       opacity: 1,
     },
     exit: (direct) => ({
-      x: direct < 0 ? -1000 : -1000,
+      x: direct < 0 ? 500 : -500,
       opacity: 0,
     }),
   };

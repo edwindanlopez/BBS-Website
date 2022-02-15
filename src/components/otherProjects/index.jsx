@@ -25,7 +25,7 @@ const query = graphql`
   }
 `;
 
-export default function Otherprojects() {
+export default function OtherProjects() {
   const data = useStaticQuery(query);
   return (
     <PageLayoutWrapper>

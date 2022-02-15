@@ -38,14 +38,17 @@ export default function FeatWorkTiles({ data }) {
     >
       {nodes.map((node) => (
         <SwiperSlide key={node.id}>
-          <h3 tw="mt-2 mb-2">{node.frontmatter.title}</h3>
           <Link to={`/work/${node.slug}`}>
             <GatsbyImage
-              tw="relative w-full h-[30rem] object-cover object-center rounded-md 2xl:height[35rem]"
+              tw="relative w-full h-[30rem] object-cover object-center rounded-md lg:h-[40rem]"
               image={getImage(node.frontmatter.hero_image)}
               alt={node.frontmatter.hero_image_alt}
             />
           </Link>
+          <h3 tw="text-mildGray text-xl mt-2">{node.frontmatter.title}</h3>
+          <p tw="text-sm font-semibold text-orangeAmber">
+            View All {node.frontmatter.numOfTotalImages} images
+          </p>
         </SwiperSlide>
       ))}
     </Swiper>
@@ -62,7 +65,7 @@ FeatWorkTiles.propTypes = {
 
 FeatWorkTiles.defaultProps = {
   data: {
-    allMedx: {
+    allMdx: {
       nodes: [],
     },
   },

@@ -7,7 +7,10 @@ import PageLayoutWrapper from '../layoutWrappers/PageLayoutWrapper';
 
 const query = graphql`
   query {
-    allMdx(filter: { frontmatter: { featured_type: { eq: "Primary" } } }) {
+    allMdx(
+      filter: { frontmatter: { featured_type: { eq: "Primary" } } }
+      sort: { fields: frontmatter___featured_order }
+    ) {
       nodes {
         id
         frontmatter {
@@ -18,6 +21,7 @@ const query = graphql`
               gatsbyImageData
             }
           }
+          numOfTotalImages
         }
         slug
       }

@@ -5,7 +5,7 @@ import TopHero from '../components/TopHero';
 import FeaturedCategories from '../components/categories/FeaturedCategories';
 import FeaturedWork from '../components/featuredWork';
 import ImgUploadSection from '../components/imgUploadSection';
-import Otherprojects from '../components/otherProjects';
+import OtherProjects from '../components/otherProjects';
 import CtaTiles from '../components/ctaTiles';
 
 const sectionStyles = {
@@ -28,7 +28,7 @@ function IndexPage() {
           <FeaturedWork />
         </section>
         <section style={sectionStyles}>
-          <Otherprojects />
+          <OtherProjects />
         </section>
         <section style={sectionStyles}>
           <ImgUploadSection />

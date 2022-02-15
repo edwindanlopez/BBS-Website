@@ -38,7 +38,7 @@ function WorkAll({
                   <Link to={`/work/${node.slug}`} tw="h-96">
                     <span tw="flex items-center mt-2">
                       <p tw="text-sm font-semibold text-orangeAmber">
-                        View more
+                        View All {node.frontmatter.numOfTotalImages} images
                       </p>
                       <img
                         src={carrotArrow}

@@ -17,9 +17,6 @@ function Project({ data }) {
     <Swiper
       wrapperTag="div"
       modules={[Pagination, Navigation]}
-      pagination={{
-        clickable: true,
-      }}
       navigation
       breakpoints={{
         320: {
@@ -38,7 +35,6 @@ function Project({ data }) {
     >
       {nodes.map((node) => (
         <SwiperSlide key={node.id}>
-          <h3 tw="mt-2 mb-2">{node.frontmatter.title}</h3>
           <Link to={`/work/${node.slug}`}>
             <GatsbyImage
               tw="relative w-full h-[30rem] rounded-md object-cover object-center 2xl:h-96"
@@ -46,6 +42,7 @@ function Project({ data }) {
               alt={node.frontmatter.secondary_hero_image_alt}
             />
           </Link>
+          <h3 tw="text-mildGray text-xl mt-2 mb-2">{node.frontmatter.title}</h3>
         </SwiperSlide>
       ))}
     </Swiper>

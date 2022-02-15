@@ -25,6 +25,7 @@ const createPages = async ({ graphql, actions }) => {
                   id
                 }
               }
+              numOfTotalImages
               tags
             }
             id

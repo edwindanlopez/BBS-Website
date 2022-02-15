@@ -95,7 +95,7 @@ export default function DialogContent() {
         >
           <ZoomPanContainer setFramerMotionDrag={setFramerMotionDrag}>
             {lightboxAsset.img.src && lightboxAsset.img.srcSet ? (
-              <div tw="w-screen flex justify-end items-center md:justify-center">
+              <div tw="w-screen flex justify-center items-center">
                 <img
                   src={lightboxAsset.img.src}
                   alt={lightboxAsset.img.name}
