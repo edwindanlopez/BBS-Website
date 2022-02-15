@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, navigate } from 'gatsby';
 import tw from 'twin.macro';
 import { motion } from 'framer-motion';
@@ -33,7 +33,28 @@ export default function Nav() {
     y: 0,
   });
 
-  const lastPosition = useRef(0);
+  let lastPosition = 0;
+
+  const handleScroll = () => {
+    if (
+      window.screen.width <= 638 &&
+      window.scrollY > 250 &&
+      window.scrollY > lastPosition
+    ) {
+      // hide nav
+      setNav({
+        opacity: 0,
+        y: -150,
+      });
+    } else {
+      setNav({
+        opacity: 1,
+        y: 0,
+      });
+    }
+
+    lastPosition = window.scrollY;
+  };
 
   const toggleMobileDrawer = () => {
     setIsOpen((prevState) => !prevState);
@@ -44,32 +65,12 @@ export default function Nav() {
   };
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (
-        window.screen.width <= 638 &&
-        window.scrollY > 250 &&
-        window.scrollY > lastPosition
-      ) {
-        // hide nav
-        setNav({
-          opacity: 0,
-          y: -150,
-        });
-      } else {
-        setNav({
-          opacity: 1,
-          y: 0,
-        });
-      }
-
-      lastPosition.current = window.scrollY;
-    };
-
     window.addEventListener('scroll', handleScroll);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const variants = {
