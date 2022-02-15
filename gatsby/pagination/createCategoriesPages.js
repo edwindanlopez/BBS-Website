@@ -1,5 +1,5 @@
-const path = require("path");
-const { getAllCategories } = require("../constants/categories");
+const path = require('path');
+const { getAllCategories } = require('../constants/categories');
 
 module.exports = async (graphql, actions) => {
   const { createPage } = actions;
@@ -18,12 +18,12 @@ module.exports = async (graphql, actions) => {
 
   result.data.allMdx.group.map((category) => {
     const numPages = Math.ceil(category.totalCount / 10);
-    const categorySlug = `/category/${category.fieldValue}/`;
+    const categorySlug = `category/${category.fieldValue}`;
 
     for (let i = 0; i < numPages; i += 1) {
       createPage({
         path: i === 0 ? categorySlug : `${categorySlug}/page/${i}/`,
-        component: path.resolve(`src/templates/CategoryTemplate.js`),
+        component: path.resolve(`src/templates/CategoryTemplate.jsx`),
         context: {
           category: category.fieldValue,
           allCategories,

@@ -1,0 +1,14 @@
+.cache
+.next
+.serverless/
+.netlify
+.vercel
+build/Release
+build
+coverage
+lib-cov
+public
+functions/gatsby
+netlify/*
+node_modules
+static/*

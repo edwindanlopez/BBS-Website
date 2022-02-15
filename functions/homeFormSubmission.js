@@ -1,42 +1,27 @@
-require("dotenv").config();
-const axios = require("axios").default;
-const sendgrid = require("@sendgrid/mail");
+require('dotenv').config();
+const axios = require('axios').default;
+const sendgrid = require('@sendgrid/mail');
+
 sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
 
 const CORS_HEADERS = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers":
-    "Origin, X-Requested-With, Content-Type, Accept",
-  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers':
+    'Origin, X-Requested-With, Content-Type, Accept',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
 };
 
-exports.handler = async (event, context) => {
-  const sendToSendGrid = new Promise(async (resolve, reject) => {
-    // parse incoming req data
-    const { fullName, email, message, files, token } = JSON.parse(event.body);
+exports.handler = async (event) => {
+  const { fullName, email, message, files, token } = JSON.parse(event.body);
+  const verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${token}`;
+  const captchaRes = await axios.post(verificationUrl);
+  const captcha = captchaRes.data;
+  console.log('Recaptcha response: ', captcha);
 
-    // console.log("SendtoSendGrid Eventbody: ", JSON.parse(event.body));
-
+  const sendToSendGrid = new Promise((resolve, reject) => {
     if (!token) {
-      return {
-        statusCode: 401,
-        headers: {
-          ...CORS_HEADERS,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          success: false,
-          message:
-            "There was a problem with the recaptcha in your request. Please try again later.",
-        }),
-      };
+      reject(new Error('Captcha token not validated'));
     }
-
-    const verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${token}`;
-
-    const captchaRes = await axios.post(verificationUrl);
-    const captcha = captchaRes.data;
-    console.log("Recaptcha response: ", captcha);
 
     if (captcha.success || captcha.score > 0.4) {
       sendgrid
@@ -45,7 +30,7 @@ exports.handler = async (event, context) => {
             {
               to: [
                 {
-                  email: email,
+                  email,
                 },
               ],
               bcc: [
@@ -56,17 +41,17 @@ exports.handler = async (event, context) => {
             },
           ],
           from: {
-            name: "Build Beautiful Spaces",
+            name: 'Build Beautiful Spaces',
             email: `${process.env.SENDGRID_VERIFIED_SENDER}`,
           },
-          subject: "BBS - Thanks for reaching out!",
+          subject: 'BBS - Thanks for reaching out!',
           templateId: `${process.env.TEMPLATE_ID_HOME_PAGE}`,
           dynamic_template_data: {
-            subject: "Project Inquiry",
-            fullName: fullName,
-            email: email,
-            message: message,
-            files: files,
+            subject: 'Project Inquiry',
+            fullName,
+            email,
+            message,
+            files,
           },
         })
         .then((res) => {
@@ -76,33 +61,35 @@ exports.handler = async (event, context) => {
           reject(error);
         });
     } else {
-      console.log("Encountered error with captcha test: ", captcha["error-codes"][0])
-      reject(captcha["error-codes"][0]);
+      console.log(
+        'Encountered error with captcha test: ',
+        captcha['error-codes'][0]
+      );
+      reject(captcha['error-codes'][0]);
     }
   });
 
-  if (event.httpMethod === "OPTIONS") {
+  if (event.httpMethod === 'OPTIONS') {
     return {
       statusCode: 200,
       headers: CORS_HEADERS,
     };
-  } else if (event.httpMethod === "POST") {
+  }
+  if (event.httpMethod === 'POST') {
     return sendToSendGrid
-      .then((res) => {
-        return {
-          statusCode: res[0].statusCode,
-          headers: {
-            ...CORS_HEADERS,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            success: true,
-            message: "Email sent",
-          }),
-        };
-      })
+      .then((res) => ({
+        statusCode: res[0].statusCode,
+        headers: {
+          ...CORS_HEADERS,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          success: true,
+          message: 'Email sent',
+        }),
+      }))
       .catch((error) => {
-        console.log("Error: ", error);
+        console.log('Error: ', error);
         return {
           statusCode: error.code,
           body: JSON.stringify({
@@ -115,6 +102,6 @@ exports.handler = async (event, context) => {
   }
   return {
     statusCode: 500,
-    body: JSON.stringify("Only accepting POST requests"),
+    body: JSON.stringify('Only accepting POST requests'),
   };
 };

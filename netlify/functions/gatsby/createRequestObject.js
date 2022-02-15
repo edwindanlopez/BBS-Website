@@ -22,7 +22,7 @@ const createRequestObject = ({ event, context }) => {
   const req = Object.assign(newStream, http.IncomingMessage.prototype)
   req.url =
     (requestContext.path || path || '').replace(
-      new RegExp('^/' + requestContext.stage),
+      new RegExp(`^/${  requestContext.stage}`),
       '',
     ) || '/'
 
@@ -49,12 +49,8 @@ const createRequestObject = ({ event, context }) => {
     req.headers[key.toLowerCase()] = multiValueHeaders[key].toString()
   }
 
-  req.getHeader = (name) => {
-    return req.headers[name.toLowerCase()]
-  }
-  req.getHeaders = () => {
-    return req.headers
-  }
+  req.getHeader = (name) => req.headers[name.toLowerCase()]
+  req.getHeaders = () => req.headers
 
   // Gatsby includes cookie middleware
 

@@ -1,7 +1,7 @@
-const path = require("path");
-const createCategoriesPages = require("./pagination/createCategoriesPages.js");
-const createWorkDetailPages = require("./pagination/createWorkDetailPages");
-const { getAllCategories } = require("./constants/categories");
+const path = require('path');
+const createCategoriesPages = require('./pagination/createCategoriesPages');
+const createWorkDetailPages = require('./pagination/createWorkDetailPages');
+const { getAllCategories } = require('./constants/categories');
 
 // generate detail pages for the workPortfolio
 const createPages = async ({ graphql, actions }) => {
@@ -39,7 +39,7 @@ const createPages = async ({ graphql, actions }) => {
   `);
 
   // create pagination for main work page
-  result.data.allMdx.edges.map((edge, i, arr) => {
+  result.data.allMdx.edges.map((edge, index, arr) => {
     const pageSlug = `/work/`;
     const postsPerPage = 5;
     const numPages = Math.ceil(arr.length / postsPerPage);
@@ -56,10 +56,10 @@ const createPages = async ({ graphql, actions }) => {
 
       createPage({
         path: i === 0 ? pageSlug : `${pageSlug}page/${i}/`,
-        component: path.resolve(`src/templates/WorkAll.js`),
+        component: path.resolve(`src/templates/WorkAll.jsx`),
         context: {
           edges,
-          category: "all",
+          category: 'all',
           allCategories,
           currentPage: i,
           postsLimit: postsPerPage,

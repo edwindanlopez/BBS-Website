@@ -1,5 +1,5 @@
-const path = require("path");
-const { getAllCategories } = require("../constants/categories");
+const path = require('path');
+const { getAllCategories } = require('../constants/categories');
 
 module.exports = async (graphql, actions) => {
   const { createPage } = actions;
@@ -30,11 +30,11 @@ module.exports = async (graphql, actions) => {
       // for some reason when filtering allMdx with a fileAbsolutePath, gatsby includes the trailing slash which can
       // cause problems when querying with parameters. This is the reason for manually removing the trailing slash here
       // to then pass down to the page template
-      const removedTrailingSlash = edge.node.slug.replace(/\/$/gm, "");
+      const removedTrailingSlash = edge.node.slug.replace(/\/$/gm, '');
 
       createPage({
         path: `/work/${edge.node.slug}`,
-        component: path.resolve(`src/templates/WorkDetailPageTemplate.js`),
+        component: path.resolve(`src/templates/WorkDetailPageTemplate.jsx`),
         context: {
           slug: `${edge.node.slug}`,
           absolutePathSlug: removedTrailingSlash,
