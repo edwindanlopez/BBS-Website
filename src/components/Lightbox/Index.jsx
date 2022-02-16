@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { DialogOverlay } from '@reach/dialog';
 import LightboxContext from './LightboxContext';
 import DialogContent from './DialogContent';
+import 'twin.macro';
 
 import '@reach/dialog/styles.css';
 
@@ -11,15 +12,8 @@ export default function Lightbox() {
   return (
     <DialogOverlay
       className="dialog-overlay"
-      style={{
-        background: '#000000',
-        zIndex: '40',
-        width: '100vw',
-        overflow: 'hidden',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
+      style={{ backgroundColor: '#000000' }}
+      tw="h-[100vh] m-auto flex justify-center items-center overflow-hidden z-40"
       isOpen={showDialog}
       allowPinchZoom
       onDismiss={() => setShowDialog(false)}

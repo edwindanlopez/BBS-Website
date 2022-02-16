@@ -1,39 +1,43 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import PropTypes from 'prop-types';
+import 'twin.macro';
 
 export default function AnimateSlides({
   direction,
-  page,
+  slide,
   paginate,
   framerMotionDrag,
   children,
 }) {
+  const windowWidth = window.screen.width;
+
   // framer motion variants
   const variants = {
     enter: (direct) => ({
-      x: direct > 0 ? 500 : -500,
+      x: direct > 0 ? windowWidth : windowWidth * -1,
       opacity: 0,
     }),
     center: {
-      zIndex: 1,
+      zIndex: 30,
       x: 0,
       opacity: 1,
     },
     exit: (direct) => ({
-      x: direct < 0 ? 500 : -500,
+      x: direct > 0 ? windowWidth * -1 : windowWidth,
       opacity: 0,
     }),
   };
 
   // framer motion settings
-  const swipeConfidenceThreshold = 10000;
+  const swipeConfidenceThreshold = 1000;
   const swipePower = (offset, velocity) => Math.abs(offset) * velocity;
 
   return (
     <AnimatePresence initial={false} custom={direction}>
       <motion.div
-        key={page}
+        layout="position"
+        key={slide}
         custom={direction}
         variants={variants}
         initial="enter"
@@ -44,7 +48,7 @@ export default function AnimateSlides({
             type: 'spring',
             stiffness: 300,
             damping: 30,
-            duration: 0.5,
+            duration: 0.8,
           },
           opacity: { duration: 0.3 },
         }}
@@ -59,6 +63,7 @@ export default function AnimateSlides({
             paginate(-1);
           }
         }}
+        tw="w-screen flex flex-col justify-end"
       >
         {children}
       </motion.div>
@@ -68,15 +73,15 @@ export default function AnimateSlides({
 
 AnimateSlides.propTypes = {
   direction: PropTypes.number,
-  page: PropTypes.number,
+  slide: PropTypes.number,
   paginate: PropTypes.func,
   framerMotionDrag: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   children: PropTypes.element,
 };
 
 AnimateSlides.defaultProps = {
-  direction: 1,
-  page: 0,
+  direction: 0,
+  slide: 0,
   paginate: () => {},
   framerMotionDrag: 'x',
   children: undefined,

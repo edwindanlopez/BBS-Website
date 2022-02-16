@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import PaginateButton from './PaginateButton';
 import LightboxContext from './LightboxContext';
+import 'twin.macro';
 
 function CloseButton() {
   const { setShowDialog } = useContext(LightboxContext);
@@ -30,13 +31,7 @@ export default function DialogControls({ paginate }) {
     <div
       aria-hidden
       className="slider-btn-container"
-      style={{
-        width: '100%',
-        position: 'absolute',
-        bottom: '2rem',
-        display: 'flex',
-        justifyContent: 'center',
-      }}
+      tw="w-full absolute bottom-0 z-40 flex justify-center"
     >
       <div
         style={{

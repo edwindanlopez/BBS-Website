@@ -45,11 +45,6 @@ export default function ZoomPanContainer({ setFramerMotionDrag, children }) {
       className="zoom-pan-container"
       ref={containerRef}
       style={{
-        width: '100vw',
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'end',
-        alignItems: 'center',
         position: 'relative',
         left: crop.x,
         top: crop.y,

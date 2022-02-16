@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useMemo } from 'react';
 import { wrap } from 'popmotion';
 import 'twin.macro';
 
@@ -26,32 +26,35 @@ export default function DialogContent() {
   const { imgNode, setImgNode, direction, imageSlides } =
     useContext(LightboxContext);
 
-  const page = imageSlides.findIndex((el) => el.name === imgNode.name);
+  const slide = useMemo(
+    () => imageSlides.findIndex((el) => el.name === imgNode.name),
+    [imgNode, imageSlides]
+  );
 
   const paginate = (newDirection) => {
     // cycle images indefinitely by wrapping array index back at the beginning
-    const newImageIndex = wrap(0, imageSlides.length, page + newDirection);
+    const newImageIndex = wrap(0, imageSlides.length, slide + newDirection);
     const newImageNode = imageSlides[newImageIndex];
     setImgNode([newImageNode, newDirection]);
   };
 
   useEffect(() => {
-    if (imageSlides[page].childImageSharp) {
+    if (imageSlides[slide].childImageSharp) {
       setLightboxAsset({
         img: {
-          src: imageSlides[page].childImageSharp.gatsbyImageData.images.fallback
-            .src,
+          src: imageSlides[slide].childImageSharp.gatsbyImageData.images
+            .fallback.src,
           srcSet:
-            imageSlides[page].childImageSharp.gatsbyImageData.images.fallback
+            imageSlides[slide].childImageSharp.gatsbyImageData.images.fallback
               .srcSet,
-          name: imageSlides[page].name,
+          name: imageSlides[slide].name,
         },
         video: {
           vidUrl: null,
           name: null,
         },
       });
-    } else if (imageSlides[page].video) {
+    } else if (imageSlides[slide].video) {
       setLightboxAsset({
         img: {
           src: null,
@@ -59,8 +62,8 @@ export default function DialogContent() {
           name: null,
         },
         video: {
-          vidUrl: imageSlides[page].video,
-          name: imageSlides[page].name,
+          vidUrl: imageSlides[slide].video,
+          name: imageSlides[slide].name,
         },
       });
     } else {
@@ -68,49 +71,43 @@ export default function DialogContent() {
         'Asset found in imageSlides was neither an image or video'
       );
     }
-  }, [page, imgNode, imageSlides]);
+  }, [slide, imgNode, imageSlides]);
 
   return (
     <ReachDialogContent
       aria-label="gallery image"
       className="dialog-content"
       style={{
-        background: 'unset',
-        padding: 'unset',
-        margin: 'inherit',
-        width: '100vw',
-        display: 'flex',
-        justifyContent: 'end',
-        alignItems: 'center',
-        overflow: 'hidden',
+        backgroundColor: '#101011',
+        width: 'unset',
+        margin: 'auto',
       }}
+      tw="p-[0px!important] relative flex justify-end items-center flex-row w-screen h-screen md:(w-[75vw!important] h-auto) overflow-hidden"
     >
       <>
         <DialogControls paginate={paginate} />
         <AnimateSlides
           direction={direction}
-          page={page}
+          slide={slide}
           paginate={paginate}
           framerMotionDrag={framerMotionDrag}
         >
           <ZoomPanContainer setFramerMotionDrag={setFramerMotionDrag}>
-            {lightboxAsset.img.src && lightboxAsset.img.srcSet ? (
-              <div tw="w-screen flex justify-center items-center">
+            <div tw="w-screen md:w-[75vw] flex justify-center items-center overflow-hidden">
+              {lightboxAsset.img.src && lightboxAsset.img.srcSet ? (
                 <img
                   src={lightboxAsset.img.src}
                   alt={lightboxAsset.img.name}
-                  tw="md:w-[75vw] lg:w-[50vw] 2xl:w-[50rem]"
+                  tw="object-contain mx-auto max-h-[100vh] lg:h-[90vh]"
                 />
-              </div>
-            ) : lightboxAsset.video ? (
-              <div tw="w-screen flex justify-center items-center">
+              ) : lightboxAsset.video ? (
                 <Video
                   videoSrcURL={lightboxAsset.video.vidUrl}
                   autoPlay
-                  tw="h-screen mx-auto lg:height[75vh]"
+                  tw="object-contain mx-auto max-h-[100vh] lg:h-[90vh]"
                 />
-              </div>
-            ) : null}
+              ) : null}
+            </div>
           </ZoomPanContainer>
         </AnimateSlides>
       </>
