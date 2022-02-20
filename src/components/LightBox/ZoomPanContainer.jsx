@@ -30,19 +30,15 @@ export default function ZoomPanContainer({
     if (zoom >= 1) {
       // snap to left and right
       if (imageBounds.left > containerBounds.left) {
-        console.log('LEFT out of bounds');
         newCrop.x = xOverhang;
       } else if (imageBounds.right < containerBounds.right) {
-        console.log('RIGHT out of bounds');
         newCrop.x = -(imageBounds.width - containerBounds.width) + xOverhang;
       }
 
       // snap to top and bottom
       if (imageBounds.top > containerBounds.top) {
-        console.log('TOP OUT OF BOUNDS');
         newCrop.y = 0;
       } else if (imageBounds.bottom < containerBounds.bottom) {
-        console.log('Bottom out of bounds');
         newCrop.y = -(imageBounds.height - containerBounds.height) + yOverhang;
       }
     }
