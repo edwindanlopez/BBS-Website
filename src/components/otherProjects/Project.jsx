@@ -18,6 +18,9 @@ function Project({ data }) {
       wrapperTag="div"
       modules={[Pagination, Navigation]}
       navigation
+      pagination={{
+        clickable: true,
+      }}
       breakpoints={{
         320: {
           slidesPerView: '1',

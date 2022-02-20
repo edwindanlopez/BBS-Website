@@ -19,6 +19,7 @@ export default function Categories() {
         <Swiper
           tw="h-[10rem]"
           modules={[Pagination, Navigation, Scrollbar]}
+          navigation
           scrollbar={{ draggable: true }}
           pagination={{
             clickable: true,

@@ -34,7 +34,7 @@ export default function Modal({ modalStatus, setModalStatus }) {
           isOpen: true,
         }))
       }
-      aria-label="image in lightbox mode"
+      aria-label="image in LightBox mode"
       allowPinchZoom
     >
       <DialogContent

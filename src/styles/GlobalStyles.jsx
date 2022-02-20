@@ -79,14 +79,18 @@ const customStyles = css({
     {
       backgroundColor: 'white',
     },
-  '@media only screen and (max-width: 995px) ': {
-    '.swiper-button-next': {
-      display: 'none',
+  '.swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction':
+    {
+      bottom: '80px!important',
     },
-    '.swiper-button-prev': {
-      display: 'none',
-    },
-  },
+  // '@media only screen and (max-width: 995px) ': {
+  //   '.swiper-button-next': {
+  //     display: 'none',
+  //   },
+  //   '.swiper-button-prev': {
+  //     display: 'none',
+  //   },
+  // },
   '.swiper-button-next': {
     height: '27px',
     borderRadius: '100px',
@@ -95,6 +99,7 @@ const customStyles = css({
     backgroundRepeat: 'no-repeat',
     backgroundSize: '100% auto',
     backgroundPosition: 'center',
+    backgroundPositionX: '2px',
   },
   '.swiper-button-prev': {
     height: '27px',
@@ -104,6 +109,7 @@ const customStyles = css({
     backgroundRepeat: 'no-repeat',
     backgroundSize: '100% auto',
     backgroundPosition: 'center',
+    backgroundPositionX: '-2px',
   },
   '.swiper-button-next::after, .swiper-button-prev::after': {
     display: 'none',
@@ -133,7 +139,7 @@ const customStyles = css({
     background: '#a0aec0',
   },
 
-  /* Lightbox buttons------------------------- */
+  /* LightBox buttons------------------------- */
   '.right-arrow-button:hover svg.right-arrow-icon': {
     opacity: '1',
   },

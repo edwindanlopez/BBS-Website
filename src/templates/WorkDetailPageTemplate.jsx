@@ -3,12 +3,12 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { graphql } from 'gatsby';
 import tw from 'twin.macro';
 import PropTypes from 'prop-types';
-import LightboxContext from '../components/Lightbox/LightboxContext';
+import LightBoxContext from '../components/LightBox/LightBoxContext';
 
 import Layout from '../components/layoutWrappers/Layout';
 import WorkDetailPageWrapper from '../components/layoutWrappers/WorkDetailPageWrapper';
 import InfoCard from '../components/detailPageInfoCard';
-import Lightbox from '../components/Lightbox/Index';
+import LightBox from '../components/LightBox/Index';
 import Video from '../components/Video';
 
 function WorkDetailPageTemplate({ data }) {
@@ -51,7 +51,7 @@ function WorkDetailPageTemplate({ data }) {
     compileWork(incomingImages, incomingVideos);
   }, [incomingImages, incomingVideos]);
 
-  const lightboxValues = useMemo(
+  const LightBoxValues = useMemo(
     () => ({
       showDialog,
       setShowDialog,
@@ -69,9 +69,9 @@ function WorkDetailPageTemplate({ data }) {
       <>
         <WorkDetailPageWrapper tw="md:(mt-3 self-start)">
           <GridWrapper>
-            <LightboxContext.Provider value={lightboxValues}>
-              <Lightbox />
-            </LightboxContext.Provider>
+            <LightBoxContext.Provider value={LightBoxValues}>
+              <LightBox />
+            </LightBoxContext.Provider>
             {imageSlides &&
               // node will be an object either containing gatsbyImageData & name, OR, video url
               imageSlides.map((node) => {
