@@ -31,17 +31,9 @@ export default function DialogControls({ paginate }) {
     <div
       aria-hidden
       className="slider-btn-container"
-      tw="w-full absolute bottom-0 z-[46] flex justify-center"
+      tw="absolute bottom-0 z-[46] flex justify-center"
     >
-      <div
-        style={{
-          width: '20rem',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          zIndex: '40',
-        }}
-      >
+      <div tw="w-[16rem] mb-8 flex justify-between items-center z-40">
         <PaginateButton
           id="ltbox-paginate-left"
           onClick={() => paginate(-1)}

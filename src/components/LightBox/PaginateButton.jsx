@@ -8,7 +8,7 @@ export default function PaginateButton({ id, onClick }) {
       id={id}
       type="button"
       onClick={() => onClick()}
-      tw="text-white m-4 p-4 rounded-md bg-black bg-opacity-30 hover:bg-opacity-60"
+      tw="text-white p-4 rounded-md hover:(bg-white bg-opacity-30)"
     >
       {id === 'ltbox-paginate-left' ? <LeftArrowIcon /> : <RightArrowIcon />}
     </button>

@@ -46,6 +46,16 @@ export default function ZoomPanContainer({
     setCrop(newCrop);
   };
 
+  const delegateDragCtrl = () => {
+    // delegate dragging control to Framer Motion
+    if (framerMotionDrag !== 'x') {
+      setFramerMotionDrag('x');
+    } else if (framerMotionDrag) {
+      // dragging controlled by this component
+      setFramerMotionDrag(false);
+    }
+  };
+
   useGesture(
     {
       onDrag: ({ offset: [dx, dy] }) => {
@@ -61,21 +71,14 @@ export default function ZoomPanContainer({
       onDragEnd: (props) => adjustImageView(props),
       onPinch: ({ offset: [z] }) => {
         if (z <= 1) {
-          // delegate dragging control to Framer Motion
-          if (framerMotionDrag !== 'x') {
-            setFramerMotionDrag('x');
-          }
-          // reset position
+          delegateDragCtrl();
           setCrop({
             x: 0,
             y: 0,
             scale: 1,
           });
         } else {
-          // dragging controlled by this component
-          if (framerMotionDrag) {
-            setFramerMotionDrag(false);
-          }
+          delegateDragCtrl();
           setCrop((prevVal) => ({
             ...prevVal,
             scale: z,
@@ -83,6 +86,7 @@ export default function ZoomPanContainer({
         }
       },
       onPinchEnd: (props) => {
+        delegateDragCtrl();
         latestImgScaleBoundaries.current =
           imageBoundsRef.current.getBoundingClientRect();
         adjustImageView(props);

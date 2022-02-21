@@ -91,8 +91,7 @@ export default function DialogContent() {
         margin: 'auto',
         zIndex: 45,
       }}
-      // flex justify-center items-center flex-row
-      tw="md:(w-[75vw!important]) p-[0px!important] relative overflow-clip max-h-screen flex flex-row"
+      tw="md:(w-[75vw!important]) p-[0px!important] overflow-clip max-h-screen flex flex-row justify-center items-center"
     >
       <>
         <DialogControls paginate={paginate} />
