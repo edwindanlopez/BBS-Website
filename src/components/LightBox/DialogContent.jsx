@@ -89,12 +89,11 @@ export default function DialogContent() {
         backgroundColor: 'unset',
         width: 'unset',
         margin: 'auto',
-        zIndex: 45,
+        zIndex: 40,
       }}
-      tw="md:(w-[75vw!important]) p-[0px!important] overflow-clip max-h-screen flex flex-row justify-center items-center"
+      tw="w-screen md:(w-[75vw!important]) p-[0px!important] flex flex-row justify-center overflow-hidden "
     >
       <>
-        <DialogControls paginate={paginate} />
         <Slides
           ref={containerBoundsRef}
           direction={direction}
@@ -111,7 +110,7 @@ export default function DialogContent() {
               <img
                 src={LightBoxAsset.img.src}
                 alt={LightBoxAsset.img.name}
-                tw="w-auto h-full max-h-screen"
+                tw="w-auto h-auto max-h-screen"
               />
             ) : LightBoxAsset.video ? (
               <Video
@@ -122,6 +121,7 @@ export default function DialogContent() {
             ) : null}
           </ZoomPanContainer>
         </Slides>
+        <DialogControls paginate={paginate} />
       </>
     </ReachDialogContent>
   );

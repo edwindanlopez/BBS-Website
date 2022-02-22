@@ -31,7 +31,7 @@ const Slides = forwardRef(
       <AnimatePresence initial={false} custom={direction}>
         <motion.div
           ref={containerBoundsRef}
-          className="framer-motion-animate-slides"
+          className="framer-motion-slides"
           layout="position"
           key={slide}
           custom={direction}
@@ -39,6 +39,7 @@ const Slides = forwardRef(
           initial="enter"
           animate="center"
           transition={{
+            y: 0,
             x: {
               type: 'spring',
               stiffness: 300,
@@ -58,7 +59,7 @@ const Slides = forwardRef(
               paginate(-1);
             }
           }}
-          tw="w-full h-full"
+          tw="overflow-clip"
         >
           {children}
         </motion.div>

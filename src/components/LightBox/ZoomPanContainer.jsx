@@ -17,7 +17,7 @@ export default function ZoomPanContainer({
   const imageBoundsRef = useRef();
   const latestImgScaleBoundaries = useRef();
 
-  const adjustImageView = ({ offset: [zoom] }) => {
+  const adjustImageView = () => {
     const newCrop = crop;
 
     // const originalImgScaleBoundaries = latestImgScaleBoundaries.current;
@@ -27,32 +27,35 @@ export default function ZoomPanContainer({
     const xOverhang = (imageBounds.width - containerBounds.width) / 2;
     const yOverhang = (imageBounds.height - containerBounds.height) / 2;
 
-    if (zoom >= 1) {
-      // snap to left and right
-      if (imageBounds.left > containerBounds.left) {
-        newCrop.x = xOverhang;
-      } else if (imageBounds.right < containerBounds.right) {
-        newCrop.x = -(imageBounds.width - containerBounds.width) + xOverhang;
-      }
+    // snap to left and right
+    if (imageBounds.left > containerBounds.left) {
+      newCrop.x = xOverhang;
+    } else if (imageBounds.right < containerBounds.right) {
+      newCrop.x = -(imageBounds.width - containerBounds.width) + xOverhang;
+    }
 
-      // snap to top and bottom
-      if (imageBounds.top > containerBounds.top) {
-        newCrop.y = 0;
-      } else if (imageBounds.bottom < containerBounds.bottom) {
-        newCrop.y = -(imageBounds.height - containerBounds.height) + yOverhang;
-      }
+    // snap to top and bottom
+    if (imageBounds.top > containerBounds.top) {
+      newCrop.y = 0;
+    } else if (imageBounds.bottom < containerBounds.bottom) {
+      newCrop.y = -(imageBounds.height - containerBounds.height) + yOverhang;
     }
 
     setCrop(newCrop);
   };
 
-  const delegateDragCtrl = () => {
-    // delegate dragging control to Framer Motion
-    if (framerMotionDrag !== 'x') {
-      setFramerMotionDrag('x');
-    } else if (framerMotionDrag) {
+  const delegateDragCtrl = ({ offset: [zoom] }) => {
+    if (zoom > 1) {
       // dragging controlled by this component
       setFramerMotionDrag(false);
+    } else {
+      // delegate dragging control to Framer Motion
+      setFramerMotionDrag('x');
+      setCrop({
+        x: 0,
+        y: 0,
+        scale: 1,
+      });
     }
   };
 
@@ -60,7 +63,7 @@ export default function ZoomPanContainer({
     {
       onDrag: ({ offset: [dx, dy] }) => {
         // if image is zoomed at least 1.12, allow dragging(panning) of photo
-        if (crop.scale > 1.12) {
+        if (crop.scale > 1) {
           setCrop((prevVal) => ({
             ...prevVal,
             x: dx,
@@ -68,28 +71,19 @@ export default function ZoomPanContainer({
           }));
         }
       },
-      onDragEnd: (props) => adjustImageView(props),
+      onDragEnd: () => adjustImageView(),
       onPinch: ({ offset: [z] }) => {
-        if (z <= 1) {
-          delegateDragCtrl();
-          setCrop({
-            x: 0,
-            y: 0,
-            scale: 1,
-          });
-        } else {
-          delegateDragCtrl();
-          setCrop((prevVal) => ({
-            ...prevVal,
-            scale: z,
-          }));
-        }
+        setFramerMotionDrag(false);
+        setCrop((prevVal) => ({
+          ...prevVal,
+          scale: z < 1 ? 1 : z,
+        }));
       },
       onPinchEnd: (props) => {
-        delegateDragCtrl();
         latestImgScaleBoundaries.current =
           imageBoundsRef.current.getBoundingClientRect();
-        adjustImageView(props);
+        delegateDragCtrl(props);
+        adjustImageView();
       },
     },
     {
@@ -109,13 +103,12 @@ export default function ZoomPanContainer({
       ref={imageBoundsRef}
       className="zoom-pan-container"
       style={{
-        position: 'relative',
         left: crop.x,
         top: crop.y,
         transform: `scale(${crop.scale})`,
         touchAction: 'none',
       }}
-      tw="w-full h-full flex justify-center items-center"
+      tw="relative w-screen h-screen flex flex-col justify-center items-center "
     >
       {children}
     </div>
