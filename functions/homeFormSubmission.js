@@ -19,6 +19,7 @@ exports.handler = async (event) => {
   console.log('Recaptcha response: ', captcha);
 
   const sendToSendGrid = new Promise((resolve, reject) => {
+    console.log('Hitting home form submission route');
     if (!token) {
       reject(new Error('Captcha token not validated'));
     }

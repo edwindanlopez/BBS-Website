@@ -15,15 +15,16 @@ import Modal from '../shared/Modal';
 import { TextInput, TextArea } from '../shared/FormFieldComponents';
 import CloudinaryUpload from '../CloudinaryUploadButton';
 
-function ImageUploadSection() {
+export default function ImageUploadSection() {
+  const [uploads, setUploads] = useState([]);
+  const { executeRecaptcha } = useGoogleReCaptcha();
+
   const [modalStatus, setModalStatus] = useState({
     isOpen: false,
     success: null,
     failed: null,
     err: null,
   });
-
-  const [uploads, setUploads] = useState([]);
 
   const removeUpload = (e) => {
     const deleteToken = e.currentTarget.getAttribute('data-delete-token');
@@ -73,9 +74,11 @@ function ImageUploadSection() {
     return files;
   };
 
-  const { executeRecaptcha } = useGoogleReCaptcha();
-
   const handleSubmit = async (values, resetForm) => {
+    if (!executeRecaptcha) {
+      throw new Error('Recaptcha not loaded yet!');
+    }
+
     const recaptchaRes = await executeRecaptcha('homepage');
     const getAttachmentData = await getAttachments();
     const fieldValues = {
@@ -291,5 +294,3 @@ function ImageUploadSection() {
     </PageLayoutWrapper>
   );
 }
-
-export default ImageUploadSection;

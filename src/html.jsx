@@ -1,6 +1,5 @@
-/* eslint-disable react/forbid-prop-types */
+/* eslint-disable react/prop-types */
 import * as React from 'react';
-import PropTypes from 'prop-types';
 
 export default function HTML(props) {
   return (
@@ -18,7 +17,6 @@ export default function HTML(props) {
           src="https://upload-widget.cloudinary.com/global/all.js"
           type="text/javascript"
         />
-        <script async defer src="https://www.google.com/recaptcha/api.js" />
         {props.headComponents}
       </head>
       <body {...props.bodyAttributes}>
@@ -34,21 +32,3 @@ export default function HTML(props) {
     </html>
   );
 }
-
-HTML.propTypes = {
-  htmlAttributes: PropTypes.object,
-  headComponents: PropTypes.array,
-  bodyAttributes: PropTypes.object,
-  preBodyComponents: PropTypes.array,
-  body: PropTypes.string,
-  postBodyComponents: PropTypes.array,
-};
-
-HTML.defaultProps = {
-  htmlAttributes: {},
-  headComponents: [],
-  bodyAttributes: {},
-  preBodyComponents: [],
-  body: '',
-  postBodyComponents: [],
-};
