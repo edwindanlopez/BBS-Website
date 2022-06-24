@@ -65,9 +65,9 @@ export default WorkAll;
 
 WorkAll.propTypes = {
   pageContext: PropTypes.shape({
-    edges: PropTypes.arrayOf(PropTypes.object),
+    edges: PropTypes.arrayOf(PropTypes.shape({})),
     category: PropTypes.string,
-    allCategories: PropTypes.arrayOf(PropTypes.object),
+    allCategories: PropTypes.arrayOf(PropTypes.shape({})),
     numPages: PropTypes.arrayOf(PropTypes.number),
   }),
 };

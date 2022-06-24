@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 import React from 'react';
 import { Link } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
@@ -6,12 +5,16 @@ import 'twin.macro';
 import PropTypes from 'prop-types';
 
 import { Pagination, Navigation } from 'swiper';
+// eslint-disable-next-line import/no-unresolved
 import { Swiper, SwiperSlide } from 'swiper/react';
+// eslint-disable-next-line import/no-unresolved
 import 'swiper/css';
+// eslint-disable-next-line import/no-unresolved
 import 'swiper/css/pagination';
 
 export default function FeatWorkTiles({ data }) {
   const { nodes } = data.allMdx;
+  console.log('Data nodes: ', nodes);
 
   return (
     <Swiper
@@ -58,7 +61,7 @@ export default function FeatWorkTiles({ data }) {
 FeatWorkTiles.propTypes = {
   data: PropTypes.shape({
     allMdx: PropTypes.shape({
-      nodes: PropTypes.arrayOf(PropTypes.object),
+      nodes: PropTypes.arrayOf(PropTypes.shape({})),
     }),
   }),
 };

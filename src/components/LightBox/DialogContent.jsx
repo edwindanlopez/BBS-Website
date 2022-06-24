@@ -1,85 +1,39 @@
-import React, { useState, useEffect, useContext, useMemo, useRef } from 'react';
+import * as React from 'react';
 import { wrap } from 'popmotion';
 import 'twin.macro';
 
+import PropTypes from 'prop-types';
 import { DialogContent as ReachDialogContent } from '@reach/dialog';
-import LightBoxContext from './LightBoxContext';
 import DialogControls from './DialogControls';
-import Slides from './Slides';
-import ZoomPanContainer from './ZoomPanContainer';
+import MotionWrapper from './MotionWrapper';
 import Video from '../Video';
+import useZoomPanGestures from '../../utils/useZoomPanGestures';
 
-export default function DialogContent() {
-  const [containerBounds, setContainerBounds] = useState();
-  const [framerMotionDrag, setFramerMotionDrag] = useState('x');
-  const [LightBoxAsset, setLightBoxAsset] = useState({
-    img: {
-      src: '',
-      srcSet: '',
-      name: '',
-    },
-    video: {
-      vidUrl: '',
-      name: '',
-    },
-  });
-  const containerBoundsRef = useRef();
+export default function DialogContent({ state, ltBox, setLtBox }) {
+  const [framerMotionDrag, setFramerMotionDrag] = React.useState('x');
+  const { slides } = state;
+  const { node, direction } = ltBox;
 
-  const { imgNode, setImgNode, direction, imageSlides } =
-    useContext(LightBoxContext);
-
-  const slide = useMemo(
-    () => imageSlides.findIndex((el) => el.name === imgNode.name),
-    [imgNode, imageSlides]
+  const slide = React.useMemo(
+    () => slides.findIndex((el) => el.name === node.name),
+    [node, slides]
   );
 
   const paginate = (newDirection) => {
     // cycle images indefinitely by wrapping array index back at the beginning
-    const newImageIndex = wrap(0, imageSlides.length, slide + newDirection);
-    const newImageNode = imageSlides[newImageIndex];
-    setImgNode([newImageNode, newDirection]);
+    const newImageIndex = wrap(0, slides.length, slide + newDirection);
+    const newImageNode = slides[newImageIndex];
+    setLtBox((currentState) => ({
+      ...currentState,
+      node: newImageNode,
+      direction: newDirection,
+    }));
   };
 
-  useEffect(() => {
-    if (containerBoundsRef) {
-      setContainerBounds(containerBoundsRef.current.getBoundingClientRect());
-    }
-  }, []);
-
-  useEffect(() => {
-    if (imageSlides[slide].childImageSharp) {
-      setLightBoxAsset({
-        img: {
-          src: imageSlides[slide].childImageSharp.gatsbyImageData.images
-            .fallback.src,
-          srcSet:
-            imageSlides[slide].childImageSharp.gatsbyImageData.images.fallback
-              .srcSet,
-          name: imageSlides[slide].name,
-        },
-        video: {
-          vidUrl: null,
-          name: null,
-        },
-      });
-    } else if (imageSlides[slide].video) {
-      setLightBoxAsset({
-        img: {
-          src: null,
-          srcSet: null,
-          name: null,
-        },
-        video: {
-          vidUrl: imageSlides[slide].video,
-          name: imageSlides[slide].name,
-        },
-      });
-    } else {
-      throw new Error(
-        'Asset found in imageSlides was neither an image or video'
-      );
-    }
-  }, [slide, imgNode, imageSlides]);
+  const { crop, setRef } = useZoomPanGestures({
+    framerMotionDrag,
+    setFramerMotionDrag,
+  });
 
   return (
     <ReachDialogContent
@@ -87,42 +41,73 @@ export default function DialogContent() {
       className="dialog-content"
       style={{
         backgroundColor: 'unset',
-        width: 'unset',
         margin: 'auto',
         zIndex: 40,
       }}
-      tw="w-screen md:(w-[75vw!important]) p-[0px!important] flex flex-row justify-center overflow-hidden "
+      tw="w-screen h-[50vh] md:(w-[70vw]) xl:(w-[50vw] h-[60vh]) p-[0px] top-0 bottom-0 right-0 left-0 fixed"
     >
       <>
-        <Slides
-          ref={containerBoundsRef}
+        <MotionWrapper
           direction={direction}
           slide={slide}
           paginate={paginate}
           framerMotionDrag={framerMotionDrag}
         >
-          <ZoomPanContainer
-            framerMotionDrag={framerMotionDrag}
-            setFramerMotionDrag={setFramerMotionDrag}
-            containerBounds={containerBounds}
-          >
-            {LightBoxAsset.img.src && LightBoxAsset.img.srcSet ? (
-              <img
-                src={LightBoxAsset.img.src}
-                alt={LightBoxAsset.img.name}
-                tw="w-auto h-auto max-h-screen"
-              />
-            ) : LightBoxAsset.video ? (
-              <Video
-                videoSrcURL={LightBoxAsset.video.vidUrl}
-                autoPlay
-                tw="w-auto h-full max-h-screen"
-              />
-            ) : null}
-          </ZoomPanContainer>
-        </Slides>
-        <DialogControls paginate={paginate} />
+          {node.childImageSharp ? (
+            <img
+              ref={setRef}
+              src={node.childImageSharp.gatsbyImageData.images.fallback.src}
+              alt={node.childImageSharp.gatsbyImageData.images.fallback.srcSet}
+              style={{
+                height: 'auto',
+                left: crop.x,
+                top: crop.y,
+                bottom: crop.b,
+                right: crop.r,
+                transform: `scale(${crop.scale})`,
+                touchAction: 'none',
+                position: 'absolute',
+                margin: 'auto',
+              }}
+            />
+          ) : (
+            <Video
+              videoSrcURL={node.video}
+              autoPlay
+              tw="w-full m-[0 auto] h-full"
+            />
+          )}
+        </MotionWrapper>
+        <DialogControls paginate={paginate} setLtBox={setLtBox} />
       </>
     </ReachDialogContent>
   );
 }
+
+DialogContent.propTypes = {
+  state: PropTypes.shape({
+    status: PropTypes.string,
+    slides: PropTypes.oneOfType([PropTypes.array, PropTypes.shape()]),
+    error: PropTypes.oneOfType([PropTypes.number, PropTypes.object]),
+  }),
+  ltBox: PropTypes.shape({
+    isOpen: PropTypes.bool,
+    node: PropTypes.shape(),
+    direction: PropTypes.number,
+  }),
+  setLtBox: PropTypes.func,
+};
+
+DialogContent.defaultProps = {
+  state: {
+    status: '',
+    slides: [],
+    error: null,
+  },
+  ltBox: {
+    isOpen: true,
+    node: {},
+    direction: 0,
+  },
+  setLtBox: () => {},
+};

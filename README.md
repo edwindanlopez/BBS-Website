@@ -1,4 +1,4 @@
-![bbs-home-page](https://res.cloudinary.com/bldrscove/image/upload/v1645553884/Readmes/BBS/bbs-readme-screenshot_rgehc7.jpg)
+![bbs-home-page](https://res.cloudinary.com/edwindanlopez/image/upload/v1645553884/Readmes/BBS/bbs-readme-screenshot_rgehc7.jpg)
 
 ## Project Status
 

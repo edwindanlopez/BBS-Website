@@ -15,7 +15,7 @@ export default function WorkDetailPageWrapper({ children, ...props }) {
 }
 
 WorkDetailPageWrapper.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
 };
 
 WorkDetailPageWrapper.defaultProps = {

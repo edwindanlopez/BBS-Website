@@ -44,7 +44,7 @@ function AboutPage() {
                     remodeling (we don’t do full tile-flooring)."
               >
                 <StaticImage
-                  src="https://res.cloudinary.com/bldrscove/image/upload/v1644250283/BBS/Website-Assets/about-images/bbs-tiling_ij2c66.jpg"
+                  src="https://res.cloudinary.com/edwindanlopez/image/upload/v1644250283/BBS/Website-Assets/about-images/bbs-tiling_ij2c66.jpg"
                   alt="Beautiful gray slate shower tile"
                 />
               </ImageCard>
@@ -57,7 +57,7 @@ function AboutPage() {
                   in the house."
               >
                 <StaticImage
-                  src="https://res.cloudinary.com/bldrscove/image/upload/v1644250971/BBS/Website-Assets/about-images/bbs-carpentry_kewsac.jpg"
+                  src="https://res.cloudinary.com/edwindanlopez/image/upload/v1644250971/BBS/Website-Assets/about-images/bbs-carpentry_kewsac.jpg"
                   alt="Wainscoting installation on kitchen island"
                 />
               </ImageCard>
@@ -68,7 +68,7 @@ function AboutPage() {
                   that need to be refinished."
               >
                 <StaticImage
-                  src="https://res.cloudinary.com/bldrscove/image/upload/v1644250283/BBS/Website-Assets/about-images/bbs-wood-restorations_ghlgrk.jpg"
+                  src="https://res.cloudinary.com/edwindanlopez/image/upload/v1644250283/BBS/Website-Assets/about-images/bbs-wood-restorations_ghlgrk.jpg"
                   alt="Faded chair in the process of being sanded during restoration"
                 />
               </ImageCard>
@@ -78,7 +78,7 @@ function AboutPage() {
                 paragraph="Murals or artistic artwork on walls or furniture."
               >
                 <StaticImage
-                  src="https://res.cloudinary.com/bldrscove/image/upload/v1644250282/BBS/Website-Assets/about-images/bbs-artistic-touchups_tipemr.jpg"
+                  src="https://res.cloudinary.com/edwindanlopez/image/upload/v1644250282/BBS/Website-Assets/about-images/bbs-artistic-touchups_tipemr.jpg"
                   alt="Artistic wall decore texture"
                 />
               </ImageCard>

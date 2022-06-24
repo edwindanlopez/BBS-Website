@@ -10,7 +10,7 @@ function CloudinaryUpload({ colSpan, uploads, setUploads, variant }) {
   useEffect(() => {
     const getUploadWidget = window.cloudinary.createUploadWidget(
       {
-        cloudName: 'bldrscove',
+        cloudName: 'edwindanlopez',
         uploadPreset: 'BBS-Unsigned',
         sources: ['local', 'camera'],
         multiple: true,
@@ -93,7 +93,7 @@ export default CloudinaryUpload;
 
 CloudinaryUpload.propTypes = {
   colSpan: PropTypes.string,
-  uploads: PropTypes.arrayOf(PropTypes.object),
+  uploads: PropTypes.arrayOf(PropTypes.shape({})),
   setUploads: PropTypes.func,
   variant: PropTypes.string,
 };

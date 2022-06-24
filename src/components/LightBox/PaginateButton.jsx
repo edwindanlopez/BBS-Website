@@ -22,7 +22,6 @@ function LeftArrowIcon() {
       xmlns="http://www.w3.org/2000/svg"
       width="18"
       height="28"
-      tw="opacity-50"
     >
       <path
         id="left-ltbox-arrow"
@@ -41,7 +40,6 @@ function RightArrowIcon() {
       xmlns="http://www.w3.org/2000/svg"
       width="18"
       height="28"
-      tw="opacity-50"
     >
       <path
         id="right-ltbox-arrow"

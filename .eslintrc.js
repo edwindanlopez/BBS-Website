@@ -27,4 +27,11 @@ module.exports = {
     'no-console': 'off',
     'no-nested-ternary': 'off',
   },
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
+  },
 };

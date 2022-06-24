@@ -82,11 +82,11 @@ export default CategoryTemplate;
 CategoryTemplate.propTypes = {
   data: PropTypes.shape({
     allMdx: PropTypes.shape({
-      nodes: PropTypes.arrayOf(PropTypes.object),
+      nodes: PropTypes.arrayOf(PropTypes.shape({})),
     }),
   }),
   pageContext: PropTypes.shape({
-    allCategories: PropTypes.arrayOf(PropTypes.object),
+    allCategories: PropTypes.arrayOf(PropTypes.shape({})),
     category: PropTypes.string,
   }),
 };

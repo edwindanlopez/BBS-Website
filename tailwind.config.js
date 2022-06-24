@@ -17,21 +17,21 @@ module.exports = {
       },
       backgroundImage: () => ({
         'cbnt-ptrn':
-          "url('https://res.cloudinary.com/bldrscove/image/upload/v1634746200/BBS/Website-Assets/category-texture-tiles/cabinets-tile-texture_m3kaes.jpg')",
+          "url('https://res.cloudinary.com/edwindanlopez/image/upload/v1634746200/BBS/Website-Assets/category-texture-tiles/cabinets-tile-texture_m3kaes.jpg')",
         'closet-ptrn':
-          "url('https://res.cloudinary.com/bldrscove/image/upload/v1634746200/BBS/Website-Assets/category-texture-tiles/closets-tile-texture_blcsap.jpg')",
+          "url('https://res.cloudinary.com/edwindanlopez/image/upload/v1634746200/BBS/Website-Assets/category-texture-tiles/closets-tile-texture_blcsap.jpg')",
         'custom-ptrn':
-          "url('https://res.cloudinary.com/bldrscove/image/upload/v1634746200/BBS/Website-Assets/category-texture-tiles/custom-tile-texture_sewcyh.jpg')",
+          "url('https://res.cloudinary.com/edwindanlopez/image/upload/v1634746200/BBS/Website-Assets/category-texture-tiles/custom-tile-texture_sewcyh.jpg')",
         'floor-ptrn':
-          "url('https://res.cloudinary.com/bldrscove/image/upload/v1634746200/BBS/Website-Assets/category-texture-tiles/floor-tile-texture_ux1q8w.jpg')",
+          "url('https://res.cloudinary.com/edwindanlopez/image/upload/v1634746200/BBS/Website-Assets/category-texture-tiles/floor-tile-texture_ux1q8w.jpg')",
         'illus-ptrn':
-          "url('https://res.cloudinary.com/bldrscove/image/upload/v1634746200/BBS/Website-Assets/category-texture-tiles/illustrations-tile-texture_wc9sxo.jpg')",
+          "url('https://res.cloudinary.com/edwindanlopez/image/upload/v1634746200/BBS/Website-Assets/category-texture-tiles/illustrations-tile-texture_wc9sxo.jpg')",
         'mural-ptrn':
-          "url('https://res.cloudinary.com/bldrscove/image/upload/v1634746201/BBS/Website-Assets/category-texture-tiles/mural-tile-texture_pyjdis.jpg')",
+          "url('https://res.cloudinary.com/edwindanlopez/image/upload/v1634746201/BBS/Website-Assets/category-texture-tiles/mural-tile-texture_pyjdis.jpg')",
         'shower-ptrn':
-          "url('https://res.cloudinary.com/bldrscove/image/upload/v1634746200/BBS/Website-Assets/category-texture-tiles/shower-tile-texture_s9tuvw.jpg')",
+          "url('https://res.cloudinary.com/edwindanlopez/image/upload/v1634746200/BBS/Website-Assets/category-texture-tiles/shower-tile-texture_s9tuvw.jpg')",
         'woodrpr-ptrn':
-          "url('https://res.cloudinary.com/bldrscove/image/upload/v1634746201/BBS/Website-Assets/category-texture-tiles/wood-repairs-tile-texture_jxgrxg.jpg')",
+          "url('https://res.cloudinary.com/edwindanlopez/image/upload/v1634746201/BBS/Website-Assets/category-texture-tiles/wood-repairs-tile-texture_jxgrxg.jpg')",
       }),
       colors: {
         dark: '#232323',
