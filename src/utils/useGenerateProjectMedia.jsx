@@ -48,15 +48,19 @@ export default function useGenerateProjectMedia(initialState = {}) {
 
   const generateSlides = React.useCallback(async (imgs, vids) => {
     const imgSlidesArr = await imgs.map((node) => node);
-    const vidSlidesArr = await vids.map((vidUrl) => {
-      const vidName = vidUrl
-        .substring(vidUrl.lastIndexOf('/') + 1)
-        .replace('.MOV', '');
-      return { video: vidUrl, name: vidName };
-    });
+    const vidSlidesArr =
+      (await vids) &&
+      vids.map((vidUrl) => {
+        const vidName = vidUrl
+          .substring(vidUrl.lastIndexOf('/') + 1)
+          .replace('.MOV', '');
+        return { video: vidUrl, name: vidName };
+      });
 
     return new Promise((resolve, reject) => {
-      if (imgSlidesArr && vidSlidesArr) {
+      if (!vids && imgSlidesArr) {
+        resolve([...imgSlidesArr]);
+      } else if (imgSlidesArr && vids) {
         resolve([...imgSlidesArr, ...vidSlidesArr]);
       } else {
         console.log('Error generating slides');

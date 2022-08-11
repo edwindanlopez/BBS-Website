@@ -28,6 +28,8 @@ function WorkDetailPageTemplate({ data }) {
   const imgs = data.allFile.nodes;
   const vids = frontMatter.videos;
 
+  console.log('frontMatter: ', frontMatter);
+
   const { state, dispatch, generateSlides } = useGenerateProjectMedia();
 
   const { status, slides } = state;
